@@ -20,13 +20,50 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 	$stateProvider
 
 		.state('home',{
+			abstract : true,
 			url : "/home",
 			templateUrl: "app/home/home.html"
 		})
 
-		.state('expenses', {
-			url : "/expenses",
+		.state('home.expenses', {
+			url:"/expenses",
+			views: {
+				"tab-expenses" : {
+					templateUrl : "app/home/expenses.html"
+				}
+			}
+		})
+
+		.state('home.incomes', {
+			url:"/incomes",
+			views: {
+				"tab-incomes" : {
+					templateUrl : "app/home/incomes.html"
+				}
+			}
+		})
+
+		.state('home.statistics', {
+			url:"/statistics",
+			views: {
+				"tab-stats" : {
+					templateUrl : "app/home/statistics.html"
+				}
+			}
+		})
+
+		.state('home.account', {
+			url:"/account",
+			views: {
+				"tab-account" : {
+					templateUrl : "app/home/account.html"
+				}
+			}
+		})
+
+		.state('app', {
+			url : "/app",
 			templateUrl: "app/layout/expense-layout.html"
 		});
-	$urlRouterProvider.otherwise('/expenses');
+	$urlRouterProvider.otherwise('/home/expenses');
 });
