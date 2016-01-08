@@ -25,45 +25,85 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			templateUrl: "app/home/home.html"
 		})
 
-		.state('home.expenses', {
-			url:"/expenses",
+		.state('home.register', {
+			url:"/register",
 			views: {
-				"tab-expenses" : {
-					templateUrl : "app/home/expenses.html"
+				"tab-register" : {
+					templateUrl : "app/home/register.html"
 				}
 			}
 		})
 
-		.state('home.incomes', {
-			url:"/incomes",
+		.state('home.login', {
+			url:"/login",
 			views: {
-				"tab-incomes" : {
-					templateUrl : "app/home/incomes.html"
+				"tab-login" : {
+					templateUrl : "app/home/login.html"
 				}
-			}
-		})
-
-		.state('home.statistics', {
-			url:"/statistics",
-			views: {
-				"tab-stats" : {
-					templateUrl : "app/home/statistics.html"
-				}
-			}
-		})
-
-		.state('home.account', {
-			url:"/account",
-			views: {
-				"tab-account" : {
-					templateUrl : "app/home/account.html"
-				}
-			}
+			},
+			controller: 'SignInCtrl'
 		})
 
 		.state('app', {
+			abstract : true,
 			url : "/app",
-			templateUrl: "app/layout/expense-layout.html"
+			templateUrl: "app/layout/menu-layout.html"
+		})
+
+
+		.state('app.expenses', {
+			url:"/expenses",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/expenses/expenses.html"
+				}
+			}
+		})
+
+		.state('app.incomes', {
+			url:"/incomes",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/incomes/incomes.html"
+				}
+			}
+		})
+
+		.state('app.categories', {
+			url:"/categories",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/categories/categories.html"
+				}
+			}
+		})
+
+		.state('app.statistics', {
+			url:"/statistics",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/statistics/statistics.html"
+				}
+			}
+		})
+
+		.state('app.account', {
+			url:"/account",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/account/account.html"
+				}
+			}
 		});
-	$urlRouterProvider.otherwise('/home/expenses');
+
+	$urlRouterProvider.otherwise('/app/expenses');
+})
+
+.controller('SignInCtrl', function($scope, $state) {
+  
+  $scope.signIn = function(user) {
+    console.log('Sign-In', user);
+    $state.go('tabs.home');
+  };
+  
 });
