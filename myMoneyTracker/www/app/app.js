@@ -60,6 +60,15 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			}
 		})
 
+		.state('app.expense-detail', {
+			url:"/expenses/:id",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/expenses/expense-detail.html"
+				}
+			}
+		})
+
 		.state('app.incomes', {
 			url:"/incomes",
 			views: {
