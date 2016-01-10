@@ -25,6 +25,16 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			templateUrl: "app/home/home.html"
 		})
 
+
+		.state('home.description', {
+			url:"/description",
+			views: {
+				"tab-description" : {
+					templateUrl : "app/home/description.html"
+				}
+			}
+		})
+
 		.state('home.register', {
 			url:"/register",
 			views: {
@@ -105,7 +115,7 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			}
 		});
 
-	$urlRouterProvider.otherwise('/app/expenses');
+	$urlRouterProvider.otherwise('/home/description');
 })
 
 .controller('SignInCtrl', function($scope, $state) {
