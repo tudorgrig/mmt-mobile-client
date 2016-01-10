@@ -1,19 +1,22 @@
 <ion-side-menus>
-  <ion-side-menu-content>
+  
+
+ <ion-side-menu-content>
     <ion-header-bar class="bar-header bar-dark">
     	<button class="button button-icon icon ion-navicon" menu-toggle="left"> </button>
-      	<div class="h1 title">My Money Tracker</div>
+      <div class="h1 title">My Money Tracker</div>
     </ion-header-bar>
     <ion-nav-view name="mainContent" animation="slide-left-right"></ion-nav-view>
  	  <ion-content>
     </ion-content> 
   </ion-side-menu-content> 
   
-   <ion-side-menu side="left">
+  <ion-side-menu side="left">
       <a menu-close ui-sref="app.expenses" class="item">Expenses</a>
       <a menu-close ui-sref="app.incomes" class="item">Incomes</a>
       <a menu-close ui-sref="app.categories" class="item">Categories</a>
       <a menu-close ui-sref="app.statistics" class="item">Statistics</a>
       <a menu-close ui-sref="app.account" class="item">Account</a>
-   </ion-side-menu>
+  </ion-side-menu>
+
 </ion-side-menus>
