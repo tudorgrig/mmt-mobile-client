@@ -16,7 +16,7 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider){
 	$stateProvider
 
 		.state('home',{
@@ -115,7 +115,8 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			}
 		});
 
-	$urlRouterProvider.otherwise('/home/description');
+	$urlRouterProvider.otherwise('/app/expenses');
+	$ionicConfigProvider.tabs.position('bottom');
 })
 
 .controller('SignInCtrl', function($scope, $state) {
