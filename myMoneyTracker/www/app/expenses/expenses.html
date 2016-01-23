@@ -1,7 +1,14 @@
 <ion-view>
 	<ion-content class="has-header dark">
 		<h1>Expenses</h1>
-		<a href="#/app/expenses/21" class="button button-positive">Test expense</a>
+		<!-- <a href="#/app/expenses/21" class="button button-positive">Test expense</a>
+ -->
+		<ion-list>
+  			<ion-item href="#/app/expenses/21">
+    			Silva    4.5RON    20.01.2016    Alimente
+    			<ion-option-button class="button-assertive">Delete</ion-option-button>
+  			</ion-item>
+		</ion-list>
 	</ion-content>
 
 	<ion-tabs class="tabs-dark tabs-icon-top">
@@ -11,8 +18,7 @@
 			<!-- <ion-nav-view name="tab-login"></ion-nav-view> -->
 		</ion-tab>
 
-		<ion-tab title="Add expense" icon="ion-plus-round" ui-sref="#">
-			<!-- <ion-nav-view name="tab-register"></ion-nav-view> -->
+		<ion-tab title="Add expense" icon="ion-plus-round" ui-sref="app.add-expense">
 		</ion-tab>
 
 		<ion-tab title="Sort by category" icon="ion-ios-eye-outline" ui-sref="#">

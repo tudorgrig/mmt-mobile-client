@@ -70,6 +70,15 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			}
 		})
 
+		.state('app.add-expense', {
+			url:"/add-expense",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/expenses/add-expense.html"
+				}
+			}
+		})
+
 		.state('app.expense-detail', {
 			url:"/expenses/:id",
 			views: {
@@ -88,11 +97,30 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			}
 		})
 
+		.state('app.add-income', {
+			url:"/add-income",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/incomes/add-income.html"
+				}
+			}
+		})
+
+
 		.state('app.categories', {
 			url:"/categories",
 			views: {
 				"mainContent" : {
 					templateUrl : "app/categories/categories.html"
+				}
+			}
+		})
+
+		.state('app.add-category', {
+			url:"/add-category",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/categories/add-category.html"
 				}
 			}
 		})

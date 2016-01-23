@@ -1,0 +1,24 @@
+<ion-view>
+  <ion-content class="has-header dark">
+    <h1>Add category</h1>
+  </ion-content>
+  <ion-content>
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Name</span>
+              <input type="text" ng-model="category.name" required>
+            </label>
+
+            <label class="item item-input">
+              <span class="input-label">Color</span>
+              <input type="color"  value="#ff0000"  ng-model="category.color" required>
+            </label>
+            
+          </div>
+          <div class="padding">
+            <button class="button button-block button-dark"  ng-click="vm.addExpense(expense)">
+              Create category
+            </button>
+          </div>
+  </ion-content>
+</ion-view>

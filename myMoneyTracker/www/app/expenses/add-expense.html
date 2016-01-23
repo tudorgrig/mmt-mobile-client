@@ -1,0 +1,42 @@
+<ion-view>
+	<ion-content class="has-header dark">
+		<h1>Add expense</h1>
+	</ion-content>
+	<ion-content>
+          <div class="list">
+            <label class="item item-input">
+              	<span class="input-label">Category</span>
+              	<select>
+        			<option selected>Default</option>
+        			<option >Green</option>
+        			<option>Red</option>
+    			</select>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Name</span>
+              <input type="text" ng-model="expense.name" required>
+            </label>
+            
+            <label class="item item-input">
+              <span class="input-label">Description</span>
+              <input type="text" ng-model="expense.description">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Ammount</span>
+              <input type="number" ng-model="expense.ammount" required>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Creation date</span>
+              <input type="date" ng-model="expense.creationDate">
+            </label>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-dark" ng-click="vm.addExpense(expense)">
+              Create expense
+            </button>
+            <button class="button button-block button-dark" ng-click="vm.addExpenseAndNew(expense)">
+              Create & New
+            </button>
+          </div>
+  </ion-content>
+</ion-view>

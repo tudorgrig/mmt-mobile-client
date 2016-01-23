@@ -1,0 +1,31 @@
+<ion-view>
+  <ion-content class="has-header dark">
+    <h1>Add income</h1>
+  </ion-content>
+  <ion-content>
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Name</span>
+              <input type="text" ng-model="income.name" required>
+            </label>
+            
+            <label class="item item-input">
+              <span class="input-label">Description</span>
+              <input type="text" ng-model="income.description">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Ammount</span>
+              <input type="number" ng-model="income.ammount" required>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Creation date</span>
+              <input type="date" ng-model="income.creationDate">
+            </label>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-dark" ng-click="vm.addExpense(expense)">
+              Create income
+            </button>
+          </div>
+  </ion-content>
+</ion-view>

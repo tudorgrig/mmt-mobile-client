@@ -1,5 +1,31 @@
-<ion-view>
+<ion-view ng-controller="registerCtrl as vm">
 	<ion-content class="has-header">
 		<h1>Register</h1>
 	</ion-content>
+	<ion-content>
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Username</span>
+              <input type="text" ng-model="user.username">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Email</span>
+              <input type="email" ng-model="user.email">
+            </label>
+            
+            <label class="item item-input">
+              <span class="input-label">Password</span>
+              <input type="password" ng-model="user.password">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Reenter password</span>
+              <input type="password" ng-model="user.password2">
+            </label>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-dark" ng-click="vm.register(user)">
+              Register
+            </button>
+          </div>
+  </ion-content>
 </ion-view>
