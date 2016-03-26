@@ -17,7 +17,7 @@
 
 			var req = {
          			method: 'POST',
-         			url: 'http://192.168.1.144:8080/user/add',
+         			url: 'https://192.168.1.144:8443/user/add',
          			headers: {
            					'Content-Type': "application/json"
         			},
@@ -34,8 +34,8 @@
           				$location.path('/home/login');
         			},
         			function(response){
-                  console.log("response",response);
-          			 var alertPopup = $ionicPopup.alert({
+                        console.log("response",response);
+          			    var alertPopup = $ionicPopup.alert({
      							    title: 'Registration error',
      							    template: response.data
    						   });

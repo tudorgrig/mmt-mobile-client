@@ -1,12 +1,13 @@
-<ion-view>
+<ion-view ng-controller="expenseCtrl as vm">
 	<ion-content class="has-header dark">
-		<h1>Expenses</h1>
-		<!-- <a href="#/app/expenses/21" class="button button-positive">Test expense</a>
- -->
 		<ion-list>
   			<ion-item href="#/app/expenses/21">
     			Silva    4.5RON    20.01.2016    Alimente
-    			<ion-option-button class="button-assertive">Delete</ion-option-button>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <ion-option-button class="button-positive" href="#/app/expenses/21">
+                    Edit
+                </ion-option-button>
+    			<ion-option-button class="button-assertive" ng-click="vm.confirmDelete(2)">Delete</ion-option-button>
   			</ion-item>
 		</ion-list>
 	</ion-content>

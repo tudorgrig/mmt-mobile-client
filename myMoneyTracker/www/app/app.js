@@ -1,4 +1,4 @@
-angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
+angular.module('myMoneyTracker', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -50,8 +50,7 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 				"tab-login" : {
 					templateUrl : "app/home/login.html"
 				}
-			},
-			controller: 'SignInCtrl'
+			}
 		})
 
 		.state('app', {
@@ -143,7 +142,7 @@ angular.module('myMoneyTracker', ['ionic', 'starter.controllers'])
 			}
 		});
 
-	$urlRouterProvider.otherwise('/app/expenses');
+	$urlRouterProvider.otherwise('/home/login');
 	$ionicConfigProvider.tabs.position('bottom');
 })
 

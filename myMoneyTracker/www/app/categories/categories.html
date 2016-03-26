@@ -1,6 +1,18 @@
-<ion-view>
+<ion-view ng-controller="categoryCtrl as vm">
 	<ion-content class="has-header dark">
-		<h1>Categories</h1>
+		<ion-list>
+            <ion-item href="#/app/expenses/{{category.id}}"  class="item-icon-left" ng-repeat="category in vm.categories" >
+    			{{category.name}}
+                <i class="icon ion-record {{category.colour}}"></i>
+                <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+                <ion-option-button class="button-positive">
+                    Edit
+                </ion-option-button>
+    			<ion-option-button class="button-assertive" ng-click="vm.confirmDelete(category)">
+                    Delete
+                </ion-option-button>
+  			</ion-item>
+		</ion-list>
 	</ion-content>
 
 	<ion-tabs class="tabs-dark tabs-icon-top">
