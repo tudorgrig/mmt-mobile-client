@@ -1,28 +1,39 @@
 (function(){
 	'use strict';
 	
-	angular.module('myMoneyTracker').controller('categoryCtrl', ['$stateParams', '$ionicPopup', '$http', '$location', '$window', categoryCtrl]);
+	angular.module('myMoneyTracker').controller('categoryCtrl', ['$stateParams', '$ionicPopup', '$http', '$location', '$window', 'categoryApi', categoryCtrl]);
 
-    function confirmDelete(category){
-        console.log(category);
-    }
-
-	function categoryCtrl($stateParams, $ionicPopup, $http, $location, $window){
+	function categoryCtrl($stateParams, $ionicPopup, $http, $location, $window, categoryApi){
 		var vm = this;
-		
-
-        
-        $http.get("https://192.168.1.144:8443/category/find_all", {
-            headers : {
-                'Authorization' : $window.localStorage['mmtlt']
-            }
-        }).success(function(data){
+        vm.categories = [];
+        categoryApi.getCategories(function(data){
             vm.categories = data;
-        });
-        
-        
+        })
         vm.selectCategory = function(category){
             console.log(category.name);
         }
+        
+        vm.confirmDelete = function(category, index){
+            var myPopup = $ionicPopup.show({
+                    title: 'Confirm delete',
+                    subTitle: 'Are you sure you want to delete this category?',
+                    buttons: [
+                            { 
+                                text: 'Cancel',
+                                type: 'button-positive'
+                            },
+                            {
+                                text: '<b>Delete</b>',
+                                type: 'button-assertive',
+                                onTap: function(e) {
+                                    categoryApi.deleteCategory(category, function(data){
+                                        vm.categories.splice(index, 1);
+                                    });
+                                }
+                            }
+                    ]
+            });
+       }
+      
 	};
 })();

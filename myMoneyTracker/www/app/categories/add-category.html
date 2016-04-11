@@ -31,8 +31,11 @@
             
           </div>
           <div class="padding">
-            <button class="button button-block button-dark"  ng-click="vm.addCategory(category)">
+            <button class="button button-block button-dark"  ng-click="vm.addCategory(category, true)">
               Create category
+            </button>
+            <button class="button button-block button-dark"  ng-click="vm.addCategory(category, false)">
+              Create category & new
             </button>
           </div>
   </ion-content>

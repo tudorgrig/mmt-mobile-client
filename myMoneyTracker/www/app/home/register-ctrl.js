@@ -34,10 +34,10 @@
           				$location.path('/home/login');
         			},
         			function(response){
-                        console.log("response",response);
+                        console.log(response);
           			    var alertPopup = $ionicPopup.alert({
      							    title: 'Registration error',
-     							    template: response.data
+     							    template: response.data.message
    						   });
        				}
        		);
