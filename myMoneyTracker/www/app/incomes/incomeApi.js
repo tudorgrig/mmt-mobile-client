@@ -1,104 +1,109 @@
 (function (){
     'use strict';
     
-    angular.module('myMoneyTracker').factory('categoryApi', ['$http', '$window', '$ionicPopup', '$location', categoryApi]);
+    angular.module('myMoneyTracker').factory('incomeApi', ['$http', '$window', '$ionicPopup', '$location', incomeApi]);
     
-    function categoryApi($http, $window, $ionicPopup, $location){
+    function incomeApi($http, $window, $ionicPopup, $location){
         
-        var currentCategoryId;
-        var currentCategories = [];
+        var currentIncomeId;
+        var currentIncomes = [];
         
-        //get all categories
-        function getCategories(callback){
-            $http.get("https://192.168.1.144:8443/category/find_all", {
+        //get all incomes
+        function getIncomes(callback){
+            $http.get("https://192.168.1.144:8443/income/find_all", {
                         headers : {
                               'Authorization' : $window.localStorage['mmtlt']
                         }
             }).success(function(data){
                     if(data != "" && data != null){
-                        currentCategories = data;
+                        currentIncomes = data;
                     }
-                    callback(currentCategories);
+                    callback(currentIncomes);
             }).error(function(data, status, headers) {
+                
             });
         
         }
         
-        //set current category id
-        function setCategoryId(categoryId){
-            currentCategoryId = categoryId;
+        //set current expense id
+        function setIncomeId(incomeId){
+            currentIncomeId = incomeId;
         }
         
-        function addCategory(category, changePath){
+        function addIncome(income, changePath){
             var req = {
          			method: 'POST',
-         			url: 'https://192.168.1.144:8443/category/add',
+         			url: 'https://192.168.1.144:8443/income/add',
          			headers: {
            					'Content-Type': "application/json",
                             'Authorization' : $window.localStorage['mmtlt']
         			},
-         			data: JSON.stringify(category)
+         			data: JSON.stringify(income)
       		}
       		// make server request
       		$http(req).then(
         			function(response){
           				// SUCCESS: change the path
-                        currentCategories.push(response.data);
+                        currentIncomes.push(response.data);
           				var alertPopup = $ionicPopup.alert({
      							title: 'Success',
-     							template: 'Category created'
+     							template: 'Income created'
    						});
           				if(changePath == true){
-                              $location.path('/app/categories');
+                              $location.path('/app/incomes');
                         }else{
-                            category.name = "";
-                            category.colour = "";
+                            income.name = "";
+                            income.description = "";
+                            income.amount = "";
+                            income.currency= "";
+                            income.frequency = "";
+                            income.creationDate = "";
                         }
         			},
         			function(response){
           			       var alertPopup = $ionicPopup.alert({
-     							    title: "Error creating category"
-     							    // template: response.data
+     							    title: "Error creating income",
+     							    template: response.message
    						   });
        				}
        		);
         }
         
         
-        function updateCategory(category, index){
+        function updateIncome(income, index){
             var req = {
          			method: 'POST',
-         			url: 'https://192.168.1.144:8443/category/update/'+category.id,
+         			url: 'https://192.168.1.144:8443/income/update/'+income.id,
          			headers: {
            					'Content-Type': "application/json",
                             'Authorization' : $window.localStorage['mmtlt']
         			},
-         			data: JSON.stringify(category)
+         			data: JSON.stringify(income)
       		}
       		// make server request
       		$http(req).then(
         			function(response){
           				// SUCCESS: change the path
                           console.log(index);
-                          currentCategories.splice(index,1);
-                          currentCategories.push(category);
+                          currentIncomes.splice(index,1);
+                          currentIncomes.push(income);
           				var alertPopup = $ionicPopup.alert({
      							title: 'Success',
-     							template: 'Category updated'
+     							template: 'Income updated'
    						});
-          			    $location.path('/app/categories');
+          			    $location.path('/app/incomes');
         			},
         			function(response){
           			       var alertPopup = $ionicPopup.alert({
-     							    title: "Error creating category"
+     							    title: "Error creating income"
      							    // template: response.data
    						   });
        				}
        		);
         }
         
-        function deleteCategory(category, callback){
-            $http.delete("https://192.168.1.144:8443/category/delete/"+category.id, {
+        function deleteIncome(income, callback){
+            $http.delete("https://192.168.1.144:8443/income/delete/"+income.id, {
                  headers : {
                       'Authorization' : $window.localStorage['mmtlt']
                  }
@@ -108,11 +113,11 @@
         }
         
         return {
-            getCategories: getCategories,
-            setCategoryId: setCategoryId,
-            addCategory: addCategory,
-            deleteCategory: deleteCategory,
-            updateCategory: updateCategory
+            getIncomes: getIncomes,
+            setIncomeId: setIncomeId,
+            addIncome: addIncome,
+            deleteIncome: deleteIncome,
+            updateIncome: updateIncome
         };
     }
     

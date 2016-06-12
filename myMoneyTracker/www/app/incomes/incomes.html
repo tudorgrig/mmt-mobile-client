@@ -1,6 +1,17 @@
-<ion-view>
-	<ion-content class="has-header">
-		<h1>Incomes</h1>
+<ion-view ng-controller="incomeCtrl as vm">
+	<ion-content class="has-header dark">
+		<ion-list>
+            <ion-item  class="item-text-wrap item-icon-right" ng-repeat="income in vm.incomes" >
+    			{{income.name}}     {{ income.creationDate | date:'mediumDate' }}   {{income.amount}}{{income.currency}}  
+                <i class="icon ion-chevron-left icon-accessory"></i>
+                <ion-option-button class="button-dark" ng-click = "vm.updateIncome(income, $index)">
+                    Edit
+                </ion-option-button>
+    			<ion-option-button class="button-assertive" ng-click="vm.confirmDelete(income, $index)">
+                    Delete
+                </ion-option-button>
+  			</ion-item>
+		</ion-list>
 	</ion-content>
 
 	<ion-tabs class="tabs-dark tabs-icon-top">

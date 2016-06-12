@@ -7,6 +7,22 @@
 	function loginCtrl($stateParams, $ionicPopup, $http, $location, $rootScope, $window){
 		var vm = this;
         
+        var req = {
+         			method: 'GET',
+         			url: 'http://wwww.google.ro'
+      	}
+        $http(req).then(
+        			function(response){
+          				// SUCCESS: change the path
+        			},
+        			function(response){
+                           console.log(response);
+          			       var alertPopup = $ionicPopup.alert({
+     							    title: "NO INTERNET CONNECTION AVAILABLE",
+     							    template: "PLEASE MAKE SURE YOUR DEVICE IS CONNECTED TO THE INTERNET"
+   						   });
+       				}
+        );
         
          vm.authenticate = function(user, callback) {
 

@@ -86,6 +86,15 @@ angular.module('myMoneyTracker', ['ionic'])
 				}
 			}
 		})
+        
+        .state('app.expense-edit', {
+			url:"/expenseEdit/:id/:name/:category/:description/:amount/:creationDate/:currency/:frequency/:index",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/expenses/expense-edit.html"
+				}
+			}
+		})
 
 		.state('app.incomes', {
 			url:"/incomes",
@@ -101,6 +110,15 @@ angular.module('myMoneyTracker', ['ionic'])
 			views: {
 				"mainContent" : {
 					templateUrl : "app/incomes/add-income.html"
+				}
+			}
+		})
+        
+        .state('app.income-edit', {
+			url:"/incomeEdit/:id/:name/:description/:amount/:creationDate/:currency/:frequency/:index",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/incomes/income-edit.html"
 				}
 			}
 		})
@@ -120,6 +138,15 @@ angular.module('myMoneyTracker', ['ionic'])
 			views: {
 				"mainContent" : {
 					templateUrl : "app/categories/add-category.html"
+				}
+			}
+		})
+        
+        .state('app.category-edit', {
+			url:"/categoryEdit/:id/:name/:colour/:threshold/:index",
+			views: {
+				"mainContent" : {
+					templateUrl : "app/categories/category-edit.html"
 				}
 			}
 		})

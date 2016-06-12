@@ -5,28 +5,13 @@
     			{{category.name}}
                 <i class="icon ion-record {{category.colour}}"></i>
                 <i class="icon ion-chevron-left icon-accessory"></i>
-                <ion-option-button class="button-dark">
+                <ion-option-button class="button-dark" ng-click = "vm.updateCategory(category, $index)">
                     Edit
                 </ion-option-button>
     			<ion-option-button class="button-assertive" ng-click="vm.confirmDelete(category, $index)">
                     Delete
                 </ion-option-button>
   			</ion-item>
-              
-              <!--<ion-item ng-repeat="category in vm.categories">
-                  
-                  <div class="item item-icon-left item-icon-right">
-                        <i class="icon ion-record {{category.colour}}"></i>
-                        <i class="icon ion-chevron-left icon-accessory"></i>
-                        {{category.name}}
-                  </div>
-                  <ion-option-button class="button-dark">
-                    Edit
-                    </ion-option-button>
-    			<ion-option-button class="button-assertive" ng-click="vm.confirmDelete(category, $index)">
-                    Delete
-                </ion-option-button>
-              </ion-item>-->
 		</ion-list>
 	</ion-content>
 
