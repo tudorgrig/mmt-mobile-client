@@ -7,6 +7,7 @@
 		var vm = this;
         vm.expenses = [];
         expenseApi.getExpenses(function(data){
+            console.log("expenses", data.length);
             vm.expenses = data;
         })
         vm.selectExpense = function(expense){

@@ -1,16 +1,16 @@
 (function (){
     'use strict';
     
-    angular.module('myMoneyTracker').factory('categoryApi', ['$http', '$window', '$ionicPopup', '$location', categoryApi]);
+    angular.module('myMoneyTracker').factory('categoryApi', ['$http', '$window', '$ionicPopup', '$location', 'host_name', categoryApi]);
     
-    function categoryApi($http, $window, $ionicPopup, $location){
+    function categoryApi($http, $window, $ionicPopup, $location, host_name){
         
         var currentCategoryId;
         var currentCategories = [];
         
         //get all categories
         function getCategories(callback){
-            $http.get("https://192.168.1.144:8443/category/find_all", {
+            $http.get(host_name + "/category/find_all", {
                         headers : {
                               'Authorization' : $window.localStorage['mmtlt']
                         }
@@ -18,6 +18,7 @@
                     if(data != "" && data != null){
                         currentCategories = data;
                     }
+                    console.log("categories", data);
                     callback(currentCategories);
             }).error(function(data, status, headers) {
             });
@@ -32,7 +33,7 @@
         function addCategory(category, changePath){
             var req = {
          			method: 'POST',
-         			url: 'https://192.168.1.144:8443/category/add',
+         			url: host_name + '/category/add',
          			headers: {
            					'Content-Type': "application/json",
                             'Authorization' : $window.localStorage['mmtlt']
@@ -68,7 +69,7 @@
         function updateCategory(category, index){
             var req = {
          			method: 'POST',
-         			url: 'https://192.168.1.144:8443/category/update/'+category.id,
+         			url: host_name + '/category/update/'+category.id,
          			headers: {
            					'Content-Type': "application/json",
                             'Authorization' : $window.localStorage['mmtlt']
@@ -98,7 +99,7 @@
         }
         
         function deleteCategory(category, callback){
-            $http.delete("https://192.168.1.144:8443/category/delete/"+category.id, {
+            $http.delete(host_name + "/category/delete/" + category.id, {
                  headers : {
                       'Authorization' : $window.localStorage['mmtlt']
                  }

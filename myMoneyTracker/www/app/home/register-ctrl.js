@@ -1,9 +1,9 @@
 (function(){
 	'use strict';
 	
-	angular.module('myMoneyTracker').controller('registerCtrl', ['$stateParams', '$ionicPopup', '$http', '$location', registerCtrl]);
+	angular.module('myMoneyTracker').controller('registerCtrl', ['$stateParams', '$ionicPopup', '$http', '$location', 'host_name', registerCtrl]);
 
-	function registerCtrl($stateParams, $ionicPopup, $http, $location){
+	function registerCtrl($stateParams, $ionicPopup, $http, $location, host_name){
 		var vm = this;
 		
 		vm.register = function(user){
@@ -17,7 +17,7 @@
 
 			var req = {
          			method: 'POST',
-         			url: 'https://192.168.1.144:8443/user/add',
+         			url: host_name + '/user/add',
          			headers: {
            					'Content-Type': "application/json"
         			},

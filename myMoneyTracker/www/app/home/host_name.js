@@ -1,0 +1,1 @@
+angular.module('myMoneyTracker').constant('host_name', 'https://192.168.56.1:8443');

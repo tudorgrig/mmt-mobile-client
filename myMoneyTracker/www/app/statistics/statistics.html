@@ -1,5 +1,57 @@
-<ion-view>
-	<ion-content class="has-header">
-		<h1>Statistics</h1>
-	</ion-content>
+<ion-view ng-controller="statisticsCtrl as vm">
+    <ion-content>
+        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+    border: 2px solid black;">
+            <label class="item item-input">
+                <span class="input-label">From: </span>
+                <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Until: </span>
+                <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+            </label>
+            <canvas ng-if="vm.dataBar.length > 0" id="bar" class="chart chart-bar" chart-data="vm.dataBar" chart-labels="vm.labelsBar"
+            chart-series="vm.seriesBar" chart-colors="vm.colorsBar">
+            </canvas>
+            <label ng-if="vm.dataBar.length == 0">
+                <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+            </label>
+        </div>
+
+        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+    border: 2px solid black;">
+            <label class="item item-input">
+                <span class="input-label">Category</span>
+                <select placeholder="Category" ng-model="vm.selectedCategory" ng-change="vm.updateExpensesByCategory()" ng-options="category as category.name for category in vm.categories">
+                </select>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">From: </span>
+                <input type="date" ng-model="vm.expenseByCategoryChartFromDate" ng-change="vm.updateExpensesByCategory()">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Until: </span>
+                <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpensesByCategory()">
+            </label>
+            <canvas ng-if="vm.dataPie.length > 0" id="pie" class="chart chart-pie" chart-data="vm.dataPie" chart-labels="vm.labelsPie" chart-legend="true">
+            </canvas>
+            <label ng-if="vm.dataPie.length == 0">
+                <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+            </label>
+        </div>
+
+        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+    border: 2px solid black;">
+            <label class="item item-input">
+                <span class="input-label">Income chart</span>
+                <select type="date" class="form-control" id="year_select" placeholder="year" ng-model="vm.selected_year" ng-change="vm.updateIncomes(true)">
+                    <option ng-repeat="year in vm.yearsArray" value="{{year}}" required>{{year}}</option>
+                </select>
+            </label>
+            <canvas id="line" class="chart chart-line" chart-data="vm.dataLinear" chart-labels="vm.labelsLinear" chart-series="vm.seriesLinear"
+            </canvas>
+        </div>
+
+
+    </ion-content>
 </ion-view>
