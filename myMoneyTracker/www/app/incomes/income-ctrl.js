@@ -6,12 +6,23 @@
 	function incomeCtrl($stateParams, $ionicPopup, $http, $state, $window,$ionicActionSheet, $ionicListDelegate, incomeApi){
 		var vm = this;
         vm.incomes = [];
-        incomeApi.getIncomes(function(data){
-            vm.incomes = data;
-        })
-        vm.selectIncome = function(income){
-            console.log(income.name);
+        var date = new Date();
+        vm.incomesFromDate = new Date(date.getFullYear(), 0, 1);
+        vm.incomesUntilDate = new Date(date.getFullYear(), 11, 31);
+        
+        
+        vm.updateIncomes = function (yearChanged) {
+            incomeApi.getIncomesByInterval(vm.incomesFromDate.getTime(), vm.incomesUntilDate .getTime(), function (data) {
+                vm.incomes = data;
+            })
         }
+        
+        // incomeApi.getIncomes(function(data){
+        //     vm.incomes = data;
+        // })
+        // vm.selectIncome = function(income){
+        //     console.log(income.name);
+        // }
         
         vm.updateIncome = function(income, index){
            console.log(income);
@@ -47,5 +58,7 @@
                     ]
             });
        }
+       
+       vm.updateIncomes();
     }
 })();

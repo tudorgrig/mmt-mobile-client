@@ -5,14 +5,28 @@
 
 	function expenseCtrl($stateParams, $ionicPopup, $http, $state, $window,$ionicActionSheet, $ionicListDelegate, expenseApi){
 		var vm = this;
+        //expense data
         vm.expenses = [];
-        expenseApi.getExpenses(function(data){
-            console.log("expenses", data.length);
-            vm.expenses = data;
-        })
-        vm.selectExpense = function(expense){
-            console.log(expense.name);
+        var date = new Date();
+        vm.expenseChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
+        vm.expenseChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        
+        
+        vm.updateExpenses = function () {
+            expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
+
+                vm.expenses = [];
+                vm.expenses = data;
+            })
         }
+        
+        // expenseApi.getExpenses(function(data){
+        //     console.log("expenses", data.length);
+        //     vm.expenses = data;
+        // })
+        // vm.selectExpense = function(expense){
+        //     console.log(expense.name);
+        // }
         
         vm.updateExpense = function(expense, index){
            console.log(expense);
@@ -49,5 +63,7 @@
                     ]
             });
        }
+       
+       vm.updateExpenses();
     }
 })();
