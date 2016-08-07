@@ -22,6 +22,8 @@
 						$rootScope.authenticated = true;
 						$window.localStorage['username'] = data.username;
 						$window.localStorage['mmtlt'] = "Basic " + btoa(user.username + ":" + user.password);
+                        $window.localStorage['defaultCurrency'] = data.defaultCurrency;
+                        console.log("default currency", $window.localStorage['defaultCurrency']);
 					} else {
 						$rootScope.authenticated = false;
 						$window.localStorage.remove('mmtlt');
@@ -31,7 +33,7 @@
 					$rootScope.authenticated = false;
                     var alertPopup = $ionicPopup.alert({
      							    title: 'Login error',
-     							    template: data
+     							    template: data.message
    				     });
 					callback && callback(false);
 				});

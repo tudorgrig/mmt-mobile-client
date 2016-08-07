@@ -8,8 +8,9 @@
         
         //expense data
         vm.expenses = [];
-        vm.expenseChartFromDate = new Date();
-        vm.expenseChartUntilDate = new Date();
+        var date = new Date();
+        vm.expenseChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
+        vm.expenseChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
         vm.labelsBar = ["Categories"];
         vm.seriesBar = [];
         vm.dataBar = [];
@@ -22,15 +23,15 @@
             vm.categories = data;
             vm.selectedCategory = vm.categories[0];
         })
-        vm.expenseByCategoryChartFromDate = new Date();
-        vm.expenseByCategoryChartUntilDate = new Date();
+        vm.expenseByCategoryChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
+        vm.expenseByCategoryChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
         vm.labelsPie = [];
         vm.dataPie = [];
 
 
 
         vm.updateExpenses = function () {
-            expenseApi.getByIntervalAndCurrency("EUR", vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
+            expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
 
                 vm.expenses = [];
                 vm.labelsBar = ["Categories"];
@@ -45,15 +46,25 @@
 
                         var categ_index = vm.seriesBar.indexOf(expense.category.name);
                         if (categ_index > -1) {
-                            var amounts = [expense.amount + vm.dataBar[categ_index][0]];
-                            vm.dataBar[categ_index] = amounts;
+                            if (expense.defaultCurrency == null) {
+                                var amounts = [expense.amount + vm.dataBar[categ_index][0]];
+                                vm.dataBar[categ_index] = amounts;
+                            } else {
+                                var amounts = [expense.defaultCurrencyAmount + vm.dataBar[categ_index][0]];
+                                vm.dataBar[categ_index] = amounts;
+                            }
                         } else {
                             vm.seriesBar.push(expense.category.name);
                             if (expense.category.colour === "assertive") {
                                 vm.colorsBar.push("#FD1F5E");
                             }
-                            var amounts = [expense.amount];
-                            vm.dataBar.push(amounts);
+                            if (expense.defaultCurrency == null) {
+                                var amounts = [expense.amount];
+                                vm.dataBar.push(amounts);
+                            } else {
+                                var amounts = [expense.defaultCurrencyAmount];
+                                vm.dataBar.push(amounts);
+                            }
                         }
 
                     })
@@ -62,19 +73,27 @@
         }
 
         vm.updateExpensesByCategory = function () {
-            expenseApi.getByIntervalAndCurrencyAndCategory("EUR", vm.selectedCategory.name, vm.expenseByCategoryChartFromDate.getTime(), vm.expenseByCategoryChartUntilDate.getTime(), function (data) {
+            expenseApi.getByIntervalAndCategory(vm.selectedCategory.name, vm.expenseByCategoryChartFromDate.getTime(), vm.expenseByCategoryChartUntilDate.getTime(), function (data) {
                 vm.expensesByCategory = [];
                 vm.labelsPie = [];
                 vm.dataPie = [];
                 vm.expensesByCategory = data;
-
                 vm.expensesByCategory.forEach(function (expense) {
                     var categ_index = vm.labelsPie.indexOf(expense.category.name);
                     if (categ_index > -1) {
-                        vm.dataPie[categ_index] = expense.amount + vm.dataPie[categ_index];
+                        if(expense.defaultCurrencyAmount == null){
+                            vm.dataPie[categ_index] = expense.amount + vm.dataPie[categ_index];
+                        } else{
+                            vm.dataPie[categ_index] = expense.defaultCurrencyAmount + vm.dataPie[categ_index]; 
+                        }
                     } else {
-                        vm.labelsPie.push(expense.name + " (EUR)");
-                        vm.dataPie.push(expense.amount);
+                        if(expense.defaultCurrencyAmount == null){
+                            vm.labelsPie.push(expense.name + " (" + expense.currency + ")");
+                            vm.dataPie.push(expense.amount);
+                        } else {
+                            vm.labelsPie.push(expense.name + " (" + expense.defaultCurrency + ")");
+                            vm.dataPie.push(expense.defaultCurrencyAmount);
+                        }
                     }
 
                 })
@@ -102,7 +121,7 @@
             vm.seriesLinear = ['Incomes ' + vm.selected_year];
             vm.dataLinear = [vm.generateZeroesArray(month_index + 1)];
 
-            incomeApi.getIncomesByInterval(new Date(vm.selected_year, 0, 1).getTime(), new Date(vm.selected_year, 11, 31).getTime(), "EUR", function (data) {
+            incomeApi.getIncomesByInterval(new Date(vm.selected_year, 0, 1).getTime(), new Date(vm.selected_year, 11, 31).getTime(), function (data) {
                 vm.incomes = data;
                 vm.incomes.forEach(function (income) {
 
@@ -113,12 +132,16 @@
                     // LINEAR graphic
                     if (vm.selected_year == income.year.toString()) {
                         var categ_index = vm.labelsLinear.indexOf(income.monthAsString);
-                        vm.dataLinear[0][categ_index] = income.amount + vm.dataLinear[0][categ_index];
+                        if (income.defaultCurrencyAmount == null) {
+                            vm.dataLinear[0][categ_index] = income.amount + vm.dataLinear[0][categ_index];
+                        } else {
+                            vm.dataLinear[0][categ_index] = income.defaultCurrencyAmount + vm.dataLinear[0][categ_index];
+                        }
                     }
 
                 })
             })
-           
+
 
         }
 

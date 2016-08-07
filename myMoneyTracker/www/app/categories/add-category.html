@@ -1,42 +1,45 @@
 <ion-view ng-controller="addCategoryCtrl as vm">
-  <ion-content class="has-header dark">
-    <h1>Add category</h1>
-  </ion-content>
-  <ion-content>
-          <div class="list">
-            <label class="item item-input">
-              <span class="input-label">Name</span>
-              <input type="text" ng-model="category.name" required>
-            </label>
-            
-            <label class="item item-input">
-              	<span class="input-label">Colour</span>
-              	<select ng-model="category.colour">
-        			<option selected style="background-color: white" class="light">light</option>
-        			<option style="background-color: cornsilk" class="stable">stable</option>
-                    <option style="background-color: DodgerBlue " class="positive">positive</option>
-                    <option style="background-color: aqua" class="calm">calm</option>
-                    <option style="background-color: YellowGreen" class="balanced">balanced</option>
-                    <option style="background-color: Gold" class="energized">energized</option>
-                    <option style="background-color: Crimson " class="assertive">assertive</option>
-                    <option style="background-color: BlueViolet " class="royal">royal</option>
-                    <option style="background-color: black" class="dark">dark</option>
-    			</select>
-            </label>
-            
-            <label class="item item-input">
-                <span class="input-label">Threshold</span>
-                <input type="number" placeholder="How much money do you want to spend on this category, per month?" ng-model="category.threshold" min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-            </label>
-            
-          </div>
-          <div class="padding">
-            <button class="button button-block button-dark"  ng-click="vm.addCategory(category, true)">
-              Create category
-            </button>
-            <button class="button button-block button-dark"  ng-click="vm.addCategory(category, false)">
-              Create category & new
-            </button>
-          </div>
-  </ion-content>
+    <ion-content class="has-header dark">
+        <h1>Add category</h1>
+    </ion-content>
+    <ion-content>
+        <form name="addCategoryForm">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="category.name" required>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Colour</span>
+                    <select ng-model="category.colour" required>
+                        <option selected style="background-color: white" class="light">light</option>
+                        <option style="background-color: cornsilk" class="stable">stable</option>
+                        <option style="background-color: DodgerBlue " class="positive">positive</option>
+                        <option style="background-color: aqua" class="calm">calm</option>
+                        <option style="background-color: YellowGreen" class="balanced">balanced</option>
+                        <option style="background-color: Gold" class="energized">energized</option>
+                        <option style="background-color: Crimson " class="assertive">assertive</option>
+                        <option style="background-color: BlueViolet " class="royal">royal</option>
+                        <option style="background-color: black" class="dark">dark</option>
+                    </select>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Threshold</span>
+                    <input type="number" placeholder="How much money do you want to spend on this category, per month?" ng-model="category.threshold"
+                    min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+                </label>
+
+            </div>
+            <div class="padding">
+                <button class="button button-block button-dark" ng-disabled="addCategoryForm.$invalid" ng-click="vm.addCategory(category, true)">
+                    Create category
+                </button>
+                <button class="button button-block button-dark" ng-disabled="addCategoryForm.$invalid" ng-click="vm.addCategory(category, false)">
+                    Create category & new
+                </button>
+            </div>
+        </form>
+    </ion-content>
 </ion-view>

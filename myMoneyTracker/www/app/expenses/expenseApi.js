@@ -28,8 +28,8 @@
         }
         
         //get all expenses
-        function getByIntervalAndCurrency(currency, fromTime, untilTime, callback){
-            $http.get( host_name + "/expense/find/*/" + currency + "/" + fromTime + "/" + untilTime, {
+        function getByInterval(fromTime, untilTime, callback){
+            $http.get( host_name + "/expense/find/*/" + fromTime + "/" + untilTime, {
                         headers : {
                               'Authorization' : $window.localStorage['mmtlt']
                         }
@@ -44,11 +44,11 @@
         
         }
         
-        function getByIntervalAndCurrencyAndCategory(currency, categoryName, fromTime, untilTime, callback){
+        function getByIntervalAndCategory(categoryName, fromTime, untilTime, callback){
             if(categoryName == 'undefined'){
                 return [];
             }
-            $http.get( host_name + "/expense/find/" + categoryName + '/' + currency + "/" + fromTime + "/" + untilTime, {
+            $http.get( host_name + "/expense/find/" + categoryName + '/' + fromTime + "/" + untilTime, {
                         headers : {
                               'Authorization' : $window.localStorage['mmtlt']
                         }
@@ -156,8 +156,8 @@
             addExpense: addExpense,
             deleteExpense: deleteExpense,
             updateExpense: updateExpense,
-            getByIntervalAndCurrency: getByIntervalAndCurrency,
-            getByIntervalAndCurrencyAndCategory: getByIntervalAndCurrencyAndCategory
+            getByInterval: getByInterval,
+            getByIntervalAndCategory: getByIntervalAndCategory
         };
     }
     

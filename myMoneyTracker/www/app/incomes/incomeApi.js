@@ -25,8 +25,8 @@
         
         }
         
-        function getIncomesByInterval(fromDate, untilDate, currency, callback){
-            $http.get( host_name + "/income/findByInterval/" + fromDate + "/" + untilDate + "/" + currency, {
+        function getIncomesByInterval(fromDate, untilDate, callback){
+            $http.get( host_name + "/income/findByInterval/" + fromDate + "/" + untilDate, {
                         headers : {
                               'Authorization' : $window.localStorage['mmtlt']
                         }

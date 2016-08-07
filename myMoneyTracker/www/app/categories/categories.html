@@ -1,7 +1,7 @@
 <ion-view ng-controller="categoryCtrl as vm">
 	<ion-content class="has-header dark">
 		<ion-list>
-            <ion-item  class="item-icon-left item-icon-right" ng-repeat="category in vm.categories" >
+            <ion-item style = "margin:15px;" class="item-icon-left item-icon-right" ng-repeat="category in vm.categories" >
     			{{category.name}}
                 <i class="icon ion-record {{category.colour}}"></i>
                 <i class="icon ion-chevron-left icon-accessory"></i>

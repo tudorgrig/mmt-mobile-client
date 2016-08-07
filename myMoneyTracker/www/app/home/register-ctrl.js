@@ -6,6 +6,18 @@
 	function registerCtrl($stateParams, $ionicPopup, $http, $location, host_name){
 		var vm = this;
 		
+        vm.currencies = ["EUR", "USD", "GBP", "RON","JPY", "CNY", "SDG", "MKD", "MXN", "CAD",
+    "ZAR", "AUD", "NOK", "ILS", "ISK", "SYP", "LYD", "UYU", "YER", "CSD",
+    "EEK", "THB", "IDR", "LBP", "AED", "BOB", "QAR", "BHD", "HNL", "HRK",
+    "COP", "ALL", "DKK", "MYR", "SEK", "RSD", "BGN", "DOP", "KRW", "LVL",
+    "VEF", "CZK", "TND", "KWD", "VND", "JOD", "NZD", "PAB", "CLP", "PEN",
+    "DZD", "CHF", "RUB", "UAH", "ARS", "SAR", "EGP", "INR", "PYG",
+    "TWD", "TRY", "BAM", "OMR", "SGD", "MAD", "BYR", "NIO", "HKD", "LTL",
+    "SKK", "GTQ", "BRL", "HUF", "IQD", "CRC", "PHP", "SVC", "PLN"];
+    
+        vm.user = [];
+        vm.user.currency = vm.currencies[0];
+        
 		vm.register = function(user){
 			if(user.password != user.password2){
 				var alertPopup = $ionicPopup.alert({

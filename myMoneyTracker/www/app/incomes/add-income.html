@@ -1,53 +1,54 @@
 <ion-view ng-controller="addIncomeCtrl as vm">
-  <ion-content class="has-header dark">
-    <h1>Add income</h1>
-  </ion-content>
-  <ion-content>
-          <div class="list">
-            <label class="item item-input">
-              <span class="input-label">Name</span>
-              <input type="text" ng-model="income.name" required>
-            </label>
-            
-            <label class="item item-input">
-              <span class="input-label">Description</span>
-              <input type="text" ng-model="income.description">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Amount</span>
-              <input type="number" ng-model="income.amount" required>
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Creation date</span>
-              <input type="date" ng-model="income.creationDate">
-            </label>
-            <label class="item item-input">
-              	<span class="input-label">Frequency</span>
-              	<select ng-model="income.frequency"  ng-init="expense.frequency='0'">
-        			<option value = "0">Only once</option>
-        			<option value = "1">Monthly</option>
-                    <option value = "2">Every 2 months</option>
-                    <option value = "3">Quarterly</option>
-                    <option value = "6">Every 6 months</option>
-    			</select>
-            </label>
-            <label class="item item-input">
-              	<span class="input-label">Currency</span>
-              	<select ng-model="income.currency" >
-        			<option>RON</option>
-                    <option>EUR</option>
-                    <option>USD</option>
-    			</select>
-            </label>
-          </div>
-          <div class="padding">
-            <button class="button button-block button-dark" ng-click="vm.addIncome(income, true)">
-              Create income
-            </button>
-            <button class="button button-block button-dark" ng-click="vm.addIncome(income, false)">
-              Create & New
-            </button>
-          </div>
-          
-  </ion-content>
+    <ion-content class="has-header dark">
+        <h1>Add income</h1>
+    </ion-content>
+    <ion-content>
+        <form name="addIncomeForm">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="income.name" required>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Description</span>
+                    <input type="text" ng-model="income.description">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Amount</span>
+                    <input type="number" ng-model="income.amount" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Creation date</span>
+                    <input type="date" ng-model="income.creationDate" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Frequency</span>
+                    <select ng-model="income.frequency" ng-init="expense.frequency='0'" required>
+                        <option value="0">Only once</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Every 2 months</option>
+                        <option value="3">Quarterly</option>
+                        <option value="6">Every 6 months</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Currency</span>
+                    <select ng-model="income.currency" required>
+                        <option>RON</option>
+                        <option>EUR</option>
+                        <option>USD</option>
+                    </select>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-dark" ng-disabled = "addIncomeForm.$invalid" ng-click="vm.addIncome(income, true)">
+                    Create income
+                </button>
+                <button class="button button-block button-dark" ng-disabled = "addIncomeForm.$invalid" ng-click="vm.addIncome(income, false)">
+                    Create & New
+                </button>
+            </div>
+        </form>
+    </ion-content>
 </ion-view>

@@ -1,5 +1,11 @@
 <ion-view ng-controller="statisticsCtrl as vm">
     <ion-content>
+        
+        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+    border: 2px solid #FF0000;">
+             <center> <b> All expenses and incomes are converted to the default currency based on their creation date. Data may not be exact! </b> </center>   
+        </div>
+            
         <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
     border: 2px solid black;">
             <label class="item item-input">
@@ -31,7 +37,7 @@
             </label>
             <label class="item item-input">
                 <span class="input-label">Until: </span>
-                <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpensesByCategory()">
+                <input type="date" ng-model="vm.expenseByCategoryChartUntilDate" ng-change="vm.updateExpensesByCategory()">
             </label>
             <canvas ng-if="vm.dataPie.length > 0" id="pie" class="chart chart-pie" chart-data="vm.dataPie" chart-labels="vm.labelsPie" chart-legend="true">
             </canvas>

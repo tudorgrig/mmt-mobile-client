@@ -1,59 +1,61 @@
-<ion-view ng-controller="addExpenseCtrl as vm"> 
-	<ion-content class="has-header dark">
-		<h1>Add expense</h1>
-	</ion-content>
-	<ion-content>
-          <div class="list">
-            <label class="item item-input">
-              	<span class="input-label">Category</span>
-                <select placeholder="Category" ng-model = "expense.category" required ng-options="category as category.name for category in vm.categories">
-                </select>
-            </label>
-            
-            <label class="item item-input">
-              <span class="input-label">Name</span>
-              <input type="text" ng-model="expense.name" required>
-            </label>
-            
-            <label class="item item-input">
-              <span class="input-label">Description</span>
-              <input type="text" ng-model="expense.description">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Amount</span>
-              <input type="number" ng-model="expense.amount" required>
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Creation date</span>
-              <input type="date" ng-model="expense.creationDate">
-            </label>
-            <label class="item item-input">
-              	<span class="input-label">Frequency</span>
-              	<select ng-model="expense.frequency"  ng-init="expense.frequency='0'">
-        			<option value = "0">Only once</option>
-        			<option value = "1">Monthly</option>
-                    <option value = "2">Every 2 months</option>
-                    <option value = "3">Quarterly</option>
-                    <option value = "6">Every 6 months</option>
-    			</select>
-            </label>
-            
-            <label class="item item-input">
-              	<span class="input-label">Currency</span>
-              	<select ng-model="expense.currency" >
-        			<option>RON</option>
-                    <option>EUR</option>
-                    <option>USD</option>
-    			</select>
-            </label>
-          </div>
-          <div class="padding">
-            <button class="button button-block button-dark" ng-click="vm.addExpense(expense, true)">
-              Create expense
-            </button>
-            <button class="button button-block button-dark" ng-click="vm.addExpense(expense, false)">
-              Create & New
-            </button>
-          </div>
-  </ion-content>
+<ion-view ng-controller="addExpenseCtrl as vm">
+    <ion-content class="has-header dark">
+        <h1>Add expense</h1>
+    </ion-content>
+    <ion-content>
+        <form name="addExpenseForm">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Category</span>
+                    <select placeholder="Category" ng-model="expense.category" ng-options="category as category.name for category in vm.categories" required>
+                    </select>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="expense.name" required>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Description</span>
+                    <input type="text" ng-model="expense.description">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Amount</span>
+                    <input type="number" ng-model="expense.amount" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Creation date</span>
+                    <input type="date" ng-model="expense.creationDate" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Frequency</span>
+                    <select ng-model="expense.frequency" ng-init="expense.frequency='0'" required>
+                        <option value="0">Only once</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Every 2 months</option>
+                        <option value="3">Quarterly</option>
+                        <option value="6">Every 6 months</option>
+                    </select>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Currency</span>
+                    <select ng-model="expense.currency" required>
+                        <option>RON</option>
+                        <option>EUR</option>
+                        <option>USD</option>
+                    </select>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-dark" ng-disabled="addExpenseForm.$invalid" ng-click="vm.addExpense(expense, true)">
+                    Create expense
+                </button>
+                <button class="button button-block button-dark" ng-disabled="addExpenseForm.$invalid" ng-click="vm.addExpense(expense, false)">
+                    Create & New
+                </button>
+            </div>
+        </form>
+    </ion-content>
 </ion-view>
