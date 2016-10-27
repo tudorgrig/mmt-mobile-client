@@ -5,7 +5,7 @@
 
     function statisticsCtrl($stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, incomeApi, categoryApi) {
         var vm = this;
-        
+
         //expense data
         vm.expenses = [];
         var date = new Date();
@@ -15,7 +15,7 @@
         vm.seriesBar = [];
         vm.dataBar = [];
         vm.colorsBar = [];
-        
+
         //pie chart
         vm.categories = [];
         vm.expensesByCategory = [];
@@ -73,7 +73,7 @@
         }
 
         vm.updateExpensesByCategory = function () {
-            expenseApi.getByIntervalAndCategory(vm.selectedCategory.name, vm.expenseByCategoryChartFromDate.getTime(), vm.expenseByCategoryChartUntilDate.getTime(), function (data) {
+            expenseApi.getByIntervalAndCategory(vm.selectedCategory.id, vm.expenseByCategoryChartFromDate.getTime(), vm.expenseByCategoryChartUntilDate.getTime(), function (data) {
                 vm.expensesByCategory = [];
                 vm.labelsPie = [];
                 vm.dataPie = [];
@@ -84,7 +84,7 @@
                         if(expense.defaultCurrencyAmount == null){
                             vm.dataPie[categ_index] = expense.amount + vm.dataPie[categ_index];
                         } else{
-                            vm.dataPie[categ_index] = expense.defaultCurrencyAmount + vm.dataPie[categ_index]; 
+                            vm.dataPie[categ_index] = expense.defaultCurrencyAmount + vm.dataPie[categ_index];
                         }
                     } else {
                         if(expense.defaultCurrencyAmount == null){
@@ -154,7 +154,7 @@
             return monthStrings[monthAsInt];
 
         }
-        
+
         /**
         * Used to generate an array with the specified length filled with zeroes.
         */
@@ -166,7 +166,7 @@
             }
             return zeroesArray;
         }
-        
+
         /**
         * Used to generate arrays based on the specified arrays number.
         * The function returns an array of arrays, each array containing the number 0.
@@ -179,7 +179,7 @@
             }
             return arrayOfArrays;
         }
-        
+
         /**
         * Returns an array with tha last 5 years.
         */

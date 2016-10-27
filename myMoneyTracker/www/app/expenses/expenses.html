@@ -1,5 +1,5 @@
 <ion-view ng-controller="expenseCtrl as vm">
-	
+
     <ion-content class="has-header dark">
         <label class="item item-input">
                 <span class="input-label">From: </span>
@@ -9,9 +9,12 @@
                 <span class="input-label">Until: </span>
                 <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
         </label>
+      <label ng-if="vm.expenses.length == 0">
+        <center> NO EXPENSES TO SHOW FOR THIS INTERVAL. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+      </label>
 		<ion-list>
             <ion-item  style = "margin:15px;" class="item-text-wrap item-icon-left item-icon-right" ng-repeat="expense in vm.expenses" >
-    			{{expense.name}}     {{ expense.creationDate | date:'mediumDate' }}   {{expense.amount}}{{expense.currency}}     
+    			{{expense.name}}     {{ expense.creationDate | date:'mediumDate' }}   {{expense.amount}}{{expense.currency}}
                 <i class="icon ion-record {{expense.category.colour}}"></i>
                 <i class="icon ion-chevron-left icon-accessory"></i>
                 <ion-option-button class="button-dark" ng-click = "vm.updateExpense(expense, $index)">
@@ -26,7 +29,7 @@
 
 
 	<ion-tabs class="tabs-dark tabs-icon-top">
-		
+
 
 		<ion-tab title="Sort by date" icon="ion-eye" ui-sref="#">
 			<!-- <ion-nav-view name="tab-login"></ion-nav-view> -->

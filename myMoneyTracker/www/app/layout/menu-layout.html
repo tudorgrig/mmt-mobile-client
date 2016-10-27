@@ -1,5 +1,5 @@
-<ion-side-menus enable-menu-with-back-views="true">
-  
+<ion-side-menus enable-menu-with-back-views="true" ng-controller="menuLayout as vm">
+
 
  <ion-side-menu-content>
     <ion-header-bar class="bar-header bar-dark">
@@ -9,8 +9,8 @@
     <ion-nav-view name="mainContent" animation="slide-left-right">
         </ion-nav-view>
 
-  </ion-side-menu-content> 
-  
+  </ion-side-menu-content>
+
   <ion-side-menu side="left" class="dark-bg dark-border">
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.expenses" menu-close>
           <i class="ion-ios-cart"></i>
@@ -30,7 +30,7 @@
       </ion-item>
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.account" menu-close>
           <i class="ion-ios-body"></i>
-            Account
+            {{vm.loggedUser}}
       </ion-item>
   </ion-side-menu>
 
