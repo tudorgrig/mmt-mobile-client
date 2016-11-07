@@ -5,11 +5,6 @@
 
 	function addIncomeCtrl($stateParams, $ionicPopup, $http, $location, $window, incomeApi){
 		var vm = this;
-        vm.incomes = [];
-        incomeApi.getIncomes(function(data){
-            vm.incomes = data;
-        })
-
         vm.addIncome = function(income, changePath){
 			incomeApi.addIncome(income, changePath);
 		}

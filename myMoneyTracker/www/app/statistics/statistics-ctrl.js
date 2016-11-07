@@ -6,6 +6,7 @@
     function statisticsCtrl($stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, incomeApi, categoryApi) {
         var vm = this;
 
+        vm.defaultCurrency = $window.localStorage['defaultCurrency'];
         //expense data
         vm.expenses = [];
         var date = new Date();
@@ -22,6 +23,7 @@
         categoryApi.getCategories(function (data) {
             vm.categories = data;
             vm.selectedCategory = vm.categories[0];
+            vm.updateExpensesByCategory();
         })
         vm.expenseByCategoryChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
         vm.expenseByCategoryChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -186,11 +188,11 @@
         vm.intializeYearsArray = function () {
             var currentYear = 1900 + new Date().getYear();
             var yearsArray = [
-                currentYear.toString(),
-                (currentYear - 1).toString(),
-                (currentYear - 2).toString(),
+                (currentYear - 4).toString(),
                 (currentYear - 3).toString(),
-                (currentYear - 4).toString()];
+                (currentYear - 2).toString(),
+                (currentYear - 1).toString(),
+                currentYear.toString()];
             return yearsArray;
         }
 

@@ -7,6 +7,7 @@
 
 		var currentIncomeId;
 		var currentIncomes = [];
+		var currentIncomesByInterval = [];
 
 		function getIncomesByInterval(fromDate, untilDate, callback) {
 			$http.get(host_name + "/income/findByInterval/" + fromDate + "/" + untilDate, {
@@ -15,9 +16,9 @@
 				}
 			}).success(function (data) {
 				if (data != null) {
-					currentIncomes = data;
+					currentIncomesByInterval = data;
 				}
-				callback(currentIncomes);
+				callback(currentIncomesByInterval);
 			}).error(function (data, status, headers) {
 				if (status === 401) {
 					$location.url('/login');

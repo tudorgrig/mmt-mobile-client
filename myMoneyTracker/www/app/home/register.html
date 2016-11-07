@@ -1,39 +1,27 @@
 <ion-view ng-controller="registerCtrl as vm">
-    <ion-content class="has-header">
-        <h1>Register</h1>
-    </ion-content>
-    <ion-content>
-        <form ng-submit="vm.register(user)" name="registerForm">
-            <div class="list">
-                <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" ng-model="user.username" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Email</span>
-                    <input type="email" ng-model="user.email" required>
-                </label>
-
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" ng-model="user.password" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Reenter password</span>
-                    <input type="password" ng-model="user.password2" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Default currency</span>
-                    <select type="text" class="form-control" id="currency_select" placeholder="currency" ng-model="user.defaultCurrency" required>
-                        <option ng-repeat="currency in vm.currencies" value="{{currency}}" required>{{currency}}</option>
-                    </select>
-                </label>
-            </div>
-            <div class="padding">
-                <button class="button button-block button-dark" ng-disabled="registerForm.$invalid">
-                    Register
-                </button>
-            </div>
-        </form >
-    </ion-content>
+  <ion-content padding="true" class="has-header">
+    <form ng-submit="vm.register(user)" name="registerForm" class="list">
+      <ion-list>
+        <label class="item item-input">
+          <input type="email" ng-model="user.email" placeholder="Email" required>
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="user.username" placeholder="Username" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="user.password" placeholder="Password" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="user.password2" placeholder="Reenter password" required>
+        </label>
+        <label class="item item-select">
+          <span class="input-label">Default currency</span>
+          <select type="text" class="form-control" id="currency_select" placeholder="currency" ng-model="user.defaultCurrency" required>
+            <option ng-repeat="currency in vm.currencies" value="{{currency}}" required>{{currency}}</option>
+          </select>
+        </label>
+      </ion-list>
+      <button id="signup-button2" ng-disabled="registerForm.$invalid" class="button button-dark button-large button-block icon-left ion-android-add"> Sign up</button>
+    </form>
+  </ion-content>
 </ion-view>

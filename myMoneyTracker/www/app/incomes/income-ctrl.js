@@ -12,12 +12,12 @@
 
 		vm.updateIncomes = function (yearChanged) {
 			incomeApi.getIncomesByInterval(vm.incomesFromDate.getTime(), vm.incomesUntilDate.getTime(), function (data) {
-				vm.incomes = data;
+				vm.incomes = [];
+        vm.incomes = data;
 			})
 		}
 
 		vm.updateIncome = function (income, index) {
-			console.log(income);
 			$state.go('app.income-edit', {
 				id : income.id,
 				name : income.name,

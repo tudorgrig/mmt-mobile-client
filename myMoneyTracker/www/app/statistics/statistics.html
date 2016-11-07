@@ -1,11 +1,11 @@
 <ion-view ng-controller="statisticsCtrl as vm">
     <ion-content>
-        
+
         <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
     border: 2px solid #FF0000;">
-             <center> <b> All expenses and incomes are converted to the default currency based on their creation date. Data may not be exact! </b> </center>   
+             <center> <b> All expenses and incomes are converted to your default currency ({{vm.defaultCurrency}}), based on their creation date. </b> <b>Data may not be exact! </b> </center>
         </div>
-            
+
         <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
     border: 2px solid black;">
             <label class="item item-input">
@@ -28,7 +28,7 @@
     border: 2px solid black;">
             <label class="item item-input">
                 <span class="input-label">Category</span>
-                <select placeholder="Category" ng-model="vm.selectedCategory" ng-change="vm.updateExpensesByCategory()" ng-options="category as category.name for category in vm.categories">
+                <select placeholder="Category" ng-init="vm.selectedCategory = vm.categories[0]"  ng-model="vm.selectedCategory" ng-change="vm.updateExpensesByCategory()" ng-options="category as category.name for category in vm.categories">
                 </select>
             </label>
             <label class="item item-input">
@@ -51,7 +51,7 @@
             <label class="item item-input">
                 <span class="input-label">Income chart</span>
                 <select type="date" class="form-control" id="year_select" placeholder="year" ng-model="vm.selected_year" ng-change="vm.updateIncomes(true)">
-                    <option ng-repeat="year in vm.yearsArray" value="{{year}}" required>{{year}}</option>
+                    <option ng-repeat="year in vm.yearsArray" value="{{year}}" selected required>{{year}}</option>
                 </select>
             </label>
             <canvas id="line" class="chart chart-line" chart-data="vm.dataLinear" chart-labels="vm.labelsLinear" chart-series="vm.seriesLinear"

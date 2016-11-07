@@ -5,11 +5,13 @@
 
 	function expenseCtrl($stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi) {
 		var vm = this;
+
 		//expense data
 		vm.expenses = [];
 		var date = new Date();
 		vm.expenseChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
 		vm.expenseChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+		vm.dynamicOrder = "creationDate";
 
 		vm.updateExpenses = function () {
 			expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
@@ -50,6 +52,10 @@
 						}
 					]
 				});
+		}
+
+		vm.reorderBy = function(criteria){
+		  vm.dynamicOrder = criteria;
 		}
 
 		vm.updateExpenses();

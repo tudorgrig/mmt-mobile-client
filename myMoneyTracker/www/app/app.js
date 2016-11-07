@@ -62,6 +62,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 
 		.state('app.expenses', {
 			url:"/expenses",
+			cache: false,
 			views: {
 				"mainContent" : {
 					templateUrl : "app/expenses/expenses.html"
@@ -86,7 +87,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 				}
 			}
 		})
-        
+
         .state('app.expense-edit', {
 			url:"/expenseEdit/:id/:name/:category/:description/:amount/:creationDate/:currency/:frequency/:index",
 			views: {
@@ -98,6 +99,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 
 		.state('app.incomes', {
 			url:"/incomes",
+			cache: false,
 			views: {
 				"mainContent" : {
 					templateUrl : "app/incomes/incomes.html"
@@ -113,7 +115,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 				}
 			}
 		})
-        
+
         .state('app.income-edit', {
 			url:"/incomeEdit/:id/:name/:description/:amount/:creationDate/:currency/:frequency/:index",
 			views: {
@@ -126,6 +128,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 
 		.state('app.categories', {
 			url:"/categories",
+			cache: false,
 			views: {
 				"mainContent" : {
 					templateUrl : "app/categories/categories.html"
@@ -141,7 +144,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 				}
 			}
 		})
-        
+
         .state('app.category-edit', {
 			url:"/categoryEdit/:id/:name/:colour/:threshold/:index",
 			views: {
@@ -153,6 +156,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 
 		.state('app.statistics', {
 			url:"/statistics",
+			cache: false,
 			views: {
 				"mainContent" : {
 					templateUrl : "app/statistics/statistics.html"
@@ -162,6 +166,7 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 
 		.state('app.account', {
 			url:"/account",
+			cache: false,
 			views: {
 				"mainContent" : {
 					templateUrl : "app/account/account.html"
@@ -174,10 +179,10 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 })
 
 .controller('SignInCtrl', function($scope, $state) {
-  
+
   $scope.signIn = function(user) {
     console.log('Sign-In', user);
     $state.go('tabs.home');
   };
-  
+
 });

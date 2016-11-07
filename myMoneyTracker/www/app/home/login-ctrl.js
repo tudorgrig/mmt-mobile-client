@@ -22,10 +22,10 @@
 				if (data.username) {
 					$rootScope.authenticated = true;
 					$window.localStorage['username'] = data.username;
+					$window.localStorage['email'] = data.email;
 					$window.localStorage['user'] = data;
 					$window.localStorage['mmtlt'] = "Basic " + btoa(user.username + ":" + user.password);
 					$window.localStorage['defaultCurrency'] = data.defaultCurrency;
-					console.log("default currency", $window.localStorage['defaultCurrency']);
 				} else {
 					$rootScope.authenticated = false;
 					$window.localStorage.remove('mmtlt');

@@ -1,5 +1,24 @@
-<ion-view>
+<ion-view ng-controller="accountCtrl as vm">
 	<ion-content class="has-header">
-		<h1>Account</h1>
+    <form>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          {{vm.loggedUsername}}
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Default currency</span>
+          {{vm.loggedDefaultCurrency}}
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-dark" ng-click="vm.changeDefaultCurrency()">
+          Update default currency
+        </button>
+        <button class="button button-block button-dark">
+          Change password
+        </button>
+      </div>
+    </form >
 	</ion-content>
 </ion-view>

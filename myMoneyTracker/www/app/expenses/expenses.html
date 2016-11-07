@@ -10,11 +10,21 @@
                 <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
         </label>
       <label ng-if="vm.expenses.length == 0">
-        <center> NO EXPENSES TO SHOW FOR THIS INTERVAL. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+        <div class="list card" id="login-card21">
+          <div class=" item item-image">
+            <img src="img/NoExpenses.png" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+          </div>
+          <div class="item item-body" id="login-list-item-container2"></div>
+        </div>
       </label>
 		<ion-list>
-            <ion-item  style = "margin:15px;" class="item-text-wrap item-icon-left item-icon-right" ng-repeat="expense in vm.expenses" >
-    			{{expense.name}}     {{ expense.creationDate | date:'mediumDate' }}   {{expense.amount}}{{expense.currency}}
+            <ion-item  style = "margin:15px;" class="item-text-wrap item-icon-left item-icon-right"
+                       ng-repeat="expense in vm.expenses | orderBy :vm.dynamicOrder" >
+					   <div class=" item-right">
+							<span align="left">{{expense.name}}   {{expense.amount}}{{expense.currency}}  </span>
+							<span class="item-note">{{ expense.creationDate | date:'mediumDate' }}</span>
+						</div>
+    			
                 <i class="icon ion-record {{expense.category.colour}}"></i>
                 <i class="icon ion-chevron-left icon-accessory"></i>
                 <ion-option-button class="button-dark" ng-click = "vm.updateExpense(expense, $index)">
@@ -25,21 +35,21 @@
                 </ion-option-button>
   			</ion-item>
 		</ion-list>
+      <div></div>
+      <br><br><br>
 	</ion-content>
 
 
 	<ion-tabs class="tabs-dark tabs-icon-top">
 
 
-		<ion-tab title="Sort by date" icon="ion-eye" ui-sref="#">
-			<!-- <ion-nav-view name="tab-login"></ion-nav-view> -->
+		<ion-tab title="Sort by date" icon="ion-eye" ng-click="vm.reorderBy('creationDate')" ui-sref="#">
 		</ion-tab>
 
 		<ion-tab title="Add expense" icon="ion-plus-round" ui-sref="app.add-expense">
 		</ion-tab>
 
-		<ion-tab title="Sort by category" icon="ion-ios-eye-outline" ui-sref="#">
-			<!-- <ion-nav-view name="tab-login"></ion-nav-view> -->
+		<ion-tab title="Sort by category" icon="ion-ios-eye-outline" ng-click="vm.reorderBy('category.name')" ui-sref="#">
 		</ion-tab>
 	</ion-tabs>
 </ion-view>
