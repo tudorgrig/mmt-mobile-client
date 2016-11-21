@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('incomeCtrl', ['$stateParams', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'incomeApi', incomeCtrl]);
+	angular.module('myMoneyTracker').controller('incomeCtrl', ['$stateParams', '$location', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'incomeApi', incomeCtrl]);
 
-	function incomeCtrl($stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, incomeApi) {
+	function incomeCtrl($stateParams, $location, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, incomeApi) {
 		var vm = this;
 		vm.incomes = [];
 		var date = new Date();
@@ -31,12 +31,13 @@
 		}
 
 		vm.confirmDelete = function (income, index) {
+		  console.log(index);
 			var myPopup = $ionicPopup.show({
 					title : 'Confirm delete',
 					subTitle : 'Are you sure you want to delete this income?',
 					buttons : [{
 							text : 'Cancel',
-							type : 'button-positive'
+							type : 'button-dark'
 						}, {
 							text : '<b>Delete</b>',
 							type : 'button-assertive',

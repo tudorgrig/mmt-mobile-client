@@ -10,14 +10,9 @@
     vm.loggedEmail = $window.localStorage['email'];
     vm.defaultCurrency;
 
-    vm.currencies = ["EUR", "USD", "GBP", "RON", "JPY", "CNY", "SDG", "MKD", "MXN", "CAD",
-    			"ZAR", "AUD", "NOK", "ILS", "ISK", "SYP", "LYD", "UYU", "YER", "CSD",
-    			"EEK", "THB", "IDR", "LBP", "AED", "BOB", "QAR", "BHD", "HNL", "HRK",
-    			"COP", "ALL", "DKK", "MYR", "SEK", "RSD", "BGN", "DOP", "KRW", "LVL",
-    			"VEF", "CZK", "TND", "KWD", "VND", "JOD", "NZD", "PAB", "CLP", "PEN",
-    			"DZD", "CHF", "RUB", "UAH", "ARS", "SAR", "EGP", "INR", "PYG",
-    			"TWD", "TRY", "BAM", "OMR", "SGD", "MAD", "BYR", "NIO", "HKD", "LTL",
-    			"SKK", "GTQ", "BRL", "HUF", "IQD", "CRC", "PHP", "SVC", "PLN"];
+    vm.currencies = ["EUR", "USD", "GBP", "RON", "JPY", "BGN", "CZK", "DKK", "HUF", "PLN", "SEK", "CHF", "NOK",
+                    "HRK", "RUB", "TRY", "AUD", "BRL", "CAD", "CNY", "HKD", "IDR", "ILS", "INR", "KRW", "MXN",
+                    "MYR", "NZD", "PHP", "SGD", "THB", "ZAR"];
 
     vm.changeDefaultCurrency = function(){
         var myPopup = $ionicPopup.show({

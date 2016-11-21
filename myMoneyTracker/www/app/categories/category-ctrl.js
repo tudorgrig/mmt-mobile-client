@@ -30,7 +30,7 @@
 					subTitle : 'Are you sure you want to delete this category? ALL EXPENSES FOR THIS CATEGORY WILL GET DELETED',
 					buttons : [{
 							text : 'Cancel',
-							type : 'button-positive'
+							type : 'button-dark'
 						}, {
 							text : '<b>Delete</b>',
 							type : 'button-assertive',

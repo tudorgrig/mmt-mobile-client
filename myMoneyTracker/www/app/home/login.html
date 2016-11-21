@@ -3,11 +3,12 @@
     <form ng-submit="vm.signIn(user)" name="loginForm" id="login-form3" class="list">
       <ion-list id="login-list3">
         <label class="item item-input" id="login-input8">
-          <input type="text" placeholder="Username" ng-model="user.username" required>
+          <input type="text" placeholder="Username" ng-model="user.username" required autofocus>
         </label>
         <label class="item item-input" id="login-input9">
           <input type="password" placeholder="Password" ng-model="user.password" required>
         </label>
+        <ion-checkbox ng-model="vm.rememberUserDetails">Remember user details</ion-checkbox>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
       <button id="login-button3" class="button button-dark  button-block icon-left ion-log-in" ng-disabled="loginForm.$invalid">Log in</button>

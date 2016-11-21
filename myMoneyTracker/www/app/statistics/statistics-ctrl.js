@@ -17,6 +17,19 @@
         vm.dataBar = [];
         vm.colorsBar = [];
 
+        //incomesVsExpenses data
+        vm.expenses2 = [];
+        vm.incomes2 = [];
+        vm.expensesSum = 0;
+        vm.incomesSum = 0;
+        vm.netBalance = vm.incomesSum - vm.expensesSum;
+        vm.incomesVsExpensesChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
+        vm.incomesVsExpensesChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        vm.incomesVsExpensesLabelsBar = ["Incomes", "Expenses"];
+        vm.incomesVsExpensesSeriesBar = [];
+        vm.incomesVsExpensesDataBar = [];
+        vm.incomesVsExpensesColorsBar = [];
+
         //pie chart
         vm.categories = [];
         vm.expensesByCategory = [];
@@ -29,8 +42,26 @@
         vm.expenseByCategoryChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
         vm.labelsPie = [];
         vm.dataPie = [];
+        vm.showAllExpensesChart = true;
+        vm.showCategoryExpensesChart = true;
+        vm.showIncomesChart = true;
+        vm.showIncomesVsExpensesChart = true;
 
+        vm.viewIncomesVsExpensesChart = function(){
+            vm.showIncomesVsExpensesChart = !vm.showIncomesVsExpensesChart;
+        }
 
+        vm.viewAllExpensesChart = function(){
+            vm.showAllExpensesChart = !vm.showAllExpensesChart;
+        }
+
+        vm.viewCategoryExpensesChart = function(){
+            vm.showCategoryExpensesChart = !vm.showCategoryExpensesChart;
+        }
+
+        vm.viewIncomesChart = function(){
+            vm.showIncomesChart = !vm.showIncomesChart;
+        }
 
         vm.updateExpenses = function () {
             expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
@@ -71,6 +102,44 @@
 
                     })
                 }
+            })
+        }
+
+        vm.updateIncomesVsExpensesChart = function (){
+            expenseApi.getByInterval(vm.incomesVsExpensesChartFromDate.getTime(), vm.incomesVsExpensesChartUntilDate.getTime(), function (data) {
+              incomeApi.getIncomesByInterval(vm.incomesVsExpensesChartFromDate.getTime(), vm.incomesVsExpensesChartUntilDate.getTime(), function (data2) {
+                  vm.expenses2 = [];
+                  vm.incomes2 = [];
+                  vm.expensesSum = 0;
+                  vm.incomesSum = 0;
+                  vm.incomesVsExpensesLabelsBar = ["Incomes", "Expenses"];
+                  vm.incomesVsExpensesSeriesBar = ["Incomes", "Expenses"];
+                  vm.incomesVsExpensesDataBar = [];
+                  vm.incomesVsExpensesColorsBar = [];
+                  vm.expenses2 = data;
+                  vm.incomes2 = data2;
+                  if(vm.expenses2.length > 0){
+                    for (var i = 0; i < vm.expenses2.length; i++) {
+                        if (vm.expenses2[i].defaultCurrency == null) {
+                           vm.expensesSum = vm.expensesSum + vm.expenses2[i].amount;
+                        } else {
+                           vm.expensesSum = vm.expensesSum + vm.expenses2[i].defaultCurrencyAmount;
+                        }
+                    }
+                  }
+                  if(vm.incomes2.length > 0){
+                    for (var i = 0; i < vm.incomes2.length; i++) {
+                      if (vm.incomes2[i].defaultCurrencyAmount == null) {
+                         vm.incomesSum = vm.incomesSum + vm.incomes2[i].amount;
+                      } else {
+                         vm.incomesSum = vm.incomesSum + vm.incomes2[i].defaultCurrencyAmount;
+                      }
+                    }
+                  }
+                  vm.incomesVsExpensesDataBar[0] = vm.incomesSum;
+                  vm.incomesVsExpensesDataBar[1] = vm.expensesSum;
+                  vm.netBalance = vm.incomesSum - vm.expensesSum;
+              })
             })
         }
 
@@ -203,6 +272,7 @@
 
         vm.updateExpenses();
         vm.updateIncomes();
+        vm.updateIncomesVsExpensesChart();
 
     }
 })();

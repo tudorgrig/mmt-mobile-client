@@ -40,7 +40,7 @@
 					subTitle : 'Are you sure you want to delete this expense?',
 					buttons : [{
 							text : 'Cancel',
-							type : 'button-positive'
+							type : 'button-dark'
 						}, {
 							text : '<b>Delete</b>',
 							type : 'button-assertive',

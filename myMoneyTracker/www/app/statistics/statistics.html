@@ -6,57 +6,98 @@
              <center> <b> All expenses and incomes are converted to your default currency ({{vm.defaultCurrency}}), based on their creation date. </b> <b>Data may not be exact! </b> </center>
         </div>
 
-        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+        <div class="padding">
+
+          <button class="button button-block button-dark" ng-click="vm.viewAllExpensesChart()">
+            All expenses bar chart
+          </button>
+          <div ng-hide="vm.showAllExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
     border: 2px solid black;">
             <label class="item item-input">
-                <span class="input-label">From: </span>
-                <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
+              <span class="input-label">From: </span>
+              <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
             </label>
             <label class="item item-input">
-                <span class="input-label">Until: </span>
-                <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+              <span class="input-label">Until: </span>
+              <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
             </label>
             <canvas ng-if="vm.dataBar.length > 0" id="bar" class="chart chart-bar" chart-data="vm.dataBar" chart-labels="vm.labelsBar"
-            chart-series="vm.seriesBar" chart-colors="vm.colorsBar">
+                    chart-series="vm.seriesBar" chart-colors="vm.colorsBar">
             </canvas>
             <label ng-if="vm.dataBar.length == 0">
-                <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
             </label>
-        </div>
+          </div>
 
-        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+
+          <button class="button button-block button-dark" ng-click="vm.viewCategoryExpensesChart()">
+            Expenses by category pie chart
+          </button>
+          <div ng-hide="vm.showCategoryExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
     border: 2px solid black;">
             <label class="item item-input">
-                <span class="input-label">Category</span>
-                <select placeholder="Category" ng-init="vm.selectedCategory = vm.categories[0]"  ng-model="vm.selectedCategory" ng-change="vm.updateExpensesByCategory()" ng-options="category as category.name for category in vm.categories">
-                </select>
+              <span class="input-label">Category</span>
+              <select placeholder="Category" ng-init="vm.selectedCategory = vm.categories[0]"  ng-model="vm.selectedCategory" ng-change="vm.updateExpensesByCategory()" ng-options="category as category.name for category in vm.categories">
+              </select>
             </label>
             <label class="item item-input">
-                <span class="input-label">From: </span>
-                <input type="date" ng-model="vm.expenseByCategoryChartFromDate" ng-change="vm.updateExpensesByCategory()">
+              <span class="input-label">From: </span>
+              <input type="date" ng-model="vm.expenseByCategoryChartFromDate" ng-change="vm.updateExpensesByCategory()">
             </label>
             <label class="item item-input">
-                <span class="input-label">Until: </span>
-                <input type="date" ng-model="vm.expenseByCategoryChartUntilDate" ng-change="vm.updateExpensesByCategory()">
+              <span class="input-label">Until: </span>
+              <input type="date" ng-model="vm.expenseByCategoryChartUntilDate" ng-change="vm.updateExpensesByCategory()">
             </label>
             <canvas ng-if="vm.dataPie.length > 0" id="pie" class="chart chart-pie" chart-data="vm.dataPie" chart-labels="vm.labelsPie" chart-legend="true">
             </canvas>
             <label ng-if="vm.dataPie.length == 0">
-                <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
             </label>
-        </div>
+          </div>
 
-        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
-    border: 2px solid black;">
+
+
+          <button class="button button-block button-dark" ng-click="vm.viewIncomesChart()">
+            Incomes chart
+          </button>
+          <div ng-hide="vm.showIncomesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px; border: 2px solid black;">
             <label class="item item-input">
-                <span class="input-label">Income chart</span>
-                <select type="date" class="form-control" id="year_select" placeholder="year" ng-model="vm.selected_year" ng-change="vm.updateIncomes(true)">
-                    <option ng-repeat="year in vm.yearsArray" value="{{year}}" selected required>{{year}}</option>
-                </select>
+              <span class="input-label">Income chart</span>
+              <select type="date" class="form-control" id="year_select" placeholder="year" ng-model="vm.selected_year" ng-change="vm.updateIncomes(true)">
+                <option ng-repeat="year in vm.yearsArray" value="{{year}}" selected required>{{year}}</option>
+              </select>
             </label>
             <canvas id="line" class="chart chart-line" chart-data="vm.dataLinear" chart-labels="vm.labelsLinear" chart-series="vm.seriesLinear"
             </canvas>
-        </div>
+          </div>
+
+          <button class="button button-block button-dark" ng-click="vm.viewIncomesVsExpensesChart()">
+            Income vs Expenses chart
+          </button>
+          <div ng-hide="vm.showIncomesVsExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+    border: 2px solid black;">
+            <label class="item item-input">
+              <span class="input-label">From: </span>
+              <input type="date" ng-model="vm.incomesVsExpensesChartFromDate" ng-change="vm.updateIncomesVsExpensesChart()">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Until: </span>
+              <input type="date" ng-model="vm.incomesVsExpensesChartUntilDate" ng-change="vm.updateIncomesVsExpensesChart()">
+            </label>
+            <canvas ng-if="vm.incomesVsExpensesDataBar.length > 0" chart-legend="true" id="bar" class="chart chart-bar" chart-data="vm.incomesVsExpensesDataBar" chart-labels="vm.incomesVsExpensesLabelsBar"
+                    chart-series="vm.incomesVsExpensesSeriesBar">
+            </canvas>
+            <label ng-if="vm.incomesVsExpensesDataBar.length == 0">
+              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+            </label>
+            <p>Incomes: {{vm.incomesSum | number:2}} {{vm.defaultCurrency}}</p>
+            <p>Expenses: {{vm.expensesSum | number:2}} {{vm.defaultCurrency}}</p>
+            <p>Net balance: {{vm.netBalance | number:2}} {{vm.defaultCurrency}}</p>
+          </div>
+      </div>
+
+
+
 
 
     </ion-content>
