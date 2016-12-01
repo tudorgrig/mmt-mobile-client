@@ -1,4 +1,4 @@
-angular.module('myMoneyTracker', ['ionic', 'chart.js'])
+angular.module('myMoneyTracker', ['ionic', 'ngStorage', 'chart.js'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

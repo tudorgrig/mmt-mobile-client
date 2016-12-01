@@ -2,12 +2,16 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('loginCtrl', ['$q', '$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
+	angular.module('myMoneyTracker').controller('loginCtrl', ['$q', '$localStorage','$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
 
-	function loginCtrl($q, $stateParams, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
+	function loginCtrl($q, $localStorage, $stateParams, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
 		var vm = this;
 		$scope.data = {};
-
+		vm.user = {
+		  username : $localStorage.loggedUsername,
+		  password : $localStorage.password
+		};
+    console.log($localStorage);
 		vm.authenticate = function (user, callback) {
 
 			var headers = user ? {
@@ -46,12 +50,19 @@
 		vm.signIn = function (user) {
 			vm.authenticate(user, function (authenticated) {
 				if (authenticated) {
-					$location.path("/app/expenses");
+          if(vm.rememberUserDetails){
+            $localStorage.loggedUsername = user.username;
+            $localStorage.password = user.password;
+            console.log($localStorage);
+          } else {
+            $localStorage.loggedUsername = null;
+            $localStorage.password = null;
+          }
 					$rootScope.authenticated = true;
+					$location.path("/app/expenses");
 				} else {
-
-					$location.path("/login");
 					$rootScope.authenticated = false;
+					$location.path("/login");
 				}
 			})
 
