@@ -12,6 +12,7 @@
 		  password : $localStorage.password
 		};
     console.log($localStorage);
+    vm.rememberUserDetails = true;
 		vm.authenticate = function (user, callback) {
 
 			var headers = user ? {

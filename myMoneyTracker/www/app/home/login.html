@@ -13,7 +13,7 @@
           <input type="password" id="password" placeholder="Password" ng-model="vm.user.password" ng-hide="showPassword">
           <input type="text" id="passwordRaw" placeholder="Password" ng-model="vm.user.password" ng-show="showPassword">
         </label>
-        <ion-checkbox ng-checked="true" ng-model="vm.rememberUserDetails">Remember user details</ion-checkbox>
+        <ion-checkbox ng-model="vm.rememberUserDetails">Remember user details</ion-checkbox>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
       <button id="login-button3" class="button button-dark  button-block icon-left ion-log-in" ng-disabled="loginForm.$invalid">Log in</button>
