@@ -1,22 +1,26 @@
 /* Empty. Add your own CSS if you like */
 h1 {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Tillana', cursive;
+}
+
+ion-view {
+    font-family: 'Tillana', cursive;
 }
 
 span {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Tillana', cursive;
 }
 
 button {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Tillana', cursive;
 }
 
 ion-item {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Tillana', cursive;
 }
 
 h2 {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Tillana', cursive;
 }
 
 .input-color {
@@ -33,4 +37,14 @@ h2 {
     position: absolute;
     left: 5px;
     top: 5px;
+}
+
+.my-container {
+    background-image:  url("https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Money-Increase-512.png");
+    background-repeat: repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
 }

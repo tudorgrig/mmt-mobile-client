@@ -1,4 +1,7 @@
 <ion-view ng-controller="addCategoryCtrl as vm">
+    <ion-nav-title>
+      <span class="stable">Add a new category</span>
+    </ion-nav-title>
     <ion-content class="has-header dark">
         <h1>Add category</h1>
     </ion-content>
@@ -13,31 +16,21 @@
                 <label class="item item-input">
                     <span class="input-label">Colour</span>
                     <select ng-model="category.colour" required>
-                        <option selected style="background-color: white" class="light">light</option>
-                        <option style="background-color: cornsilk" class="stable">stable</option>
-                        <option style="background-color: DodgerBlue " class="positive">positive</option>
-                        <option style="background-color: aqua" class="calm">calm</option>
-                        <option style="background-color: YellowGreen" class="balanced">balanced</option>
-                        <option style="background-color: Gold" class="energized">energized</option>
-                        <option style="background-color: Crimson " class="assertive">assertive</option>
-                        <option style="background-color: BlueViolet " class="royal">royal</option>
-                        <option style="background-color: black" class="dark">dark</option>
+                        <option selected value="positive" style="background-color: DodgerBlue " class="positive">blue</option>
+                        <option value="calm" style="background-color: aqua" class="calm">aqua</option>
+                        <option value="balanced" style="background-color: YellowGreen" class="balanced">green</option>
+                        <option value="energized" style="background-color: Gold" class="energized">yellow</option>
+                        <option value="assertive" style="background-color: Crimson " class="assertive">red</option>
+                        <option value="royal" style="background-color: BlueViolet " class="royal">violet</option>
+                        <option value="dark" style="background-color: black" class="dark">black</option>
                     </select>
-                    <i class="icon ion-record stable">Stable</i>
-                    <i class="icon ion-record positive">Positive</i>
-                    <i class="icon ion-record calm">Calm</i>
-                    <i class="icon ion-record balanced">Balanced</i>
-                    <i class="icon ion-record energized">Energized</i>
-                    <i class="icon ion-record assertive">Assertive</i>
-                    <i class="icon ion-record royal">Royal</i>
-                    <i class="icon ion-record dark">Dark</i>
                 </label>
 
-                <label class="item item-input">
-                    <span class="input-label">Threshold</span>
-                    <input type="number" placeholder="How much money do you want to spend on this category, per month?" ng-model="category.threshold"
-                    min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-                </label>
+                <!--<label class="item item-input">-->
+                    <!--<span class="input-label">Threshold</span>-->
+                    <!--<input type="number" placeholder="How much money do you want to spend on this category, per month?" ng-model="category.threshold"-->
+                    <!--min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />-->
+                <!--</label>-->
 
             </div>
             <div class="padding">

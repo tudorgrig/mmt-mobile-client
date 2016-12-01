@@ -1,5 +1,7 @@
 <ion-view ng-controller="expenseCtrl as vm">
-
+    <ion-nav-title>
+      <span class="stable">Expenses</span>
+    </ion-nav-title>
     <ion-content class="has-header dark">
         <label class="item item-input">
                 <span class="input-label">From: </span>
@@ -24,7 +26,7 @@
 							<span align="left">{{expense.name}}   {{expense.amount}}{{expense.currency}}  </span>
 							<span class="item-note">{{ expense.creationDate | date:'mediumDate' }}</span>
 						</div>
-    			
+
                 <i class="icon ion-record {{expense.category.colour}}"></i>
                 <i class="icon ion-chevron-left icon-accessory"></i>
                 <ion-option-button class="button-dark" ng-click = "vm.updateExpense(expense, $index)">

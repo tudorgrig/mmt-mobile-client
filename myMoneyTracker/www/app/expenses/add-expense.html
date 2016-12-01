@@ -1,4 +1,7 @@
 <ion-view ng-controller="addExpenseCtrl as vm">
+  <ion-nav-title>
+    <span class="stable">Add expense</span>
+  </ion-nav-title>
 	<ion-content class="has-header dark">
 		<h1>Add expense</h1>
 	</ion-content>
@@ -26,7 +29,7 @@
 							</label>
 							<label class="item item-input">
 								<span class="input-label">Creation date</span>
-								<input type="date"  ng-model="expense.creationDate" required>
+								<input type="date" ng-init="expense.creationDate = vm.defaultCreationDate" ng-model="expense.creationDate" required>
 								</label>
 								<label class="item item-input">
 									<span class="input-label">Frequency</span>
@@ -41,9 +44,9 @@
 
 								<label class="item item-input">
 									<span class="input-label">Currency</span>
-									<select ng-model="expense.currency" required>
+									<select ng-model="expense.currency" required ng-init="expense.currency = vm.defaultCurrency">
 
-										<option selected value="RON">RON</option>
+										<option value="RON">RON</option>
 										<option value="EUR">EUR</option>
 										<option value="USD">USD</option>
 										<option value="GBP">GBP</option>

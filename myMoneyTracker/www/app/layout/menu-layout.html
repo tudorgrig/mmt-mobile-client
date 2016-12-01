@@ -1,14 +1,19 @@
 <ion-side-menus enable-menu-with-back-views="true" ng-controller="menuLayout as vm">
 
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-dark">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
 
- <ion-side-menu-content>
-    <ion-header-bar class="bar-header bar-dark">
-    	<button class="button button-icon icon ion-navicon" menu-toggle="left"> </button>
-      <div class="h1 title" style="font-family: 'Gloria Hallelujah', cursive;">The Accountant</div>
-    </ion-header-bar>
-    <ion-nav-view name="mainContent" animation="slide-left-right">
-        </ion-nav-view>
-
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <img menu-toggle="left" ng-src="img/myMoneyTracker.svg"/>
+      </ion-nav-buttons>
+      </ion-nav-bar>
+    <ion-nav-view name="mainContent" animation="slide-left-right"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left" class="dark-bg dark-border">
@@ -31,6 +36,10 @@
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.account" menu-close>
           <i class="ion-ios-body"></i>
             {{vm.loggedUser}}
+      </ion-item>
+      <ion-item class="item item-dark item-icon-left"  ui-sref="app.help" menu-close>
+          <i class="ion-help-circled"></i>
+            Help
       </ion-item>
   </ion-side-menu>
 

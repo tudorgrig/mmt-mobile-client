@@ -92,7 +92,7 @@
 				if (response.status === 401) {
 					$location.url('/login');
 				}
-				return $q.reject(data);
+				return $q.reject(response);
 			});
 		}
 

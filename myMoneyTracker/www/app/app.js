@@ -79,15 +79,6 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 			}
 		})
 
-		.state('app.expense-detail', {
-			url:"/expenses/:id",
-			views: {
-				"mainContent" : {
-					templateUrl : "app/expenses/expense-detail.html"
-				}
-			}
-		})
-
         .state('app.expense-edit', {
 			url:"/expenseEdit/:id/:name/:category/:description/:amount/:creationDate/:currency/:frequency/:index",
 			views: {
@@ -172,7 +163,17 @@ angular.module('myMoneyTracker', ['ionic', 'chart.js'])
 					templateUrl : "app/account/account.html"
 				}
 			}
-		});
+		})
+
+		.state('app.help', {
+    			url:"/help",
+    			cache: false,
+    			views: {
+    				"mainContent" : {
+    					templateUrl : "app/help/help.html"
+    				}
+    			}
+    });
 
 	$urlRouterProvider.otherwise('/home/login');
 	$ionicConfigProvider.tabs.position('bottom');

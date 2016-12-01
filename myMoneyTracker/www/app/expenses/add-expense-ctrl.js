@@ -6,6 +6,8 @@
 	function addExpenseCtrl($stateParams, $ionicPopup, $http, $location, $window, categoryApi, expenseApi) {
 		var vm = this;
 		vm.categories = [];
+		vm.defaultCurrency = $window.localStorage['defaultCurrency'];
+		vm.defaultCreationDate = new Date();
 		categoryApi.getCategories(function (data) {
 			vm.categories = data;
 		})

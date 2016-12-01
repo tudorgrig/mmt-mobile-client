@@ -2,10 +2,11 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('loginCtrl', ['$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', 'host_name', loginCtrl]);
+	angular.module('myMoneyTracker').controller('loginCtrl', ['$q', '$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
 
-	function loginCtrl($stateParams, $ionicPopup, $http, $location, $rootScope, $window, host_name) {
+	function loginCtrl($q, $stateParams, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
 		var vm = this;
+		$scope.data = {};
 
 		vm.authenticate = function (user, callback) {
 
@@ -55,5 +56,63 @@
 			})
 
 		}
+
+		vm.forgotPassword = function(){
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+          template: '<input type="email" ng-model="data.email">',
+          title: 'Enter the email address used to register in application:',
+          scope: $scope,
+          buttons: [
+            { text: 'Cancel' },
+            {
+              text: '<b>Save</b>',
+              type: 'button-dark',
+              onTap: function(e) {
+                vm.sendForgotPasswordEmail($scope.data.email);
+              }
+            }
+          ]
+        });
+		}
+
+		vm.sendForgotPasswordEmail = function(email) {
+        if(typeof email != "undefined"){
+          var req = {
+          				method : 'POST',
+          				url : host_name + '/user/forgot_password',
+          				headers : {
+          					'Content-Type' : "application/json",
+          					'Authorization' : $window.localStorage['mmtlt']
+          				},
+          				data : JSON.stringify(email)
+          			}
+          			// make server request
+          			$http(req).then(
+          				function (response) {
+          				// SUCCESS: change the path
+                    var alertPopup = $ionicPopup.alert({
+                       title : "An e-mail has been sent with further instructions on resetting your password",
+                    });
+          			},
+          				function (response) {
+          				var alertPopup = $ionicPopup.alert({
+          						title : "Error sending forgot password email",
+          						template : response.message
+          					});
+          				if (response.status === 401) {
+          					$location.url('/login');
+          				}
+          				return $q.reject(response);
+          			});
+        } else {
+          var alertPopup = $ionicPopup.alert({
+                         title: 'Wrong format',
+                         template: 'Please enter a valid e-mail address'
+                    });
+        }
+		}
+
+
 	};
 })();

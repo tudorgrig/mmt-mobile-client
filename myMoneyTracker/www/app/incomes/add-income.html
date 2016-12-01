@@ -1,4 +1,7 @@
 <ion-view ng-controller="addIncomeCtrl as vm">
+  <ion-nav-title>
+    <span class="stable">Add income</span>
+  </ion-nav-title>
 	<ion-content class="has-header dark">
 		<h1>Add income</h1>
 	</ion-content>
@@ -20,11 +23,11 @@
 							</label>
 							<label class="item item-input">
 								<span class="input-label">Creation date</span>
-								<input type="date" ng-model="income.creationDate" required>
+								<input type="date" ng-init="income.creationDate = vm.defaultCreationDate" ng-model="income.creationDate" required>
 								</label>
 								<label class="item item-input">
 									<span class="input-label">Frequency</span>
-									<select ng-model="income.frequency" ng-init="expense.frequency='0'" required>
+									<select ng-model="income.frequency" ng-init="income.frequency='0'" required>
 										<option value="0">Only once</option>
 										<option value="1">Monthly</option>
 										<option value="2">Every 2 months</option>
@@ -34,7 +37,7 @@
 								</label>
 								<label class="item item-input">
 									<span class="input-label">Currency</span>
-									<select ng-model="income.currency" required>
+									<select ng-init="income.currency = vm.defaultCurrency" ng-model="income.currency" required>
                     <option selected value="RON">RON</option>
                     <option value="EUR">EUR</option>
                     <option value="USD">USD</option>

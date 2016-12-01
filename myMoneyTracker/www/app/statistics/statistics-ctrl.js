@@ -136,8 +136,9 @@
                       }
                     }
                   }
-                  vm.incomesVsExpensesDataBar[0] = vm.incomesSum;
-                  vm.incomesVsExpensesDataBar[1] = vm.expensesSum;
+                  vm.incomesVsExpensesDataBar.push(vm.incomesSum);
+                  vm.incomesVsExpensesDataBar.push(vm.expensesSum);
+                  vm.incomesVsExpensesDataBar.push(0);
                   vm.netBalance = vm.incomesSum - vm.expensesSum;
               })
             })
