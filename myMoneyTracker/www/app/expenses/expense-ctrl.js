@@ -11,7 +11,7 @@
 		var date = new Date();
 		vm.expenseChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
 		vm.expenseChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-		vm.dynamicOrder = "creationDate";
+		vm.dynamicOrder = "-creationDate";
 
 		vm.updateExpenses = function () {
 			expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {

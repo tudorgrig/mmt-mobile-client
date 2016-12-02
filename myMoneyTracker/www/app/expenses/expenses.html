@@ -1,6 +1,6 @@
 <ion-view ng-controller="expenseCtrl as vm">
     <ion-nav-title>
-      <span class="stable">Expenses</span>
+      <span class="stable"><i class="ion-ios-cart"></i>  Expenses</span>
     </ion-nav-title>
     <ion-content class="has-header dark">
         <label class="item item-input">
@@ -43,9 +43,7 @@
 
 
 	<ion-tabs class="tabs-dark tabs-icon-top">
-
-
-		<ion-tab title="Sort by date" icon="ion-eye" ng-click="vm.reorderBy('creationDate')" ui-sref="#">
+		<ion-tab title="Sort by date" icon="ion-eye" ng-click="vm.reorderBy('-creationDate')" ui-sref="#">
 		</ion-tab>
 
 		<ion-tab title="Add expense" icon="ion-plus-round" ui-sref="app.add-expense">

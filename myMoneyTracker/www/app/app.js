@@ -79,7 +79,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngStorage', 'chart.js'])
 			}
 		})
 
-        .state('app.expense-edit', {
+    .state('app.expense-edit', {
 			url:"/expenseEdit/:id/:name/:category/:description/:amount/:creationDate/:currency/:frequency/:index",
 			views: {
 				"mainContent" : {
@@ -107,7 +107,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngStorage', 'chart.js'])
 			}
 		})
 
-        .state('app.income-edit', {
+    .state('app.income-edit', {
 			url:"/incomeEdit/:id/:name/:description/:amount/:creationDate/:currency/:frequency/:index",
 			views: {
 				"mainContent" : {
@@ -136,7 +136,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngStorage', 'chart.js'])
 			}
 		})
 
-        .state('app.category-edit', {
+    .state('app.category-edit', {
 			url:"/categoryEdit/:id/:name/:colour/:threshold/:index",
 			views: {
 				"mainContent" : {
@@ -173,7 +173,67 @@ angular.module('myMoneyTracker', ['ionic', 'ngStorage', 'chart.js'])
     					templateUrl : "app/help/help.html"
     				}
     			}
-    });
+    })
+
+    .state('app.help-create-expense', {
+        			url:"/helpCreateNewExpense",
+        			cache: false,
+        			views: {
+        				"mainContent" : {
+        					templateUrl : "app/help/create-expense.html"
+        				}
+        			}
+    })
+
+    .state('app.help-update-expense', {
+          url:"/helpUpdateExpense",
+          cache: false,
+          views: {
+            "mainContent" : {
+              templateUrl : "app/help/update-expense.html"
+            }
+          }
+    })
+
+    .state('app.help-delete-expense', {
+              url:"/helpDeleteExpense",
+              cache: false,
+              views: {
+                "mainContent" : {
+                  templateUrl : "app/help/delete-expense.html"
+                }
+              }
+    })
+
+    .state('app.help-create-income', {
+            			url:"/helpCreateNewIncome",
+            			cache: false,
+            			views: {
+            				"mainContent" : {
+            					templateUrl : "app/help/create-income.html"
+            				}
+            			}
+    })
+
+    .state('app.help-update-income', {
+              url:"/helpUpdateIncome",
+              cache: false,
+              views: {
+                "mainContent" : {
+                  templateUrl : "app/help/update-income.html"
+                }
+              }
+    })
+
+    .state('app.help-delete-income', {
+                  url:"/helpDeleteIncome",
+                  cache: false,
+                  views: {
+                    "mainContent" : {
+                      templateUrl : "app/help/delete-income.html"
+                    }
+                  }
+    })
 
 	$urlRouterProvider.otherwise('/home/login');
 	$ionicConfigProvider.tabs.position('bottom');

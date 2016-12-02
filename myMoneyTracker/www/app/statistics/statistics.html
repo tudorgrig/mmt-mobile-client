@@ -1,7 +1,7 @@
 <ion-view ng-controller="statisticsCtrl as vm">
 
     <ion-nav-title>
-      <span class="stable">Statistics</span>
+      <span class="stable"><i class="ion-ios-pie-outline"></i> Statistics</span>
     </ion-nav-title>
     <ion-content>
 
@@ -26,8 +26,10 @@
               <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
             </label>
             <canvas ng-if="vm.dataBar.length > 0" id="bar" class="chart chart-bar" chart-data="vm.dataBar" chart-labels="vm.labelsBar"
-                    chart-series="vm.seriesBar" chart-colors="vm.colorsBar">
+                    chart-series="vm.seriesBar" chart-colors="vm.colorsBar" legend="true">
             </canvas>
+            <br>
+            <br>
             <label ng-if="vm.dataBar.length == 0">
               <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
             </label>
