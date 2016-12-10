@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('expenseCtrl', ['$stateParams', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', expenseCtrl]);
+	angular.module('myMoneyTracker').controller('expenseCtrl', ['$scope','$stateParams', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', 'categoryApi', expenseCtrl]);
 
-	function expenseCtrl($stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi) {
+	function expenseCtrl($scope, $stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, categoryApi) {
 		var vm = this;
 
 		//expense data
@@ -12,6 +12,21 @@
 		vm.expenseChartFromDate = new Date(date.getFullYear(), date.getMonth(), 1);
 		vm.expenseChartUntilDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 		vm.dynamicOrder = "-creationDate";
+		vm.allCategories = "All categories";
+		vm.filter_category = undefined;
+		vm.categories = [];
+		categoryApi.getCategories(function (data) {
+
+    			vm.extractCategoryNames(data, vm.categories);
+    })
+
+    vm.extractCategoryNames = function(categoriesArray, categoryNames) {
+        var i;
+        categoryNames.push(vm.allCategories);
+        for (i = 0; i < categoriesArray.length; i++) {
+          categoryNames.push(categoriesArray[i].name);
+        }
+    }
 
 		vm.updateExpenses = function () {
 			expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
@@ -46,13 +61,33 @@
 							type : 'button-assertive',
 							onTap : function (e) {
 								expenseApi.deleteExpense(expense, function (data) {
-									vm.expenses.splice(index, 1);
+									vm.expenses.splice(vm.expenses.indexOf(expense), 1);
 								});
 							}
 						}
 					]
 				});
 		}
+
+		vm.filterByCategory = function(){
+		  if(vm.selected_category == vm.allCategories){
+		    vm.filter_category = undefined;
+		  }
+		  else {
+		    vm.filter_category = vm.selected_category;
+		  }
+		}
+
+		$scope.toggleItem= function(expense) {
+        if ($scope.isItemShown(expense)) {
+          $scope.shownItem = null;
+        } else {
+          $scope.shownItem = expense;
+        }
+    };
+    $scope.isItemShown = function(expense) {
+        return $scope.shownItem === expense;
+    };
 
 		vm.reorderBy = function(criteria){
 		  vm.dynamicOrder = criteria;

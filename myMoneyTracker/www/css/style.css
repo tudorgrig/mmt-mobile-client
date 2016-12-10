@@ -1,26 +1,26 @@
 /* Empty. Add your own CSS if you like */
 h1 {
-    font-family: 'Tillana', cursive;
+    font-family: 'Roboto', cursive;
 }
 
 ion-view {
-    font-family: 'Tillana', cursive;
+    font-family: 'Roboto', cursive;
 }
 
 span {
-    font-family: 'Tillana', cursive;
+    font-family: 'Roboto', cursive;
 }
 
 button {
-    font-family: 'Tillana', cursive;
+    font-family: 'Roboto', cursive;
 }
 
 ion-item {
-    font-family: 'Tillana', cursive;
+    font-family: 'Roboto', cursive;
 }
 
 h2 {
-    font-family: 'Tillana', cursive;
+    font-family: 'Roboto', cursive;
 }
 
 .input-color {
@@ -47,4 +47,55 @@ h2 {
     background-size: cover;
     height: 100%;
     position: absolute;
+}
+
+/* CORE */
+.item-expand {
+  position: relative;
+  width: 100%;
+  max-height: 60px;
+  transition: max-height 0.1s ease-out;
+  overflow: hidden;
+}
+
+.item-expand.inactive:after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 150px;
+  width: 100%;
+  display: block;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, rgba(255, 255, 255, 0)),
+    color-stop(1, rgba(255, 255, 255, 1))
+  );
+  background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.item-expand.active {
+  max-height: 200px;
+  transition: max-height 0.3s ease-out;
+}
+
+
+/* DEMO */
+.item-expand-footer {
+  color: red;
+  margin-top: 10px;
+}
+
+.item-expand-footer i {
+  margin-right: 10px;
+}
+
+.larger {
+    font-size: 30px;
 }

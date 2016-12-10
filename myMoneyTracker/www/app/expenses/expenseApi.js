@@ -78,10 +78,10 @@
 					expense.name = "";
 					expense.description = "";
 					expense.amount = "";
-					expense.frequency = "";
+//					expense.frequency = "";
 					expense.category = "";
-					expense.creationDate = "";
-					expense.currency = "";
+					expense.creationDate = new Date();
+					expense.currency = $window.localStorage['defaultCurrency'];
 				}
 			},
 				function (response) {

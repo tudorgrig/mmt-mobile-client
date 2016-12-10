@@ -5,12 +5,35 @@
     </ion-nav-title>
     <ion-content>
 
-        <div style="margin: 10px; margin-bottom:30px; border-radius: 25px;
-    border: 2px solid #FF0000;">
-             <center> <b> All expenses and incomes are converted to your default currency ({{vm.defaultCurrency}}), based on their creation date. </b> <b>Data may not be exact! </b> </center>
-        </div>
-
         <div class="padding">
+
+          <i ng-click = "vm.showStatInfo()" class="icon ion-information-circled larger dark"></i>
+
+
+          <button class="button button-block button-dark" ng-click="vm.viewIncomesVsExpensesChart()">
+            Income vs Expenses chart
+          </button>
+          <div ng-hide="vm.showIncomesVsExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
+    border: 2px solid black;">
+            <label class="item item-input">
+              <span class="input-label">From: </span>
+              <input type="date" ng-model="vm.incomesVsExpensesChartFromDate" ng-change="vm.updateIncomesVsExpensesChart()">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Until: </span>
+              <input type="date" ng-model="vm.incomesVsExpensesChartUntilDate" ng-change="vm.updateIncomesVsExpensesChart()">
+            </label>
+            <canvas ng-if="vm.incomesVsExpensesDataBar.length > 0" chart-legend="true" id="bar" class="chart chart-bar" chart-data="vm.incomesVsExpensesDataBar" chart-labels="vm.incomesVsExpensesLabelsBar"
+                    chart-series="vm.incomesVsExpensesSeriesBar">
+            </canvas>
+            <label ng-if="vm.incomesVsExpensesDataBar.length == 0">
+              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+            </label>
+            <p>Incomes: {{vm.incomesSum | number:2}} {{vm.defaultCurrency}}</p>
+            <p>Expenses: {{vm.expensesSum | number:2}} {{vm.defaultCurrency}}</p>
+            <p>Net balance: {{vm.netBalance | number:2}} {{vm.defaultCurrency}}</p>
+          </div>
+
 
           <button class="button button-block button-dark" ng-click="vm.viewAllExpensesChart()">
             All expenses bar chart
@@ -77,34 +100,7 @@
             </canvas>
           </div>
 
-          <button class="button button-block button-dark" ng-click="vm.viewIncomesVsExpensesChart()">
-            Income vs Expenses chart
-          </button>
-          <div ng-hide="vm.showIncomesVsExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
-    border: 2px solid black;">
-            <label class="item item-input">
-              <span class="input-label">From: </span>
-              <input type="date" ng-model="vm.incomesVsExpensesChartFromDate" ng-change="vm.updateIncomesVsExpensesChart()">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Until: </span>
-              <input type="date" ng-model="vm.incomesVsExpensesChartUntilDate" ng-change="vm.updateIncomesVsExpensesChart()">
-            </label>
-            <canvas ng-if="vm.incomesVsExpensesDataBar.length > 0" chart-legend="true" id="bar" class="chart chart-bar" chart-data="vm.incomesVsExpensesDataBar" chart-labels="vm.incomesVsExpensesLabelsBar"
-                    chart-series="vm.incomesVsExpensesSeriesBar">
-            </canvas>
-            <label ng-if="vm.incomesVsExpensesDataBar.length == 0">
-              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
-            </label>
-            <p>Incomes: {{vm.incomesSum | number:2}} {{vm.defaultCurrency}}</p>
-            <p>Expenses: {{vm.expensesSum | number:2}} {{vm.defaultCurrency}}</p>
-            <p>Net balance: {{vm.netBalance | number:2}} {{vm.defaultCurrency}}</p>
-          </div>
       </div>
-
-
-
-
-
     </ion-content>
+
 </ion-view>

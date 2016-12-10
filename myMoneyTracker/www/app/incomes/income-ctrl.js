@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('incomeCtrl', ['$stateParams', '$location', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'incomeApi', incomeCtrl]);
+	angular.module('myMoneyTracker').controller('incomeCtrl', ['$scope', '$stateParams', '$location', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'incomeApi', incomeCtrl]);
 
-	function incomeCtrl($stateParams, $location, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, incomeApi) {
+	function incomeCtrl($scope, $stateParams, $location, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, incomeApi) {
 		var vm = this;
 		vm.incomes = [];
 		var date = new Date();
@@ -50,6 +50,17 @@
 					]
 				});
 		}
+
+		$scope.toggleItem= function(income) {
+       if ($scope.isItemShown(income)) {
+           $scope.shownItem = null;
+       } else {
+           $scope.shownItem = income;
+       }
+    };
+    $scope.isItemShown = function(income) {
+       return $scope.shownItem === income;
+    };
 
 		vm.updateIncomes();
 	}

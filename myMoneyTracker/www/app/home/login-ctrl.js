@@ -11,7 +11,6 @@
 		  username : $localStorage.loggedUsername,
 		  password : $localStorage.password
 		};
-    console.log($localStorage);
     vm.rememberUserDetails = true;
 		vm.authenticate = function (user, callback) {
 
@@ -54,7 +53,6 @@
           if(vm.rememberUserDetails){
             $localStorage.loggedUsername = user.username;
             $localStorage.password = user.password;
-            console.log($localStorage);
           } else {
             $localStorage.loggedUsername = null;
             $localStorage.password = null;

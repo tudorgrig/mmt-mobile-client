@@ -275,5 +275,19 @@
         vm.updateIncomes();
         vm.updateIncomesVsExpensesChart();
 
+        vm.showStatInfo = function(){
+
+          var alertPopup = $ionicPopup.alert({
+             title: 'Attention!',
+             template: 'All expenses and incomes are converted to your default currency based on their creation date. <br></b> <b>Data may not be exact! </b>',
+             buttons: [
+                   {
+                     text: '<b>Ok</b>',
+                     type: 'button-dark',
+                   }
+                 ]
+          });
+        }
+
     }
 })();

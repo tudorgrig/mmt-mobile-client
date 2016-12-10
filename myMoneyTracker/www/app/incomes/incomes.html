@@ -12,18 +12,25 @@
             <input type="date" ng-model="vm.incomesUntilDate" ng-change="vm.updateIncomes()">
         </label>
         <ion-list>
-            <ion-item style="margin:15px;" class="item-text-wrap item-icon-right" ng-repeat="income in vm.incomes | orderBy:'creationDate'">
-				<div class=" item-right">
-							<span align="left">{{income.name}}   {{income.amount}}{{income.currency}}  </span>
-							<span class="item-note">{{ income.creationDate | date:'mediumDate' }} </span>
-				</div>
-                <i class="icon ion-chevron-left icon-accessory"></i>
-                <ion-option-button class="button-dark" ng-click="vm.updateIncome(income, $index)">
-                    Edit
-                </ion-option-button>
-                <ion-option-button class="button-assertive" ng-click="vm.confirmDelete(income, $index)">
-                    Delete
-                </ion-option-button>
+            <ion-item ng-click="toggleItem(income)" style="margin:15px;" class="item-text-wrap item-icon-right" ng-repeat="income in vm.incomes | orderBy:'creationDate'">
+              <h2>{{income.name }}</h2>
+              <div ng-hide="!isItemShown(income)">
+                  <p>Amount: {{income.amount}}{{income.currency}}</p>
+                  <p ng-hide="income.description == null || income.description == ''">Description: {{income.description}}</p>
+                  <p ng-hide="income.defaultCurrencyAmount == null">Default currency amount: {{income.defaultCurrencyAmount}} {{income.defaultCurrency}}</p>
+              </div>
+              <span class="item-note">{{ income.creationDate | date:'mediumDate' }} </span>
+              <i class="icon ion-chevron-left icon-accessory"></i>
+              <div class="item-expand-footer">
+                <i ng-class="isItemShown(income) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+                {{ isItemShown(income) ? 'Less' : 'More' }}
+              </div>
+              <ion-option-button class="button-dark" ng-click="vm.updateIncome(income, $index)">
+                Edit
+              </ion-option-button>
+              <ion-option-button class="button-assertive" ng-click="vm.confirmDelete(income, $index)">
+                Delete
+              </ion-option-button>
             </ion-item>
         </ion-list>
         <div></div>

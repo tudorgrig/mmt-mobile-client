@@ -4,38 +4,49 @@
     </ion-nav-title>
     <ion-content class="has-header dark">
         <label class="item item-input">
-                <span class="input-label">From: </span>
-                <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Until: </span>
-                <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+          <span class="input-label">From: </span>
+          <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
         </label>
-      <label ng-if="vm.expenses.length == 0">
-        <div class="list card" id="login-card21">
-          <div class=" item item-image">
-            <img src="img/NoExpenses.png" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        <label class="item item-input">
+          <span class="input-label">Until: </span>
+          <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Category</span>
+          <select ng-change="vm.filterByCategory()" placeholder="Category" ng-model="vm.selected_category" ng-init="vm.selected_category = vm.allCategories" ng-options="category as category for category in vm.categories" required>
+          </select>
+        </label>
+        <label ng-if="vm.expenses.length == 0">
+          <div class="list card" id="login-card21">
+            <div class=" item item-image">
+              <img src="img/NoExpenses.png" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="item item-body" id="login-list-item-container2"></div>
           </div>
-          <div class="item item-body" id="login-list-item-container2"></div>
-        </div>
-      </label>
-		<ion-list>
-            <ion-item  style = "margin:15px;" class="item-text-wrap item-icon-left item-icon-right"
-                       ng-repeat="expense in vm.expenses | orderBy :vm.dynamicOrder" >
-					   <div class=" item-right">
-							<span align="left">{{expense.name}}   {{expense.amount}}{{expense.currency}}  </span>
-							<span class="item-note">{{ expense.creationDate | date:'mediumDate' }}</span>
-						</div>
-
-                <i class="icon ion-record {{expense.category.colour}}"></i>
-                <i class="icon ion-chevron-left icon-accessory"></i>
-                <ion-option-button class="button-dark" ng-click = "vm.updateExpense(expense, $index)">
-                    Edit
-                </ion-option-button>
-    			<ion-option-button class="button-assertive" ng-click="vm.confirmDelete(expense, $index)">
-                    Delete
-                </ion-option-button>
-  			</ion-item>
+        </label>
+        <ion-list>
+          <ion-item ng-click="toggleItem(expense)" ng-repeat="expense in vm.expenses | orderBy :vm.dynamicOrder | filter:vm.filter_category:strict" class="item-text-wrap item-icon-left item-icon-right">
+            <h2>{{expense.name }}</h2>
+            <div ng-hide="!isItemShown(expense)">
+              <p>Amount: {{expense.amount}}{{expense.currency}}</p>
+              <p>Category: {{expense.category.name}}</p>
+              <p ng-hide="expense.description == null || expense.description == ''">Description: {{expense.description}}</p>
+              <p ng-hide="expense.defaultCurrencyAmount == null">Default currency amount: {{expense.defaultCurrencyAmount}} {{expense.defaultCurrency}}</p>
+            </div>
+            <span class="item-note">{{ expense.creationDate | date:'mediumDate' }}</span>
+            <div class="item-expand-footer">
+              <i ng-class="isItemShown(expense) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+              {{ isItemShown(expense) ? 'Less' : 'More' }}
+            </div>
+            <ion-option-button class="button-dark" ng-click = "vm.updateExpense(expense, $index)">
+              Edit
+            </ion-option-button>
+            <ion-option-button class="button-assertive" ng-click="vm.confirmDelete(expense)">
+              Delete
+            </ion-option-button>
+            <i class="icon ion-record {{expense.category.colour}}"></i>
+            <i class="icon ion-chevron-left icon-accessory"></i>
+          </ion-item>
 		</ion-list>
       <div></div>
       <br><br><br>
