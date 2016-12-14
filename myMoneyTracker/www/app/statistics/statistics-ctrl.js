@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('myMoneyTracker').controller('statisticsCtrl', ['$stateParams', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', 'incomeApi', 'categoryApi', statisticsCtrl]);
+    angular.module('myMoneyTracker').controller('statisticsCtrl', ['$stateParams', '$interval', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', 'incomeApi', 'categoryApi', statisticsCtrl]);
 
-    function statisticsCtrl($stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, incomeApi, categoryApi) {
+    function statisticsCtrl($stateParams, $interval, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, incomeApi, categoryApi) {
         var vm = this;
 
         vm.defaultCurrency = $window.localStorage['defaultCurrency'];
@@ -46,6 +46,14 @@
         vm.showCategoryExpensesChart = true;
         vm.showIncomesChart = true;
         vm.showIncomesVsExpensesChart = true;
+
+        vm.disableNoInternet;
+        if($window.localStorage['hasInternet'] != undefined) {
+           vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+        }
+        $interval(function(){
+           vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+        }, 1000)
 
         vm.viewIncomesVsExpensesChart = function(){
             vm.showIncomesVsExpensesChart = !vm.showIncomesVsExpensesChart;

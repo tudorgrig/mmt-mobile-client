@@ -1,14 +1,22 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('accountCtrl', ['$stateParams', '$ionicPopup', '$http', '$location', '$window', '$scope', 'accountApi', accountCtrl]);
+	angular.module('myMoneyTracker').controller('accountCtrl', ['$stateParams', '$interval', '$ionicPopup', '$http', '$location', '$window', '$scope', 'accountApi', accountCtrl]);
 
-	function accountCtrl($stateParams, $ionicPopup, $http, $location, $window, $scope, accountApi) {
+	function accountCtrl($stateParams, $interval, $ionicPopup, $http, $location, $window, $scope, accountApi) {
 		var vm = this;
     vm.loggedUsername = $window.localStorage['username'];
     vm.loggedDefaultCurrency = $window.localStorage['defaultCurrency'];
     vm.loggedEmail = $window.localStorage['email'];
     vm.defaultCurrency;
+
+    vm.disableNoInternet;
+    if($window.localStorage['hasInternet'] != undefined) {
+       vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }
+    $interval(function(){
+       vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }, 1000)
 
     vm.currencies = ["EUR", "USD", "GBP", "RON", "JPY", "BGN", "CZK", "DKK", "HUF", "PLN", "SEK", "CHF", "NOK",
                     "HRK", "RUB", "TRY", "AUD", "BRL", "CAD", "CNY", "HKD", "IDR", "ILS", "INR", "KRW", "MXN",

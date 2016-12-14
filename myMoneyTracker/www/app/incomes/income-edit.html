@@ -77,7 +77,10 @@
 							</label>
 						</div>
 						<div class="padding">
-							<button class="button button-block button-dark" ng-click="vm.updateIncome(income)">
+							<button class="button button-block button-dark"
+                      ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-edit' "
+                      ng-disabled="vm.disableNoInternet"
+                      ng-click="vm.updateIncome(income)">
               Update income
 							</button>
 							<button class="button button-block button-dark" ui-sref="app.incomes">

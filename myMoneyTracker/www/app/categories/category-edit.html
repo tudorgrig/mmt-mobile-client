@@ -33,7 +33,10 @@
 
             </div>
             <div class="padding">
-                <button class="button button-block button-dark" ng-disabled="editCaegoryForm.$invalid" ng-click="vm.updateCategory()">
+                <button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-edit' "
+                        ng-disabled="((vm.disableNoInternet) || (editCaegoryForm.$invalid))"
+                        ng-click="vm.updateCategory()">
                     Update category
                 </button>
                 <button class="button button-block button-dark" ui-sref="app.categories">

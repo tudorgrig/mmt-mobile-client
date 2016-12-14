@@ -86,7 +86,10 @@
                 </label>
             </div>
             <div class="padding">
-                <button class="button button-block button-dark" ng-disabled="editExpenseForm.$invalid" ng-click="vm.updateExpense(expense)">
+                <button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-edit' "
+                        ng-disabled="((vm.disableNoInternet) || (editExpenseForm.$invalid))"
+                        ng-click="vm.updateExpense(expense)">
                     Update expense
                 </button>
                 <button class="button button-block button-dark" ui-sref="app.expenses">

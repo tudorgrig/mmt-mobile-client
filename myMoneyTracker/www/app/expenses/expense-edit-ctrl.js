@@ -1,15 +1,22 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('expenseEditCtrl', ['$stateParams', 'expenseApi', 'categoryApi', expenseEditCtrl]);
+	angular.module('myMoneyTracker').controller('expenseEditCtrl', ['$stateParams', '$window', '$interval','expenseApi', 'categoryApi', expenseEditCtrl]);
 
-	function expenseEditCtrl($stateParams, expenseApi, categoryApi) {
+	function expenseEditCtrl($stateParams, $window, $interval, expenseApi, categoryApi) {
 		var vm = this;
 
 		vm.categories = [];
 		categoryApi.getCategories(function (data) {
 			vm.categories = data;
 		})
+		vm.disableNoInternet;
+    if($window.localStorage['hasInternet'] != undefined) {
+        vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }
+    $interval(function(){
+        vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }, 1000)
 		vm.expense = {
 			id : $stateParams['id'],
 			name : $stateParams['name'],

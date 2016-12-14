@@ -10,7 +10,10 @@
           <i ng-click = "vm.showStatInfo()" class="icon ion-information-circled larger dark"></i>
 
 
-          <button class="button button-block button-dark" ng-click="vm.viewIncomesVsExpensesChart()">
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-stats-bars' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewIncomesVsExpensesChart()">
             Income vs Expenses chart
           </button>
           <div ng-hide="vm.showIncomesVsExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
@@ -35,7 +38,10 @@
           </div>
 
 
-          <button class="button button-block button-dark" ng-click="vm.viewAllExpensesChart()">
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-stats-bars' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewAllExpensesChart()">
             All expenses bar chart
           </button>
           <div ng-hide="vm.showAllExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
@@ -59,7 +65,10 @@
           </div>
 
 
-          <button class="button button-block button-dark" ng-click="vm.viewCategoryExpensesChart()">
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-pie-graph' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewCategoryExpensesChart()">
             Expenses by category pie chart
           </button>
           <div ng-hide="vm.showCategoryExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
@@ -86,7 +95,10 @@
 
 
 
-          <button class="button button-block button-dark" ng-click="vm.viewIncomesChart()">
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-ios-analytics-outline' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewIncomesChart()">
             Incomes chart
           </button>
           <div ng-hide="vm.showIncomesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px; border: 2px solid black;">

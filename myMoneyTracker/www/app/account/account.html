@@ -15,12 +15,18 @@
         </label>
       </div>
       <div class="padding">
-        <button class="button button-block button-dark" ng-click="vm.changeDefaultCurrency()">
+        <button ng-disabled="vm.disableNoInternet"
+                ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-edit' "
+                class="button button-block button-dark"
+                ng-click="vm.changeDefaultCurrency()">
           Update default currency
         </button>
-        <button class="button button-block button-dark">
+        <button ng-disabled="vm.disableNoInternet"
+                ng-class="vm.disableNoInternet ? 'icon ion-locked' : 'icon-left ion-lock-combination' "
+                class="button button-block button-dark">
           Change password
         </button>
+        <p ng-show="vm.disableNoInternet">* Please activate your Internet access</p>
       </div>
     </form >
 	</ion-content>

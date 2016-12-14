@@ -86,10 +86,16 @@
 								</label>
 							</div>
 							<div class="padding">
-								<button class="button button-block button-dark" ng-disabled="addExpenseForm.$invalid" ng-click="vm.addExpense(expense, true)">
+								<button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                        ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
+                        ng-click="vm.addExpense(expense, true)">
                     Create expense
 								</button>
-								<button class="button button-block button-dark" ng-disabled="addExpenseForm.$invalid" ng-click="vm.addExpense(expense, false)">
+								<button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                        ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
+                        ng-click="vm.addExpense(expense, false)">
                     Create & New
 								</button>
 							</div>

@@ -1,14 +1,22 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('registerCtrl', ['$stateParams', '$ionicPopup', '$http', '$location', 'host_name', registerCtrl]);
+	angular.module('myMoneyTracker').controller('registerCtrl', ['$stateParams', '$interval', '$window', '$ionicPopup', '$http', '$location', 'host_name', registerCtrl]);
 
-	function registerCtrl($stateParams, $ionicPopup, $http, $location, host_name) {
+	function registerCtrl($stateParams, $interval, $window, $ionicPopup, $http, $location, host_name) {
 		var vm = this;
 
 		vm.currencies = ["EUR", "USD", "GBP", "RON", "JPY", "BGN", "CZK", "DKK", "HUF", "PLN", "SEK", "CHF", "NOK",
           "HRK", "RUB", "TRY", "AUD", "BRL", "CAD", "CNY", "HKD", "IDR", "ILS", "INR", "KRW", "MXN",
           "MYR", "NZD", "PHP", "SGD", "THB", "ZAR"];
+
+    vm.disableNoInternet;
+    if($window.localStorage['hasInternet'] != undefined) {
+    		 vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }
+    $interval(function(){
+       vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }, 1000)
 
 		vm.user = [];
 		vm.user.currency = vm.currencies[0];

@@ -36,7 +36,7 @@
             <span class="item-note">{{ expense.creationDate | date:'mediumDate' }}</span>
             <div class="item-expand-footer">
               <i ng-class="isItemShown(expense) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
-              {{ isItemShown(expense) ? 'Less' : 'More' }}
+              <!--{{ isItemShown(expense) ? 'Less' : 'More' }}-->
             </div>
             <ion-option-button class="button-dark" ng-click = "vm.updateExpense(expense, $index)">
               Edit

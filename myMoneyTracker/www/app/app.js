@@ -1,9 +1,64 @@
-angular.module('myMoneyTracker', ['ionic', 'ngStorage', 'chart.js'])
+angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $interval, $window, $ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    var checked = false;
+    function checkConnection() {
+    	    var networkState = navigator.network.connection.type;
+    	    if(networkState == Connection.NONE){
+    	          if(!checked){
+    	            checked = true;
+    	            $window.localStorage['hasInternet'] = false;
+                  var alertPopup = $ionicPopup.alert({
+                    title : 'No Internet connection!',
+                    template : 'Please activate your Internet connection',
+                    buttons: [
+                      {
+                          text: '<b>Ok</b>',
+                          type: 'button-dark'
+                      }
+                    ]
+                  });
+    	          }
+    	    }
+    	}
+    	$interval(function(){
+    		checkConnection();
+    	}, 3000)
+
+
+    	document.addEventListener("offline", onOffline, false);
+    	document.addEventListener("online", onOnline, false);
+
+    	function onOffline() {
+    	   // Handle the offline event
+
+    	   $window.localStorage['hasInternet'] = false;
+    	   console.log("Trec in offline " + $window.localStorage['hasInternet']);
+    	   if(!checked){
+    	    checked = true;
+    	    var alertPopup = $ionicPopup.alert({
+         		title : 'No Internet connection!',
+         		template : 'Please activate your Internet connection',
+         		buttons: [
+              {
+                text: '<b>Ok</b>',
+                type: 'button-dark'
+              }
+            ]
+          });
+         }
+    	}
+
+    	function onOnline() {
+
+    	   $window.localStorage['hasInternet'] = true;
+    	   console.log("Trec in online" + $window.localStorage['hasInternet']);
+    	   checked = false;
+    	}
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -13,6 +68,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngStorage', 'chart.js'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 })
 

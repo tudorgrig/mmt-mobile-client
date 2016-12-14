@@ -2,11 +2,21 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('loginCtrl', ['$q', '$localStorage','$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
+	angular.module('myMoneyTracker').controller('loginCtrl', ['$q', '$interval', '$localStorage','$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
 
-	function loginCtrl($q, $localStorage, $stateParams, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
+	function loginCtrl($q, $interval, $localStorage, $stateParams, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
 		var vm = this;
 		$scope.data = {};
+		vm.showAlert = true;
+		vm.disableNoInternet;
+		if($window.localStorage['hasInternet'] != undefined) {
+		  vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+		}
+		$interval(function(){
+        		vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+        		console.log(vm.disableNoInternet);
+    }, 1000)
+
 		vm.user = {
 		  username : $localStorage.loggedUsername,
 		  password : $localStorage.password
@@ -76,7 +86,7 @@
           buttons: [
             { text: 'Cancel' },
             {
-              text: '<b>Save</b>',
+              text: '<b>Send</b>',
               type: 'button-dark',
               onTap: function(e) {
                 vm.sendForgotPasswordEmail($scope.data.email);
@@ -122,7 +132,6 @@
                     });
         }
 		}
-
 
 	};
 })();

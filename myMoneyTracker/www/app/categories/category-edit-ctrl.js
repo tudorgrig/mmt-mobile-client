@@ -1,10 +1,20 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('categoryEditCtrl', ['$stateParams', 'categoryApi', categoryEditCtrl]);
+	angular.module('myMoneyTracker').controller('categoryEditCtrl', ['$stateParams', '$window', '$interval', 'categoryApi', categoryEditCtrl]);
 
-	function categoryEditCtrl($stateParams, categoryApi) {
+	function categoryEditCtrl($stateParams, $window, $interval, categoryApi) {
 		var vm = this;
+
+		vm.disableNoInternet;
+    if($window.localStorage['hasInternet'] != undefined) {
+    		  vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }
+    $interval(function(){
+            		vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+
+    }, 1000)
+
 		vm.category = {
 			id : $stateParams['id'],
 			name : $stateParams['name'],

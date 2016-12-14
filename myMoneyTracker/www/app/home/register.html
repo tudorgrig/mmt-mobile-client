@@ -9,13 +9,13 @@
           <input type="email" ng-model="user.email" autofocus placeholder="Email" required>
         </label>
         <label class="item item-input">
-          <input type="text" ng-model="user.username" placeholder="Username" required>
+          <input type="text" ng-model="user.username" ng-minlength="5" placeholder="Username" required>
         </label>
         <label class="item item-input">
-          <input type="password" ng-model="user.password" placeholder="Password" required>
+          <input type="password" ng-model="user.password" ng-minlength="8" placeholder="Password" required>
         </label>
         <label class="item item-input">
-          <input type="password" ng-model="user.password2" placeholder="Reenter password" required>
+          <input type="password" ng-model="user.password2" ng-minlength="8" placeholder="Reenter password" required>
         </label>
         <label class="item item-select">
           <span class="input-label">Default currency</span>
@@ -24,7 +24,11 @@
           </select>
         </label>
       </ion-list>
-      <button id="signup-button2" ng-disabled="registerForm.$invalid" class="button button-dark button-large button-block icon-left ion-android-add"> Sign up</button>
+      <button id="signup-button2" ng-disabled="((vm.disableNoInternet) || (registerForm.$invalid))"
+              ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+              class="button button-dark button-large button-block">
+        Sign up
+      </button>
     </form>
   </ion-content>
 </ion-view>

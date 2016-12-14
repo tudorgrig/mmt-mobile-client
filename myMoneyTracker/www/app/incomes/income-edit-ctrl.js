@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('incomeEditCtrl', ['$stateParams', 'incomeApi', incomeEditCtrl]);
+	angular.module('myMoneyTracker').controller('incomeEditCtrl', ['$stateParams', '$window', '$interval', 'incomeApi', incomeEditCtrl]);
 
-	function incomeEditCtrl($stateParams, incomeApi) {
+	function incomeEditCtrl($stateParams, $window, $interval, incomeApi) {
 		var vm = this;
 
 		vm.income = {
@@ -19,6 +19,14 @@
 		vm.updateIncome = function () {
 			incomeApi.updateIncome(vm.income, $stateParams['index']);
 		}
+
+		vm.disableNoInternet;
+    if($window.localStorage['hasInternet'] != undefined) {
+      vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }
+    $interval(function(){
+      vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }, 1000)
 	};
 
 })();

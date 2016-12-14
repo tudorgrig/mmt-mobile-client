@@ -78,10 +78,16 @@
 								</label>
 							</div>
 							<div class="padding">
-								<button class="button button-block button-dark" ng-disabled = "addIncomeForm.$invalid" ng-click="vm.addIncome(income, true)">
+								<button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                        ng-disabled="((vm.disableNoInternet) || (addIncomeForm.$invalid))"
+                        ng-click="vm.addIncome(income, true)">
                     Create income
 								</button>
-								<button class="button button-block button-dark" ng-disabled = "addIncomeForm.$invalid" ng-click="vm.addIncome(income, false)">
+								<button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                        ng-disabled="((vm.disableNoInternet) || (addIncomeForm.$invalid))"
+                        ng-click="vm.addIncome(income, false)">
                     Create & New
 								</button>
 							</div>

@@ -33,11 +33,18 @@
                 <!--</label>-->
 
             </div>
+            <p ng-show="vm.disableNoInternet">* Please activate your Internet access</p>
             <div class="padding">
-                <button class="button button-block button-dark" ng-disabled="addCategoryForm.$invalid" ng-click="vm.addCategory(category, true)">
+                <button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                        ng-disabled="((vm.disableNoInternet) || (addCategoryForm.$invalid))"
+                        ng-click="vm.addCategory(category, true)">
                     Create category
                 </button>
-                <button class="button button-block button-dark" ng-disabled="addCategoryForm.$invalid" ng-click="vm.addCategory(category, false)">
+                <button class="button button-block button-dark"
+                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                        ng-disabled="((vm.disableNoInternet) || (addCategoryForm.$invalid))"
+                        ng-click="vm.addCategory(category, false)">
                     Create category & new
                 </button>
             </div>
