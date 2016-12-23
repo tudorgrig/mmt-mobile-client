@@ -15,8 +15,10 @@
     		 vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
     }
     $interval(function(){
-       vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
-    }, 1000)
+           if($window.localStorage['hasInternet'] != undefined) {
+                  vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+           }
+        }, 1000)
 
 		vm.user = [];
 		vm.user.currency = vm.currencies[0];

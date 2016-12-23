@@ -1,10 +1,11 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('expenseCtrl', ['$scope','$stateParams', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', 'categoryApi', expenseCtrl]);
+	angular.module('myMoneyTracker').controller('expenseCtrl', ['$ionicFilterBar', '$scope','$stateParams', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', 'categoryApi', expenseCtrl]);
 
-	function expenseCtrl($scope, $stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, categoryApi) {
-		var vm = this;
+	function expenseCtrl($ionicFilterBar, $scope, $stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, categoryApi) {
+		var vm = this,
+		         filterBarInstance;
 
 		//expense data
 		vm.expenses = [];
@@ -19,6 +20,16 @@
 
     			vm.extractCategoryNames(data, vm.categories);
     })
+
+    vm.showFilterBar = function () {
+          filterBarInstance = $ionicFilterBar.show({
+            items: vm.expenses,
+            update: function (filteredItems) {
+              vm.expenses = filteredItems;
+            },
+            filterProperties: ['name']
+          });
+    };
 
     vm.extractCategoryNames = function(categoriesArray, categoryNames) {
         var i;

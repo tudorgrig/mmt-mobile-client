@@ -1,4 +1,4 @@
-angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js'])
+angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js', 'ion-floating-menu', 'jett.ionic.filter.bar'])
 
 .run(function($ionicPlatform, $interval, $window, $ionicPopup) {
   $ionicPlatform.ready(function() {

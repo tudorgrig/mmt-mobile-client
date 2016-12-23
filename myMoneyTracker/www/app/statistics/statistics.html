@@ -16,16 +16,25 @@
                   ng-click="vm.viewIncomesVsExpensesChart()">
             Income vs Expenses chart
           </button>
-          <div ng-hide="vm.showIncomesVsExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
-    border: 2px solid black;">
-            <label class="item item-input">
-              <span class="input-label">From: </span>
-              <input type="date" ng-model="vm.incomesVsExpensesChartFromDate" ng-change="vm.updateIncomesVsExpensesChart()">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Until: </span>
-              <input type="date" ng-model="vm.incomesVsExpensesChartUntilDate" ng-change="vm.updateIncomesVsExpensesChart()">
-            </label>
+          <div ng-hide="vm.showIncomesVsExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
+            <div class="row">
+              <label class="item item-input">
+                <div>
+                  From:
+                </div>
+                <div>
+                  <input type="date" ng-model="vm.incomesVsExpensesChartFromDate" ng-change="vm.updateIncomesVsExpensesChart()">
+                </div>
+              </label>
+              <label class="item item-input">
+                <div>
+                  Until:
+                </div>
+                <div>
+                  <input type="date" ng-model="vm.incomesVsExpensesChartUntilDate" ng-change="vm.updateIncomesVsExpensesChart()">
+                </div>
+              </label>
+            </div>
             <canvas ng-if="vm.incomesVsExpensesDataBar.length > 0" chart-legend="true" id="bar" class="chart chart-bar" chart-data="vm.incomesVsExpensesDataBar" chart-labels="vm.incomesVsExpensesLabelsBar"
                     chart-series="vm.incomesVsExpensesSeriesBar">
             </canvas>
@@ -44,16 +53,25 @@
                   ng-click="vm.viewAllExpensesChart()">
             All expenses bar chart
           </button>
-          <div ng-hide="vm.showAllExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
-    border: 2px solid black;">
-            <label class="item item-input">
-              <span class="input-label">From: </span>
-              <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Until: </span>
-              <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
-            </label>
+          <div ng-hide="vm.showAllExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
+            <div class="row">
+              <label class="item item-input">
+                <div>
+                  From:
+                </div>
+                <div>
+                  <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
+                </div>
+              </label>
+              <label class="item item-input">
+                <div>
+                  Until:
+                </div>
+                <div>
+                  <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+                </div>
+              </label>
+            </div>
             <canvas ng-if="vm.dataBar.length > 0" id="bar" class="chart chart-bar" chart-data="vm.dataBar" chart-labels="vm.labelsBar"
                     chart-series="vm.seriesBar" chart-colors="vm.colorsBar" legend="true">
             </canvas>
@@ -71,21 +89,30 @@
                   ng-click="vm.viewCategoryExpensesChart()">
             Expenses by category pie chart
           </button>
-          <div ng-hide="vm.showCategoryExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;
-    border: 2px solid black;">
+          <div ng-hide="vm.showCategoryExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
             <label class="item item-input">
               <span class="input-label">Category</span>
               <select placeholder="Category" ng-init="vm.selectedCategory = vm.categories[0]"  ng-model="vm.selectedCategory" ng-change="vm.updateExpensesByCategory()" ng-options="category as category.name for category in vm.categories">
               </select>
             </label>
-            <label class="item item-input">
-              <span class="input-label">From: </span>
-              <input type="date" ng-model="vm.expenseByCategoryChartFromDate" ng-change="vm.updateExpensesByCategory()">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Until: </span>
-              <input type="date" ng-model="vm.expenseByCategoryChartUntilDate" ng-change="vm.updateExpensesByCategory()">
-            </label>
+            <div class="row">
+              <label class="item item-input">
+                <div>
+                  From:
+                </div>
+                <div>
+                  <input type="date" ng-model="vm.expenseByCategoryChartFromDate" ng-change="vm.updateExpensesByCategory()">
+                </div>
+              </label>
+              <label class="item item-input">
+                <div>
+                  Until:
+                </div>
+                <div>
+                  <input type="date" ng-model="vm.expenseByCategoryChartUntilDate" ng-change="vm.updateExpensesByCategory()">
+                </div>
+              </label>
+            </div>
             <canvas ng-if="vm.dataPie.length > 0" id="pie" class="chart chart-pie" chart-data="vm.dataPie" chart-labels="vm.labelsPie" chart-legend="true">
             </canvas>
             <label ng-if="vm.dataPie.length == 0">
@@ -101,7 +128,7 @@
                   ng-click="vm.viewIncomesChart()">
             Incomes chart
           </button>
-          <div ng-hide="vm.showIncomesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px; border: 2px solid black;">
+          <div ng-hide="vm.showIncomesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
             <label class="item item-input">
               <span class="input-label">Income chart</span>
               <select type="date" class="form-control" id="year_select" placeholder="year" ng-model="vm.selected_year" ng-change="vm.updateIncomes(true)">

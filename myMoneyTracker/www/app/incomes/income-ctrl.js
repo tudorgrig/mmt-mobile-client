@@ -1,14 +1,24 @@
 (function () {
 	'use strict';
 
-	angular.module('myMoneyTracker').controller('incomeCtrl', ['$scope', '$stateParams', '$location', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'incomeApi', incomeCtrl]);
+	angular.module('myMoneyTracker').controller('incomeCtrl', ['$ionicFilterBar', '$scope', '$stateParams', '$location', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'incomeApi', incomeCtrl]);
 
-	function incomeCtrl($scope, $stateParams, $location, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, incomeApi) {
-		var vm = this;
+	function incomeCtrl($ionicFilterBar, $scope, $stateParams, $location, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, incomeApi) {
+		var vm = this, filterBarInstance;
 		vm.incomes = [];
 		var date = new Date();
 		vm.incomesFromDate = new Date(date.getFullYear(), 0, 1);
 		vm.incomesUntilDate = new Date(date.getFullYear(), 11, 31);
+
+    vm.showFilterBar = function () {
+              filterBarInstance = $ionicFilterBar.show({
+                items: vm.incomes,
+                update: function (filteredItems) {
+                  vm.incomes = filteredItems;
+                },
+                filterProperties: ['name']
+              });
+    };
 
 		vm.updateIncomes = function (yearChanged) {
 			incomeApi.getIncomesByInterval(vm.incomesFromDate.getTime(), vm.incomesUntilDate.getTime(), function (data) {

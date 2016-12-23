@@ -15,8 +15,10 @@
         vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
     }
     $interval(function(){
-        vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
-    }, 1000)
+           if($window.localStorage['hasInternet'] != undefined) {
+                  vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+           }
+        }, 1000)
 		vm.expense = {
 			id : $stateParams['id'],
 			name : $stateParams['name'],
@@ -28,7 +30,7 @@
 			frequency : parseInt($stateParams['frequency'])
 
 		};
-
+    console.log(vm.expense);
 		vm.updateExpense = function () {
 			expenseApi.updateExpense(vm.expense, $stateParams['index']);
 		}

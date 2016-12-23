@@ -11,8 +11,10 @@
        vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
     }
     $interval(function(){
-       vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
-    }, 1000)
+           if($window.localStorage['hasInternet'] != undefined) {
+                  vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+           }
+        }, 1000)
 
 		vm.addCategory = function (category, changePath) {
 			categoryApi.addCategory(category, changePath);
