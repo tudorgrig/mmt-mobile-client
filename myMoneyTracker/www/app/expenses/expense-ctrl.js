@@ -50,7 +50,7 @@
 			$state.go('app.expense-edit', {
 				id : expense.id,
 				name : expense.name,
-				category : expense.category,
+				category : JSON.stringify(expense.category),
 				description : expense.description,
 				amount : expense.amount,
 				creationDate : expense.creationDate,

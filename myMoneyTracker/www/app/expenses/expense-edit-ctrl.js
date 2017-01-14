@@ -23,7 +23,7 @@
 			id : $stateParams['id'],
 			name : $stateParams['name'],
 			description : $stateParams['description'],
-			category : $stateParams['category'],
+			category : JSON.parse($stateParams['category']),
 			amount : parseFloat($stateParams['amount']),
 			creationDate : new Date(parseInt($stateParams['creationDate'])),
 			currency : $stateParams['currency'],
