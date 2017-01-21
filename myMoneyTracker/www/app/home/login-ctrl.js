@@ -51,7 +51,13 @@
 				$rootScope.authenticated = false;
 				var alertPopup = $ionicPopup.alert({
 						title : 'Login error',
-						template : data.message
+						template : data.message,
+						buttons: [
+               {
+                  text: 'Ok',
+                  type: 'button-dark',
+               }
+            ]
 					});
 				callback && callback(false);
 			});

@@ -15,21 +15,57 @@
 
                 <label class="item item-input">
                     <span class="input-label">Colour</span>
-                    <select ng-model="vm.category.colour" required>
-                      <option selected value="positive" style="background-color: DodgerBlue " class="positive">blue</option>
-                      <option value="calm" style="background-color: aqua" class="calm">aqua</option>
-                      <option value="balanced" style="background-color: YellowGreen" class="balanced">green</option>
-                      <option value="energized" style="background-color: Gold" class="energized">yellow</option>
-                      <option value="assertive" style="background-color: Crimson " class="assertive">red</option>
-                      <option value="royal" style="background-color: BlueViolet " class="royal">violet</option>
-                      <option value="dark" style="background-color: black" class="dark">black</option>
-                    </select>
+                  <table>
+                    <tr>
+                      <td>
+                        <ion-checkbox ng-model="vm.isAssertiveChecked" ng-click="vm.updateSelection('assertive')" >
+                          <i class="icon ion-record assertive" style="font-size: 1.73em;"></i>
+                        </ion-checkbox>
+                      </td>
+                      <td>
+                        <ion-checkbox ng-model="vm.isPositiveChecked" ng-click="vm.updateSelection('positive')">
+                          <i class="icon ion-record positive" style="font-size: 1.73em;"></i>
+                        </ion-checkbox>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <ion-checkbox ng-model="vm.isCalmChecked" ng-click="vm.updateSelection('calm')">
+                          <i class="icon ion-record calm" style="font-size: 1.73em;"></i>
+                        </ion-checkbox>
+                      </td>
+                      <td>
+                        <ion-checkbox ng-model="vm.isBalancedChecked" ng-click="vm.updateSelection('balanced')">
+                          <i class="icon ion-record balanced" style="font-size: 1.73em;"></i>
+                        </ion-checkbox>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <ion-checkbox ng-model="vm.isEnergizedChecked" ng-click="vm.updateSelection('energized')">
+                          <i class="icon ion-record energized" style="font-size: 1.73em;"></i>
+                        </ion-checkbox>
+                      </td>
+                      <td>
+                        <ion-checkbox ng-model="vm.isRoyalChecked" ng-click="vm.updateSelection('royal')">
+                          <i class="icon ion-record royal" style="font-size: 1.73em;"></i>
+                        </ion-checkbox>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <ion-checkbox ng-model="vm.isDarkChecked" ng-click="vm.updateSelection('dark')">
+                          <i class="icon ion-record dark" style="font-size: 1.73em;"></i>
+                        </ion-checkbox>
+                      </td>
+                    </tr>
+                  </table>
                 </label>
 
-                <label class="item item-input">
-                    <span class="input-label">Threshold</span>
-                    <input type="number" ng-model="vm.category.threshold" min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-                </label>
+                <!--<label class="item item-input">-->
+                    <!--<span class="input-label">Threshold</span>-->
+                    <!--<input type="number" ng-model="vm.category.threshold" min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />-->
+                <!--</label>-->
 
             </div>
             <div class="padding">

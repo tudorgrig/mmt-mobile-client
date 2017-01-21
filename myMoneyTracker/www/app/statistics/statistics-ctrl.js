@@ -200,7 +200,7 @@
             // graphic arrays
             // - linear
             vm.labelsLinear = vm.extractMonthAsString(month_index, true);
-            vm.seriesLinear = ['Incomes ' + vm.selected_year];
+            vm.seriesLinear = [''];
             vm.dataLinear = [vm.generateZeroesArray(month_index + 1)];
 
             incomeApi.getIncomesByInterval(new Date(vm.selected_year, 0, 1).getTime(), new Date(vm.selected_year, 11, 31).getTime(), function (data) {
@@ -216,8 +216,10 @@
                         var categ_index = vm.labelsLinear.indexOf(income.monthAsString);
                         if (income.defaultCurrencyAmount == null) {
                             vm.dataLinear[0][categ_index] = income.amount + vm.dataLinear[0][categ_index];
+                            vm.seriesLinear.push(income.name);
                         } else {
                             vm.dataLinear[0][categ_index] = income.defaultCurrencyAmount + vm.dataLinear[0][categ_index];
+                            vm.seriesLinear.push(income.name);
                         }
                     }
 
