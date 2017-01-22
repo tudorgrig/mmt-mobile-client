@@ -13,7 +13,7 @@
 			amount : parseFloat($stateParams['amount']),
 			creationDate : new Date(parseInt($stateParams['creationDate'])),
 			currency : $stateParams['currency'],
-			frequency : parseInt($stateParams['frequency'])
+			frequency : $stateParams['frequency']
 		};
 
 		vm.updateIncome = function () {

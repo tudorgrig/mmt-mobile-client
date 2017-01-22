@@ -22,10 +22,18 @@
 			colour : $stateParams['colour'],
 			threshold : parseFloat($stateParams['threshold'])
 		};
+		vm.isCalmChecked = vm.category.colour === "calm";
+		vm.isAssertiveChecked = vm.category.colour === "assertive";
+		vm.isPositiveChecked = vm.category.colour === "positive";
+		vm.isBalancedChecked = vm.category.colour === "balanced";
+		vm.isEnergizedChecked = vm.category.colour === "energized";
+		vm.isRoyalChecked = vm.category.colour === "royal";
+		vm.isDarkChecked = vm.category.colour === "dark";
 
 		vm.updateCategory = function () {
 			categoryApi.updateCategory(vm.category, $stateParams['index']);
 		}
+
 
 		vm.updateSelection = function(colour){
     		  if(colour == 'assertive'){
