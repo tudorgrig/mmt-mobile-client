@@ -203,3 +203,18 @@ h2 {
 .dont-display.ng-hide-add-active {
     display: none !important;
 }
+
+.acc-search {
+  float: right;
+  margin-top: 4px;
+  margin-right: 3px !important;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.input-container {
+   padding: 0px 5px !important;
+}
+
