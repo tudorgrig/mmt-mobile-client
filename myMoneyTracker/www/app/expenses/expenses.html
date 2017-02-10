@@ -1,21 +1,26 @@
 <ion-view ng-controller="expenseCtrl as vm">
   <ion-nav-title>
     <span class="stable"><i class="ion-ios-cart"></i>  Expenses</span>
-    <button class="button button-icon icon-right ion-ios-search-strong" ng-click="vm.showFilterBar()">
+    <button class="button button-icon acc-search text-right ion-ios-search-strong"
+            ng-click="vm.showFilterBar()">
     </button>
-    </button>
-
   </ion-nav-title>
 
   <ion-content class="has-header dark">
-    <label class="item item-input">
-      <span class="input-label">From: </span>
-      <input type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
-    </label>
-    <label class="item item-input">
-      <span class="input-label">Until: </span>
-      <input type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
-    </label>
+    <div class="row">
+      <label class="col item item-input input-container">
+        <div class="input-label no-padding">
+          From:
+        </div>
+        <input class="no-padding" type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
+      </label>
+      <label class="col item item-input input-container">
+        <div class="input-label no-padding">
+          Until:
+        </div>
+        <input class="no-padding" type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+      </label>
+    </div>
 
     <label ng-if="vm.expenses.length == 0">
       <div class="list card" id="login-card21">

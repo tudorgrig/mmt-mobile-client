@@ -20,10 +20,10 @@
               });
     };
 
-		vm.updateIncomes = function (yearChanged) {
+		vm.updateIncomes = function () {
 			incomeApi.getIncomesByInterval(vm.incomesFromDate.getTime(), vm.incomesUntilDate.getTime(), function (data) {
 				vm.incomes = [];
-        vm.incomes = data;
+                vm.incomes = data;
 			})
 		}
 
