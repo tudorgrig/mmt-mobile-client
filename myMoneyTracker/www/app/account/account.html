@@ -23,7 +23,8 @@
         </button>
         <button ng-disabled="vm.disableNoInternet"
                 ng-class="vm.disableNoInternet ? 'icon ion-locked' : 'icon-left ion-lock-combination' "
-                class="button button-block button-dark">
+                class="button button-block button-dark"
+                ng-click="vm.changePassword()">
           Change password
         </button>
         <p ng-show="vm.disableNoInternet">* Please activate your Internet access</p>

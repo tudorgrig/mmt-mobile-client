@@ -100,7 +100,7 @@
 			},
 				function (response) {
 				var alertPopup = $ionicPopup.alert({
-						title : "Error creating income"
+						title : "Error updating income"
 						// template: response.data
 					});
 				if (status === 401) {

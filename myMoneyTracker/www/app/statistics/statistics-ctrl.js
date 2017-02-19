@@ -74,6 +74,10 @@
         }
 
         vm.updateExpenses = function () {
+            vm.expenseChartFromDate.setHours(0);
+            vm.expenseChartFromDate.setMinutes(0);
+            vm.expenseChartUntilDate.setHours(23);
+            vm.expenseChartUntilDate.setMinutes(59);
             expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
 
                 vm.expenses = [];
@@ -90,10 +94,10 @@
                         var categ_index = vm.seriesBar.indexOf(expense.category.name);
                         if (categ_index > -1) {
                             if (expense.defaultCurrency == null) {
-                                var amounts = [expense.amount + vm.dataBar[categ_index][0]];
+                                var amounts = [Number((expense.amount + vm.dataBar[categ_index][0]).toFixed(2))];
                                 vm.dataBar[categ_index] = amounts;
                             } else {
-                                var amounts = [expense.defaultCurrencyAmount + vm.dataBar[categ_index][0]];
+                                var amounts = [Number((expense.defaultCurrencyAmount + vm.dataBar[categ_index][0]).toFixed(2))];
                                 vm.dataBar[categ_index] = amounts;
                             }
                         } else {
@@ -102,10 +106,10 @@
                                 vm.colorsBar.push("#FD1F5E");
                             }
                             if (expense.defaultCurrency == null) {
-                                var amounts = [expense.amount];
+                                var amounts = [Number(expense.amount.toFixed(2))];
                                 vm.dataBar.push(amounts);
                             } else {
-                                var amounts = [expense.defaultCurrencyAmount];
+                                var amounts = [Number(expense.defaultCurrencyAmount.toFixed(2))];
                                 vm.dataBar.push(amounts);
                             }
                         }
@@ -116,6 +120,10 @@
         }
 
         vm.updateIncomesVsExpensesChart = function (){
+            vm.incomesVsExpensesChartFromDate.setHours(0);
+            vm.incomesVsExpensesChartFromDate.setMinutes(0);
+            vm.incomesVsExpensesChartUntilDate.setHours(23);
+            vm.incomesVsExpensesChartUntilDate.setMinutes(59);
             expenseApi.getByInterval(vm.incomesVsExpensesChartFromDate.getTime(), vm.incomesVsExpensesChartUntilDate.getTime(), function (data) {
               incomeApi.getIncomesByInterval(vm.incomesVsExpensesChartFromDate.getTime(), vm.incomesVsExpensesChartUntilDate.getTime(), function (data2) {
                   vm.expenses2 = [];
@@ -131,23 +139,23 @@
                   if(vm.expenses2.length > 0){
                     for (var i = 0; i < vm.expenses2.length; i++) {
                         if (vm.expenses2[i].defaultCurrency == null) {
-                           vm.expensesSum = vm.expensesSum + vm.expenses2[i].amount;
+                           vm.expensesSum = vm.expensesSum + Number(vm.expenses2[i].amount.toFixed(2));
                         } else {
-                           vm.expensesSum = vm.expensesSum + vm.expenses2[i].defaultCurrencyAmount;
+                           vm.expensesSum = vm.expensesSum + Number(vm.expenses2[i].defaultCurrencyAmount.toFixed(2));
                         }
                     }
                   }
                   if(vm.incomes2.length > 0){
                     for (var i = 0; i < vm.incomes2.length; i++) {
                       if (vm.incomes2[i].defaultCurrencyAmount == null) {
-                         vm.incomesSum = vm.incomesSum + vm.incomes2[i].amount;
+                         vm.incomesSum = vm.incomesSum + Number(vm.incomes2[i].amount.toFixed(2));
                       } else {
-                         vm.incomesSum = vm.incomesSum + vm.incomes2[i].defaultCurrencyAmount;
+                         vm.incomesSum = vm.incomesSum + Number(vm.incomes2[i].defaultCurrencyAmount.toFixed(2));
                       }
                     }
                   }
-                  vm.incomesVsExpensesDataBar.push(vm.incomesSum);
-                  vm.incomesVsExpensesDataBar.push(vm.expensesSum);
+                  vm.incomesVsExpensesDataBar.push(Number(vm.incomesSum.toFixed(2)));
+                  vm.incomesVsExpensesDataBar.push(Number(vm.expensesSum.toFixed(2)));
                   vm.incomesVsExpensesDataBar.push(0);
                   vm.netBalance = vm.incomesSum - vm.expensesSum;
               })
@@ -155,6 +163,10 @@
         }
 
         vm.updateExpensesByCategory = function () {
+            vm.expenseByCategoryChartFromDate.setHours(0);
+            vm.expenseByCategoryChartFromDate.setMinutes(0);
+            vm.expenseByCategoryChartUntilDate.setHours(23);
+            vm.expenseByCategoryChartUntilDate.setMinutes(59);
             expenseApi.getByIntervalAndCategory(vm.selectedCategory.id, vm.expenseByCategoryChartFromDate.getTime(), vm.expenseByCategoryChartUntilDate.getTime(), function (data) {
                 vm.expensesByCategory = [];
                 vm.labelsPie = [];

@@ -40,6 +40,10 @@
     }
 
 		vm.updateExpenses = function () {
+      vm.expenseChartFromDate.setHours(0);
+      vm.expenseChartFromDate.setMinutes(0);
+      vm.expenseChartUntilDate.setHours(23);
+      vm.expenseChartUntilDate.setMinutes(59);
 			expenseApi.getByInterval(vm.expenseChartFromDate.getTime(), vm.expenseChartUntilDate.getTime(), function (data) {
 				vm.expenses = [];
 				vm.expenses = data;

@@ -25,21 +25,25 @@
                     "MYR", "NZD", "PHP", "SGD", "THB", "ZAR"];
 
     vm.changeDefaultCurrency = function(){
-        var myPopup = $ionicPopup.show({
+       var myPopup = $ionicPopup.show({
             template: '<select type="text" class="form-control" id="currency_select" placeholder="currency" ng-model="vm.defaultCurrency" required><option ng-repeat="currency in vm.currencies" value="{{currency}}" required>{{currency}}</option></select>',
             title: 'Select new default currency for user',
             scope: $scope,
             buttons: [
               { text: 'Cancel' },
               {
-                text: '<b>Save</b>',
-                type: 'button-positive',
+                text: '<b>Change</b>',
+                type: 'button-dark',
                 onTap: function(e) {
                     accountApi.changeDefaultCurrency(vm.defaultCurrency);
                 }
               }
             ]
-          });
+       });
+    }
+
+    vm.changePassword = function(){
+      //TODO:
     }
 	};
 })();

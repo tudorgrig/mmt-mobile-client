@@ -223,7 +223,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 
 		.state('app.help', {
     			url:"/help",
-    			cache: false,
+    			cache: true,
     			views: {
     				"mainContent" : {
     					templateUrl : "app/help/help.html"
@@ -233,7 +233,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 
     .state('app.help-create-expense', {
         			url:"/helpCreateNewExpense",
-        			cache: false,
+        			cache: true,
         			views: {
         				"mainContent" : {
         					templateUrl : "app/help/create-expense.html"
@@ -243,7 +243,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 
     .state('app.help-update-expense', {
           url:"/helpUpdateExpense",
-          cache: false,
+          cache: true,
           views: {
             "mainContent" : {
               templateUrl : "app/help/update-expense.html"
@@ -253,7 +253,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 
     .state('app.help-delete-expense', {
               url:"/helpDeleteExpense",
-              cache: false,
+              cache: true,
               views: {
                 "mainContent" : {
                   templateUrl : "app/help/delete-expense.html"
@@ -263,7 +263,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 
     .state('app.help-create-income', {
             			url:"/helpCreateNewIncome",
-            			cache: false,
+            			cache: true,
             			views: {
             				"mainContent" : {
             					templateUrl : "app/help/create-income.html"
@@ -273,7 +273,7 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 
     .state('app.help-update-income', {
               url:"/helpUpdateIncome",
-              cache: false,
+              cache: true,
               views: {
                 "mainContent" : {
                   templateUrl : "app/help/update-income.html"
@@ -283,12 +283,22 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 
     .state('app.help-delete-income', {
                   url:"/helpDeleteIncome",
-                  cache: false,
+                  cache: true,
                   views: {
                     "mainContent" : {
                       templateUrl : "app/help/delete-income.html"
                     }
                   }
+    })
+
+    .state('app.contactus', {
+        			url:"/contactus",
+        			cache: false,
+        			views: {
+        				"mainContent" : {
+        					templateUrl : "app/contactus/contactus.html"
+        				}
+        			}
     })
 
 	$urlRouterProvider.otherwise('/home/login');

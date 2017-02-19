@@ -31,6 +31,20 @@
 					});
 				return;
 			}
+			if(user.password.length < 8){
+			  var alertPopup = $ionicPopup.alert({
+        						title : 'Incorrect password',
+        						template : 'Please use at least 8 characters for password!'
+        					});
+        return;
+			}
+			if(user.username.length < 5){
+      			  var alertPopup = $ionicPopup.alert({
+              						title : 'Incorrect username',
+              						template : 'Please use at least 5 characters for username!'
+              					});
+              return;
+      }
 
 			var req = {
 				method : 'POST',
