@@ -2,103 +2,112 @@
   <ion-nav-title>
     <span class="stable">Add expense</span>
   </ion-nav-title>
-	<ion-content class="has-header dark">
-		<h1>Add expense</h1>
-	</ion-content>
-	<ion-content>
-		<form name="addExpenseForm">
-			<div class="list">
-				<label class="item item-input">
-					<span class="input-label">Category</span>
-					<select placeholder="Category" ng-model="expense.category" ng-options="category as category.name for category in vm.categories" required>
-					</select>
-				</label>
+  <ion-content class="has-header dark">
+    <h1>Add expense</h1>
+  </ion-content>
+  <ion-content>
+    <form name="addExpenseForm">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Category</span>
+          <select placeholder="Category" ng-model="expense.category" ng-options="category as category.name for category in vm.categories" required>
+          </select>
+        </label>
 
-				<label class="item item-input">
-					<span class="input-label">Name</span>
-					<input type="text" ng-model="expense.name" required>
-					</label>
+        <label class="item item-input">
+          <span class="input-label">Name</span>
+          <input type="text" ng-model="expense.name" required>
+        </label>
 
-					<label class="item item-input">
-						<span class="input-label">Description</span>
-						<input type="text" ng-model="expense.description">
-						</label>
-						<label class="item item-input">
-							<span class="input-label">Amount</span>
-							<input autofocus type="number" ng-model="expense.amount" required>
-							</label>
-							<label class="item item-input">
-								<span class="input-label">Creation date</span>
-								<input type="date" ng-init="expense.creationDate = vm.defaultCreationDate" ng-model="expense.creationDate" required>
-								</label>
-								<label class="item item-input">
-									<span class="input-label">Frequency</span>
-									<select ng-model="expense.frequency" ng-init="expense.frequency='0'" required>
-										<option value="0">Only once</option>
-										<option value="1">Monthly</option>
-										<option value="2">Every 2 months</option>
-										<option value="3">Quarterly</option>
-										<option value="6">Every 6 months</option>
-									</select>
-								</label>
+        <label class="item item-input">
+          <span class="input-label">Description</span>
+          <input type="text" ng-model="expense.description">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Amount</span>
+          <input autofocus type="number" ng-model="expense.amount" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Creation date</span>
+          <input type="date" ng-init="expense.creationDate = vm.defaultCreationDate" ng-model="expense.creationDate" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Frequency</span>
+          <select ng-model="expense.frequency" ng-init="expense.frequency='0'" required>
+            <option value="0">Only once</option>
+            <option value="1">Monthly</option>
+            <option value="2">Every 2 months</option>
+            <option value="3">Quarterly</option>
+            <option value="6">Every 6 months</option>
+          </select>
+        </label>
 
-								<label class="item item-input">
-									<span class="input-label">Currency</span>
-									<select ng-model="expense.currency" required ng-init="expense.currency = vm.defaultCurrency">
+        <label class="item item-input">
+          <span class="input-label">Currency</span>
+          <select ng-model="expense.currency" required ng-init="expense.currency = vm.defaultCurrency">
 
-										<option value="RON">RON</option>
-										<option value="EUR">EUR</option>
-										<option value="USD">USD</option>
-										<option value="GBP">GBP</option>
-										<option value="JPY">JPY</option>
-										<option value="BGN">BGN</option>
-										<option value="CZK">CZK</OPTION>
+            <option value="RON">RON</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="BGN">BGN</option>
+            <option value="CZK">CZK</OPTION>
 
-										<option value="DKK">DKK</option>
-										<option value="HUF">HUF</option>
-										<option value="PLN">PLN</option>
-										<option value="SEK">SEK</option>
-										<option value="CHF">CHF</OPTION>
-										<option value="NOK">NOK</option>
+            <option value="DKK">DKK</option>
+            <option value="HUF">HUF</option>
+            <option value="PLN">PLN</option>
+            <option value="SEK">SEK</option>
+            <option value="CHF">CHF</OPTION>
+            <option value="NOK">NOK</option>
 
-										<option value="HRK">HRK</option>
-										<option value="RUB">RUB</option>
-										<option value="TRY">TRY</option>
-										<option value="AUD">AUD</option>
-										<option value="BRL">BRL</option>
-										<option value="CAD">CAD</option>
+            <option value="HRK">HRK</option>
+            <option value="RUB">RUB</option>
+            <option value="TRY">TRY</option>
+            <option value="AUD">AUD</option>
+            <option value="BRL">BRL</option>
+            <option value="CAD">CAD</option>
 
-										<option value="CNY">CNY</option>
-										<option value="HKD">HKD</option>
-										<option value="IDR">IDR</option>
-										<option value="ILS">ILS</option>
-										<option value="INR">INR</option>
-										<option value="KRW">KRW</option>
+            <option value="CNY">CNY</option>
+            <option value="HKD">HKD</option>
+            <option value="IDR">IDR</option>
+            <option value="ILS">ILS</option>
+            <option value="INR">INR</option>
+            <option value="KRW">KRW</option>
 
-										<option value="MXN">MXN</option>
-										<option value="MYR">MYR</option>
-										<option value="NZD">NZD</option>
-										<option value="PHP">PHP</OPTION>
-										<option value="SGD">SGD</option>
-										<option value="THB">THB</option>
-										<option value="ZAR">ZAR</option>
-									</select>
-								</label>
-							</div>
-							<div class="padding">
-								<button class="button button-block button-dark"
-                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
-                        ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
-                        ng-click="vm.addExpense(expense, true)">
-                    Create expense
-								</button>
-								<button class="button button-block button-dark"
-                        ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
-                        ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
-                        ng-click="vm.addExpense(expense, false)">
-                    Create & New
-								</button>
-							</div>
-						</form>
-					</ion-content>
-				</ion-view>
+            <option value="MXN">MXN</option>
+            <option value="MYR">MYR</option>
+            <option value="NZD">NZD</option>
+            <option value="PHP">PHP</OPTION>
+            <option value="SGD">SGD</option>
+            <option value="THB">THB</option>
+            <option value="ZAR">ZAR</option>
+          </select>
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-dark"
+                ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
+                ng-click="vm.addExpense(expense, true)">
+          Create expense
+        </button>
+        <button class="button button-block button-dark"
+                ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+                ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
+                ng-click="vm.addExpense(expense, false)">
+          Create & New
+        </button>
+      </div>
+    </form>
+    <p ng-show="addExpenseForm.$invalid">
+      <ion-list>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Category is mandatory</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Name is mandatory</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Amount is mandatory</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Date is mandatory</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Currency is mandatory</ion-item>
+      </ion-list>
+    </p>
+  </ion-content>
+</ion-view>
