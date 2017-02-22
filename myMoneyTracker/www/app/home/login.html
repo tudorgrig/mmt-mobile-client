@@ -1,6 +1,6 @@
 <ion-view ng-controller="loginCtrl as vm">
   <ion-nav-title>
-    <span class="stable">Login</span>
+    <span class="stable"><i class="ion-log-in"></i>  Login</span>
   </ion-nav-title>
   <ion-content padding="true" class="has-header">
     <form ng-submit="vm.signIn(vm.user)" name="loginForm" id="login-form3" class="list">
@@ -21,7 +21,6 @@
               ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-log-in' "
               ng-disabled="((vm.disableNoInternet) || (loginForm.$invalid))">Log in</button>
     </form>
-    <p ng-show="vm.disableNoInternet">* Please activate your Internet access</p>
     <button id="login-button4"
             ng-disabled="vm.disableNoInternet"
             ng-click="vm.forgotPassword()"
@@ -29,5 +28,6 @@
             class="button button-positive  button-block button-clear">
       Forgot password?
     </button>
+    <p ng-show="vm.disableNoInternet">* Please activate your Internet access</p>
   </ion-content>
 </ion-view>

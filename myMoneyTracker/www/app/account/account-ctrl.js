@@ -41,9 +41,5 @@
             ]
        });
     }
-
-    vm.changePassword = function(){
-      //TODO:
-    }
 	};
 })();

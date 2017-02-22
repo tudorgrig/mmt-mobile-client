@@ -221,6 +221,16 @@ angular.module('myMoneyTracker', ['ionic', 'ngCordova', 'ngStorage', 'chart.js',
 			}
 		})
 
+		.state('app.change-password', {
+    			url:"/change-password",
+    			cache: false,
+    			views: {
+    				"mainContent" : {
+    					templateUrl : "app/account/change-password.html"
+    				}
+    			}
+    })
+
 		.state('app.help', {
     			url:"/help",
     			cache: true,

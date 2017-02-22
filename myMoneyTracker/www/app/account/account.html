@@ -22,9 +22,9 @@
           Update default currency
         </button>
         <button ng-disabled="vm.disableNoInternet"
-                ng-class="vm.disableNoInternet ? 'icon ion-locked' : 'icon-left ion-lock-combination' "
+                ng-class="vm.disableNoInternet ? 'icon ion-locked' : 'icon-left ion-edit' "
                 class="button button-block button-dark"
-                ng-click="vm.changePassword()">
+                ui-sref="app.change-password">
           Change password
         </button>
         <p ng-show="vm.disableNoInternet">* Please activate your Internet access</p>

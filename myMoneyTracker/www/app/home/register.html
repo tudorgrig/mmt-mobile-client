@@ -1,6 +1,6 @@
 <ion-view ng-controller="registerCtrl as vm">
   <ion-nav-title>
-    <span class="stable">Register</span>
+    <span class="stable"><i class="ion-person-add"></i>  Register</span>
   </ion-nav-title>
   <ion-content padding="true" class="has-header">
     <form ng-submit="vm.register(user)" name="registerForm" class="list">
@@ -30,5 +30,14 @@
         Sign up
       </button>
     </form>
+
+    <p ng-show="registerForm.$invalid">
+      <ion-list>
+        <ion-item>Username must be of at least 5 characters</ion-item>
+        <ion-item>Password must be of at least 8 characters</ion-item>
+      </ion-list>
+
+
+    </p>
   </ion-content>
 </ion-view>
