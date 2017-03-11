@@ -1,0 +1,33 @@
+<ion-view ng-controller="loginCtrl as vm">
+  <ion-nav-title>
+    <span class="stable"><i class="ion-log-in"></i>  Login</span>
+  </ion-nav-title>
+  <ion-content padding="true" class="has-header">
+    <form ng-submit="vm.signIn(vm.user)" name="loginForm" id="login-form3" class="list">
+      <ion-list id="login-list3">
+        <label class="item item-input" id="login-input8">
+          <input type="text" placeholder="Username" ng-model="vm.user.username" required autofocus>
+        </label>
+        <label class="item item-input item-icon-right">
+          <i class="icon ion-eye" on-hold="showPassword = true" on-release="showPassword = false"></i>
+          <input class="dont-display" type="password" id="password" placeholder="Password" ng-model="vm.user.password" ng-hide="showPassword" required>
+          <input class="dont-display" type="text" id="passwordRaw" placeholder="Password" ng-model="vm.user.password" ng-show="showPassword" required>
+        </label>
+        <ion-checkbox ng-model="vm.rememberUserDetails">Remember user details</ion-checkbox>
+      </ion-list>
+      <div class="spacer" style="height: 40px;"></div>
+      <button id="login-button3"
+              class="button button-dark  button-block"
+              ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-log-in' "
+              ng-disabled="((vm.disableNoInternet) || (loginForm.$invalid))">Log in</button>
+    </form>
+    <button id="login-button4"
+            ng-disabled="vm.disableNoInternet"
+            ng-click="vm.forgotPassword()"
+            ng-class="vm.disableNoInternet ? 'ion-help' : 'icon ion-help-circled'"
+            class="button button-positive  button-block button-clear">
+      Forgot password?
+    </button>
+    <p ng-show="vm.disableNoInternet"><i style="color : red;" class="ion-alert-circled"></i> Please activate your Internet access</p>
+  </ion-content>
+</ion-view>

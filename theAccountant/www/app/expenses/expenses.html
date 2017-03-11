@@ -1,0 +1,67 @@
+<ion-view ng-controller="expenseCtrl as vm">
+  <ion-nav-title>
+    <span class="stable"><i class="ion-ios-cart"></i>  Expenses</span>
+    <button class="button button-icon acc-search text-right ion-ios-search-strong"
+            ng-click="vm.showFilterBar()">
+    </button>
+  </ion-nav-title>
+
+  <ion-content class="has-header dark">
+    <div class="row">
+      <label class="col item item-input input-container">
+        <div class="input-label no-padding">
+          From:
+        </div>
+        <input class="no-padding" type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
+      </label>
+      <label class="col item item-input input-container">
+        <div class="input-label no-padding">
+          Until:
+        </div>
+        <input class="no-padding" type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+      </label>
+    </div>
+
+    <label ng-if="vm.expenses.length == 0">
+      <div class="list card" id="login-card21">
+        <div class=" item item-image">
+          <img src="img/NoExpenses.png" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <div class="item item-body" id="login-list-item-container2"></div>
+      </div>
+    </label>
+    <ion-list>
+      <ion-item ng-click="toggleItem(expense)"  ng-repeat="expense in vm.expenses | orderBy :vm.dynamicOrder | filter:vm.filter_category:strict" class="item-text-wrap item-icon-left item-icon-right">
+        <h2>{{expense.name }} <i class="item-expand-footer" ng-class="isItemShown(expense) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> </h2>
+        <span class="item-note">{{ expense.creationDate | date:'mediumDate' }}</span>
+        <div ng-hide="!isItemShown(expense)">
+          <p>Amount: {{expense.amount}}   {{expense.currency}}</p>
+          <p>Category: {{expense.category.name}}</p>
+          <p ng-hide="expense.description == null || expense.description == ''">Description: {{expense.description}}</p>
+          <p ng-hide="expense.defaultCurrencyAmount == null">Default currency amount: {{expense.defaultCurrencyAmount | number:2}} {{expense.defaultCurrency}}</p>
+        </div>
+
+        <ion-option-button class="button-dark" ng-click = "vm.updateExpense(expense, $index)">
+          Edit
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="vm.confirmDelete(expense)">
+          Delete
+        </ion-option-button>
+        <i class="icon ion-record {{expense.category.colour}}"></i>
+        <i class="icon ion-chevron-left icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <!--<ion-floating-button ui-sref="app.add-expense" has-footer="false" button-color="#000000" icon="ion-plus" icon-color="#fff">-->
+  <!--</ion-floating-button>-->
+  <ion-floating-menu
+  menu-icon="ion-android-more-horizontal"
+  menu-color="#5C5C5C"
+  menu-open-color="#fff"
+  menu-icon-color="#fff">
+  <ion-floating-item button-color="#5C5C5C" icon-color="#fff" icon="ion-plus-round" text="Create expense" ui-sref="app.add-expense"></ion-floating-item>
+  <ion-floating-item button-color="#5C5C5C" icon-color="#fff" icon="ion-eye" text="Sort by date" click="vm.reorderBy('-creationDate')"></ion-floating-item>
+  <ion-floating-item button-color="#5C5C5C" icon-color="#fff" icon="ion-ios-eye-outline" text="Sort by category" click="vm.reorderBy('category.name')"></ion-floating-item>
+  </ion-floating-menu>
+</ion-view>

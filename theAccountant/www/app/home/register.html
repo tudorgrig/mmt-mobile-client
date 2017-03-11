@@ -1,0 +1,41 @@
+<ion-view ng-controller="registerCtrl as vm">
+  <ion-nav-title>
+    <span class="stable"><i class="ion-person-add"></i>  Register</span>
+  </ion-nav-title>
+  <ion-content padding="true" class="has-header">
+    <form ng-submit="vm.register(user)" name="registerForm" class="list">
+      <ion-list>
+        <label class="item item-input">
+          <input type="email" ng-model="user.email" autofocus placeholder="Email" required>
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="user.username" ng-minlength="5" placeholder="Username (minimum 5 characters)" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="user.password" ng-minlength="8" placeholder="Password (minimum 8 characters)" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="user.password2" ng-minlength="8" placeholder="Reenter password" required>
+        </label>
+        <label class="item item-select">
+          <span class="input-label">Default currency</span>
+          <select type="text" class="form-control" id="currency_select" placeholder="currency" ng-model="user.defaultCurrency" required>
+            <option ng-repeat="currency in vm.currencies" value="{{currency}}" required>{{currency}}</option>
+          </select>
+        </label>
+      </ion-list>
+      <button id="signup-button2" ng-disabled="((vm.disableNoInternet) || (registerForm.$invalid))"
+              ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
+              class="button button-dark button-large button-block">
+        Sign up
+      </button>
+    </form>
+
+    <p ng-show="registerForm.$invalid">
+      <ion-list>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Username must be of at least 5 characters</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Password must be of at least 8 characters</ion-item>
+      </ion-list>
+    </p>
+  </ion-content>
+</ion-view>

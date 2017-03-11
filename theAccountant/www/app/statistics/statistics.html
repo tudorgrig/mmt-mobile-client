@@ -1,0 +1,134 @@
+<ion-view ng-controller="statisticsCtrl as vm">
+
+    <ion-nav-title>
+      <span class="stable"><i class="ion-ios-pie-outline"></i> Statistics</span>
+    </ion-nav-title>
+    <ion-content>
+
+        <div class="padding">
+
+          <i ng-click = "vm.showStatInfo()" class="icon ion-information-circled larger dark"></i>
+
+
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-stats-bars' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewIncomesVsExpensesChart()">
+            Income vs Expenses chart
+          </button>
+          <div ng-hide="vm.showIncomesVsExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
+            <div class="row">
+              <label class="col item item-input input-container">
+                <div class="input-label no-padding">
+                  From:
+                </div>
+                <input class="no-padding" type="date" ng-model="vm.incomesVsExpensesChartFromDate" ng-change="vm.updateIncomesVsExpensesChart()">
+              </label>
+              <label class="col item item-input input-container">
+                <div class="input-label no-padding">
+                  Until:
+                </div>
+                <input class="no-padding" type="date" ng-model="vm.incomesVsExpensesChartUntilDate" ng-change="vm.updateIncomesVsExpensesChart()">
+              </label>
+            </div>
+            <canvas ng-if="vm.incomesVsExpensesDataBar.length > 0" chart-legend="true" id="bar" class="chart chart-bar" chart-data="vm.incomesVsExpensesDataBar" chart-labels="vm.incomesVsExpensesLabelsBar"
+                    chart-series="vm.incomesVsExpensesSeriesBar">
+            </canvas>
+            <label ng-if="vm.incomesVsExpensesDataBar.length == 0">
+              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+            </label>
+            <p>Incomes: {{vm.incomesSum | number:2}} {{vm.defaultCurrency}}</p>
+            <p>Expenses: {{vm.expensesSum | number:2}} {{vm.defaultCurrency}}</p>
+            <p>Net balance: {{vm.netBalance | number:2}} {{vm.defaultCurrency}}</p>
+          </div>
+
+
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-stats-bars' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewAllExpensesChart()">
+            All expenses bar chart
+          </button>
+          <div ng-hide="vm.showAllExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
+            <div class="row">
+              <label class="col item item-input input-container">
+                <div class="input-label no-padding">
+                  From:
+                </div>
+                <input class="no-padding" type="date" ng-model="vm.expenseChartFromDate" ng-change="vm.updateExpenses()">
+              </label>
+              <label class="col item item-input input-container">
+                <div class="input-label no-padding">
+                  Until:
+                </div>
+                <input class="no-padding" type="date" ng-model="vm.expenseChartUntilDate" ng-change="vm.updateExpenses()">
+              </label>
+            </div>
+            <canvas ng-if="vm.dataBar.length > 0" id="bar" class="chart chart-bar" chart-data="vm.dataBar" chart-labels="vm.labelsBar"
+                    chart-series="vm.seriesBar" chart-colors="vm.colorsBar" legend="true">
+            </canvas>
+            <br>
+            <br>
+            <label ng-if="vm.dataBar.length == 0">
+              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+            </label>
+          </div>
+
+
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-pie-graph' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewCategoryExpensesChart()">
+            Expenses by category pie chart
+          </button>
+          <div ng-hide="vm.showCategoryExpensesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
+            <label class="item item-input">
+              <span class="input-label">Category</span>
+              <select placeholder="Category" ng-init="vm.selectedCategory = vm.categories[0]"  ng-model="vm.selectedCategory" ng-change="vm.updateExpensesByCategory()" ng-options="category as category.name for category in vm.categories">
+              </select>
+            </label>
+            <div class="row">
+              <label class="col item item-input input-container">
+                <div class="input-label no-padding">
+                  From:
+                </div>
+                <input class="no-padding" type="date" ng-model="vm.expenseByCategoryChartFromDate" ng-change="vm.updateExpensesByCategory()">
+              </label>
+              <label class="col item item-input input-container">
+                <div class="input-label no-padding">
+                  Until:
+                </div>
+                <input class="no-padding" type="date" ng-model="vm.expenseByCategoryChartUntilDate" ng-change="vm.updateExpensesByCategory()">
+              </label>
+            </div>
+            <canvas ng-if="vm.dataPie.length > 0" id="pie" class="chart chart-pie" chart-data="vm.dataPie" chart-labels="vm.labelsPie" chart-legend="true">
+            </canvas>
+            <label ng-if="vm.dataPie.length == 0">
+              <center> NO EXPENSES TO SHOW. PLEASE ADD EXPENSES OR CHANGE DATE FILTER</center>
+            </label>
+            Expenses count: {{vm.expensesCount}}
+          </div>
+
+
+
+          <button class="button button-block button-dark"
+                  ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-ios-analytics-outline' "
+                  ng-disabled="vm.disableNoInternet"
+                  ng-click="vm.viewIncomesChart()">
+            Incomes chart
+          </button>
+          <div ng-hide="vm.showIncomesChart" style="margin: 10px; margin-bottom:30px; border-radius: 25px;">
+            <label class="item item-input">
+              <span class="input-label">Income chart</span>
+              <select type="date" class="form-control" id="year_select" placeholder="year" ng-model="vm.selected_year" ng-change="vm.updateIncomes(true)">
+                <option ng-repeat="year in vm.yearsArray" value="{{year}}" selected required>{{year}}</option>
+              </select>
+            </label>
+            <canvas id="line" class="chart chart-line" chart-data="vm.dataLinear" chart-labels="vm.labelsLinear" chart-series="vm.seriesLinear">
+            </canvas>
+          </div>
+
+      </div>
+    </ion-content>
+
+</ion-view>
