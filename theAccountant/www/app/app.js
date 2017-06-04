@@ -339,6 +339,36 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
     			}
     })
 
+    .state('app.counterparties', {
+        			url:"/counterparties",
+        			cache: false,
+        			views: {
+        				"mainContent" : {
+        					templateUrl : "app/loans/counterparties.html"
+        				}
+        			}
+    })
+
+    .state('app.counterparty-edit', {
+          url:"/counterparty-edit/:id/:name/:email/:index",
+          cache: false,
+          views: {
+            "mainContent" : {
+              templateUrl : "app/loans/counterparty-edit.html"
+            }
+          }
+    })
+
+    .state('app.add-loan', {
+    			url:"/add-loan",
+    			cache: false,
+    			views: {
+    				"mainContent" : {
+    					templateUrl : "app/loans/add-loan.html"
+    				}
+    			}
+    })
+
 	$urlRouterProvider.otherwise('/home/login');
 	$ionicConfigProvider.tabs.position('bottom');
 })

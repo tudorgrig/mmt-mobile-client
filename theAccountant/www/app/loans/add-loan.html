@@ -1,47 +1,57 @@
-<ion-view ng-controller="addExpenseCtrl as vm">
+<ion-view ng-controller="addLoanCtrl as vm">
   <ion-nav-title>
-    <span class="stable">Add expense</span>
+    <span class="stable">Add loan</span>
   </ion-nav-title>
   <ion-content>
-    <form name="addExpenseForm">
+    <form name="addLoanForm">
       <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Category</span>
-          <select placeholder="Category" ng-model="expense.category" ng-options="category as category.name for category in vm.categories" required>
+        <label class="item item-input" ng-show="vm.counterparties.length > 0">
+          <span class="input-label">Person</span>
+          <select placeholder="Person" ng-model="loan.counterpartySelect" ng-options="counterparty.name for counterparty in vm.counterparties">
           </select>
         </label>
 
         <label class="item item-input">
-          <span class="input-label">Name</span>
-          <input type="text" ng-model="expense.name" required>
+          <span class="input-label">Add new person?</span>
+          <ion-checkbox ng-model="vm.addNewPerson"></ion-checkbox>
+        </label>
+
+        <label ng-show="vm.addNewPerson" class="item item-input">
+          <span class="input-label">Name of person</span>
+          <input type="text" ng-model="loan.counterpartyNew.name">
+        </label>
+
+        <label ng-show="vm.addNewPerson" class="item item-input">
+          <span class="input-label">Email of person</span>
+          <input type="text" ng-model="loan.counterpartyNew.email">
         </label>
 
         <label class="item item-input">
           <span class="input-label">Description</span>
-          <input type="text" ng-model="expense.description">
+          <input type="text" ng-model="loan.description">
         </label>
         <label class="item item-input">
           <span class="input-label">Amount</span>
-          <input autofocus type="number" ng-model="expense.amount" required>
+          <input autofocus type="number" ng-model="loan.amount" required>
         </label>
+
+        <label class="item item-input">
+          <span class="input-label">Are you giving?</span>
+          <ion-checkbox ng-model="loan.receiving"></ion-checkbox>
+        </label>
+
         <label class="item item-input">
           <span class="input-label">Creation date</span>
-          <input type="date" ng-init="expense.creationDate = vm.defaultCreationDate" ng-model="expense.creationDate" required>
+          <input type="date" ng-init="loan.creationDate = vm.defaultCreationDate" ng-model="loan.creationDate" required>
         </label>
         <label class="item item-input">
-          <span class="input-label">Frequency</span>
-          <select ng-model="expense.frequency" ng-init="expense.frequency='0'" required>
-            <option value="0">Only once</option>
-            <option value="1">Monthly</option>
-            <option value="2">Every 2 months</option>
-            <option value="3">Quarterly</option>
-            <option value="6">Every 6 months</option>
-          </select>
+          <span class="input-label">Until date</span>
+          <input type="date" ng-init="loan.untilDate = vm.defaultUntilDate" ng-model="loan.untilDate" required>
         </label>
 
         <label class="item item-input">
           <span class="input-label">Currency</span>
-          <select ng-model="expense.currency" required ng-init="expense.currency = vm.defaultCurrency">
+          <select ng-model="loan.currency" required ng-init="loan.currency = vm.defaultCurrency">
 
             <option value="RON">RON</option>
             <option value="EUR">EUR</option>
@@ -85,24 +95,24 @@
       <div class="padding">
         <button class="button button-block button-dark"
                 ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
-                ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
-                ng-click="vm.addExpense(expense, true)">
-          Create expense
+                ng-disabled="((vm.disableNoInternet) || (addLoanForm.$invalid))"
+                ng-click="vm.addLoan(loan, true)">
+          Create loan
         </button>
         <button class="button button-block button-dark"
                 ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-android-add' "
-                ng-disabled="((vm.disableNoInternet) || (addExpenseForm.$invalid))"
-                ng-click="vm.addExpense(expense, false)">
+                ng-disabled="((vm.disableNoInternet) || (addLoanForm.$invalid))"
+                ng-click="vm.addLoan(loan, false)">
           Create & New
         </button>
       </div>
     </form>
-    <p ng-show="addExpenseForm.$invalid">
+    <p ng-show="addLoanForm.$invalid">
       <ion-list>
-        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Category is mandatory</ion-item>
-        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Name is mandatory</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Counterparty is mandatory</ion-item>
         <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Amount is mandatory</ion-item>
-        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Date is mandatory</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Creation date is mandatory</ion-item>
+        <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Until date is mandatory</ion-item>
         <ion-item><i style="color : red;" class="ion-alert-circled"></i>   Currency is mandatory</ion-item>
       </ion-list>
     </p>

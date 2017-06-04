@@ -61,13 +61,13 @@
 					'Content-Type' : "application/json",
 					'Authorization' : $window.localStorage['mmtlt']
 				},
-				data : JSON.stringify(expense)
+				data : JSON.stringify([expense])
 			}
 			// make server request
 			$http(req).then(
 				function (response) {
 				// SUCCESS: change the path
-				currentExpenses.push(response.data);
+				currentExpenses.push(response.data.entityList[0]);
 				var alertPopup = $ionicPopup.alert({
 						title : 'Success',
 						template : 'Expense created'
@@ -78,7 +78,6 @@
 					expense.name = "";
 					expense.description = "";
 					expense.amount = "";
-//					expense.frequency = "";
 					expense.category = "";
 					expense.creationDate = new Date();
 					expense.currency = $window.localStorage['defaultCurrency'];
@@ -110,7 +109,6 @@
 			$http(req).then(
 				function (response) {
 				// SUCCESS: change the path
-				console.log(index);
 				currentExpenses.splice(index, 1);
 				currentExpenses.push(expense);
 				var alertPopup = $ionicPopup.alert({

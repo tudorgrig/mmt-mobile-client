@@ -4,7 +4,12 @@
   </ion-nav-title>
   <ion-content class="has-header dark">
     <ion-list>
-
+      <ion-item ng-click="toggleItem(notification)" style = "color: #F0FFF0;background-color: {{vm.resolveNotificationColour(notification)}}; margin:15px;" class="item-icon-left item-icon-right" ng-repeat="notification in vm.notifications" >
+        {{notification.priority}} {{notification.category == "THRESHOLD" ? "Threshold notification" : "Loan notification"}}
+        <div ng-hide="!isItemShown(notification)">
+          <p>Amount: {{notification.message}}</p>
+        </div>
+      </ion-item>
     </ion-list>
     <div></div>
   </ion-content>

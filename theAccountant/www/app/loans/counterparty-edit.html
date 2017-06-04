@@ -1,0 +1,35 @@
+<ion-view title="Edit counterparty" ng-controller="counterpartyEditCtrl as vm">
+  <ion-nav-title>
+    <span class="stable">Edit counterparty</span>
+  </ion-nav-title>
+  <ion-content class="has-header dark">
+    <h1>Edit counterparty</h1>
+  </ion-content>
+  <ion-content>
+    <form name="editCounterpartyForm">
+      <div class="list">
+
+        <label class="item item-input">
+          <span class="input-label">Name</span>
+          <input type="text" ng-model="vm.counterparty.name" required>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">E-mail</span>
+          <input type="email" ng-model="vm.counterparty.email">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-dark"
+                ng-class="vm.disableNoInternet ? 'icon-left ion-locked' : 'icon-left ion-edit' "
+                ng-disabled="((vm.disableNoInternet) || (editCounterpartyForm.$invalid))"
+                ng-click="vm.update(counterparty)">
+          Update counterparty
+        </button>
+        <button class="button button-block button-dark" ui-sref="app.counterparties">
+          Back
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

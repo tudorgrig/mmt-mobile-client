@@ -9,14 +9,14 @@
 		vm.defaultCurrency = $window.localStorage['defaultCurrency'];
 		vm.defaultCreationDate = new Date();
 		vm.disableNoInternet;
-        if($window.localStorage['hasInternet'] != undefined) {
-        		  vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
-        }
-        $interval(function(){
-               if($window.localStorage['hasInternet'] != undefined) {
-                      vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
-               }
-            }, 1000)
+    if($window.localStorage['hasInternet'] != undefined) {
+       vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+    }
+    $interval(function(){
+       if($window.localStorage['hasInternet'] != undefined) {
+        vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
+       }
+    }, 1000)
 		categoryApi.getCategories(function (data) {
 			vm.categories = data;
 		})

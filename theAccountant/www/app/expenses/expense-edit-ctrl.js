@@ -36,8 +36,6 @@
                   vm.disableNoInternet = !JSON.parse($window.localStorage['hasInternet']);
            }
         }, 1000)
-
-    console.log(vm.expense);
 		vm.updateExpense = function () {
 			expenseApi.updateExpense(vm.expense, $stateParams['index']);
 		}

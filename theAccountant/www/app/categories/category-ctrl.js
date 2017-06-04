@@ -6,6 +6,7 @@
 	function categoryCtrl($stateParams, $ionicPopup, $http, $state, $window, categoryApi) {
 		var vm = this;
 		vm.categories = [];
+		vm.defaultCurrency = $window.localStorage['defaultCurrency'];
 		categoryApi.getCategories(function (data) {
 			vm.categories = data;
 		})
