@@ -349,6 +349,16 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
         			}
     })
 
+    .state('app.counterparty-loans', {
+              url:"/counterparty-loans/:id/:name/:email/:index",
+              cache: false,
+              views: {
+                "mainContent" : {
+                  templateUrl : "app/loans/counterparty-loans.html"
+                }
+              }
+    })
+
     .state('app.counterparty-edit', {
           url:"/counterparty-edit/:id/:name/:email/:index",
           cache: false,

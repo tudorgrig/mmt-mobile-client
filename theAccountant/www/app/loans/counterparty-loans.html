@@ -1,0 +1,30 @@
+<ion-view ng-controller="counterpartyLoansCtrl as vm">
+  <ion-nav-title>
+    <span class="stable"><i class="ion-person-stalker"></i>  Loans</span>
+  </ion-nav-title>
+  <ion-content class="has-header dark">
+    <ion-list>
+      <ion-item style = "margin:15px;"  ng-repeat="loan in vm.loans" class="item-text-wrap item-icon-right">
+        <h2>On {{loan.creationDate | date:'mediumDate'}} you {{vm.resolveDirectionOfLoan(loan)}}</h2>
+        <h2>{{loan.amount | number:2}}{{loan.currency}}</h2>
+        <h2>Active : {{loan.active}}</h2>
+        <span class="item-note">{{loan.untilDate | date:'mediumDate' }}</span>
+        <!--<ion-option-button class="button-dark" ng-click="vm.updateLoan(loan, $index)">-->
+          <!--Edit-->
+        <!--</ion-option-button>-->
+        <ion-option-button class="button-assertive" ng-click="vm.confirmDelete(loan)">
+          Delete
+        </ion-option-button>
+        <ion-option-button class="button-energized" ng-click="vm.changeActiveStatus(loan)">
+          {{vm.resolveActiveStatus(loan)}} loan
+        </ion-option-button>
+        <i class="icon ion-chevron-left icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+    <div></div>
+  </ion-content>
+
+  <ion-floating-button ui-sref="app.add-loan" has-footer="false" button-color="#5C5C5C" icon="ion-plus" icon-color="#fff">
+  </ion-floating-button>
+
+</ion-view>

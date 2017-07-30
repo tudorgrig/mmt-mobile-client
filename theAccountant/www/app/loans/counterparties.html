@@ -4,15 +4,18 @@
   </ion-nav-title>
   <ion-content class="has-header dark">
     <ion-list>
-      <ion-item style = "margin:15px;" ng-click="showLoansPage(counterparty)"  ng-repeat="counterparty in vm.counterparties" class="item-text-wrap item-icon-right">
+      <ion-item style = "margin:15px;" ng-click="vm.showLoansPage(counterparty)"  ng-repeat="counterparty in vm.counterparties" class="item-text-wrap item-icon-right">
         <h2>{{counterparty.name}}</h2>
         <h2 style="color:#8B0000">{{counterparty.email}}</h2>
-        <span class="item-note" style="color: {{vm.resolveColour(counterparty)}}">{{vm.resolveTotalValue(counterparty)}} {{counterparty.total > 0 ? counterparty.total : counterparty.total * -1 }}{{vm.defaultCurrency}}</span>
+        <span class="item-note" style="color: {{vm.resolveColour(counterparty)}}" >{{vm.resolveTotalValue(counterparty)}} {{counterparty.total > 0 ? counterparty.total : counterparty.total * -1 }}{{vm.defaultCurrency}}</span>
         <ion-option-button class="button-dark" ng-click="vm.update(counterparty, $index)">
           Edit
         </ion-option-button>
         <ion-option-button class="button-assertive" ng-click="vm.confirmDelete(counterparty)">
           Delete
+        </ion-option-button>
+        <ion-option-button class="button-energized"  ng-click="vm.sendEmail(counterparty)">
+          Send e-mail
         </ion-option-button>
         <i class="icon ion-chevron-left icon-accessory"></i>
       </ion-item>
