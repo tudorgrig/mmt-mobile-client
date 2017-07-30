@@ -8,8 +8,8 @@
 		var currentNotifications = [];
 
 		//get all categories
-		function getNotifications(callback) {
-			$http.get(host_name + "/notifications?limit=10&offset=0", {
+		function getNotifications(offset, callback) {
+			$http.get(host_name + "/notifications?limit=50&offset="+offset, {
 				headers : {
 					'Authorization' : $window.localStorage['mmtlt']
 				}
