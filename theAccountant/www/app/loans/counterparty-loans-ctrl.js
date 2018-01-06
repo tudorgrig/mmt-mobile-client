@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('counterpartyLoansCtrl', ['$ionicPopup', '$stateParams', '$window', '$interval', 'loanApi', counterpartyLoansCtrl]);
+	angular.module('theAccountant').controller('counterpartyLoansCtrl', ['$ionicPopup', '$stateParams', '$window', '$interval', 'loanApi' , '$state', counterpartyLoansCtrl]);
 
-	function counterpartyLoansCtrl($ionicPopup, $stateParams, $window, $interval, loanApi) {
+	function counterpartyLoansCtrl($ionicPopup, $stateParams, $window, $interval, loanApi, $state) {
 		var vm = this;
 		vm.disableNoInternet;
 		vm.loans = [];
@@ -60,7 +60,7 @@
     						}
     					]
     			});
-    }
+    };
 
     vm.getLoansByCounterparty();
 
@@ -70,6 +70,19 @@
         return "balanced";
       }
       return "assertive";
+    };
+
+    vm.addLoan = function() {
+      $state.go('app.add-loan', {
+        counterpartyId : vm.counterparty.id,
+        counterpartyName : vm.counterparty.name
+      });
+    };
+
+    vm.updateLoan = function(loan, index) {
+      $state.go('app.update-loan', {
+        id : loan.id
+      });
     };
 
 	};

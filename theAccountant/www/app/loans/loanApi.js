@@ -67,7 +67,26 @@
 
 		}
 
-		function update(loan){
+    function getLoan(loanId, callback) {
+      $http.get(host_name + "/loans/findOne/" + loanId, {
+        headers : {
+          'Authorization' : $window.localStorage['mmtlt']
+        }
+      }).success(function (data) {
+        if (callback) {
+          callback(data);
+        }
+        return $q.resolve(data);
+      }).error(function (data, status, headers) {
+        if (status === 401) {
+          $location.url('/login');
+        }
+        return $q.reject(data);
+      });
+
+    }
+
+		function update(loan, callback){
       var req = {
       		method : 'PUT',
       		url : host_name + '/loans/' + loan.id,
@@ -117,6 +136,7 @@
 		return {
 			addLoan : addLoan,
 			getLoansByCounterparty : getLoansByCounterparty,
+      getLoan : getLoan,
 			update : update,
 			deleteLoan : deleteLoan
 		};

@@ -1,6 +1,6 @@
 <ion-view ng-controller="counterpartyLoansCtrl as vm">
   <ion-nav-title>
-    <span class="stable"><i class="ion-person-stalker"></i>  Loans</span>
+    <span class="stable"><i class="ion-person-stalker"></i>  Loans for {{vm.counterparty.name}}</span>
   </ion-nav-title>
   <ion-content class="has-header dark">
     <label ng-if="vm.loans.length == 0">
@@ -33,7 +33,7 @@
     <div></div>
   </ion-content>
 
-  <ion-floating-button ui-sref="app.add-loan" has-footer="false" button-color="#5C5C5C" icon="ion-plus" icon-color="#fff">
+  <ion-floating-button ng-click="vm.addLoan()" has-footer="false" button-color="#5C5C5C" icon="ion-plus" icon-color="#fff">
   </ion-floating-button>
 
 </ion-view>
