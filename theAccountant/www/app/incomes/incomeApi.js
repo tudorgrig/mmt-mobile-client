@@ -41,7 +41,7 @@
 					'Content-Type' : "application/json",
 					'Authorization' : $window.localStorage['mmtlt']
 				},
-				data : JSON.stringify(income)
+				data : JSON.stringify([income])
 			}
 			// make server request
 			$http(req).then(

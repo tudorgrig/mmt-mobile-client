@@ -64,6 +64,14 @@
 
     vm.getLoansByCounterparty();
 
+    vm.resolveIconColour = function(loan){
+      var loanAmount = (loan.receiving ? +1 : -1) * loan.amount;
+      if(loanAmount < 0){
+        return "balanced";
+      }
+      return "assertive";
+    };
+
 	};
 
 })();

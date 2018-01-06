@@ -19,6 +19,13 @@
         </label>
       </div>
 
+      <label ng-if="vm.incomes.length == 0">
+        <div class="list card" id="login-card21" text-center>
+          <div style="font-style: italic; text-align:  center; padding: 20px 0px;">
+            <label style="font-size: 10px;">NO INCOMES FOR THE SELECTED INTERVAL</label>
+          </div>
+        </div>
+      </label>
         <ion-list>
             <ion-item ng-click="toggleItem(income)" style="margin:15px;" class="item-text-wrap item-icon-right" ng-repeat="income in vm.incomes | orderBy:'creationDate'">
               <h2>{{income.name }} <i class="item-expand-footer" ng-class="isItemShown(income) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i></h2>

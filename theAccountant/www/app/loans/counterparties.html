@@ -3,6 +3,13 @@
     <span class="stable"><i class="ion-person-stalker"></i>  Loans</span>
   </ion-nav-title>
   <ion-content class="has-header dark">
+    <label ng-if="vm.counterparties.length == 0">
+      <div class="list card" id="login-card21" text-center>
+        <div style="font-style: italic; text-align:  center; padding: 20px 0px;">
+          <label style="font-size: 10px;">NO COUNTERPARTY FOUND</label>
+        </div>
+      </div>
+    </label>
     <ion-list>
       <ion-item style = "margin:15px;" ng-click="vm.showLoansPage(counterparty)"  ng-repeat="counterparty in vm.counterparties" class="item-text-wrap item-icon-left item-icon-right">
         <h2>{{counterparty.name}}</h2>
