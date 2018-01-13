@@ -370,13 +370,23 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
     })
 
     .state('app.add-loan', {
-    			url:"/add-loan",
+    			url:"/add-loan/:counterpartyId/:counterpartyName",
     			cache: false,
     			views: {
     				"mainContent" : {
     					templateUrl : "app/loans/add-loan.html"
     				}
     			}
+    })
+
+    .state('app.update-loan', {
+      url:"/update-loan/:id",
+      cache: false,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/loans/add-loan.html"
+        }
+      }
     })
 
 	$urlRouterProvider.otherwise('/home/login');

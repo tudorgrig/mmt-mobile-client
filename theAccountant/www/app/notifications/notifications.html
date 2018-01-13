@@ -3,6 +3,13 @@
     <span class="stable"><i class="ion-android-notifications"></i>  Notifications</span>
   </ion-nav-title>
   <ion-content class="has-header dark">
+    <label ng-if="vm.notifications.length == 0">
+      <div class="list card" id="login-card21" text-center>
+        <div style="font-style: italic; text-align:  center; padding: 20px 0px;">
+          <label style="font-size: 10px;">NO NOTIFICATION FOUND</label>
+        </div>
+      </div>
+    </label>
     <ion-list>
       <ion-item ng-click="toggleItem(notification)" style = "color: #F0FFF0;background-color: {{vm.resolveNotificationColour(notification)}}; margin:15px;" class="item-text-wrap" ng-repeat="notification in vm.notifications" >
         {{notification.message}}
