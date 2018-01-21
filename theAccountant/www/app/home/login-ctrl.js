@@ -2,9 +2,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('loginCtrl', ['$ionicPush', '$q', '$interval', '$localStorage','$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
+	angular.module('theAccountant').controller('loginCtrl', ['$ionicPush', '$q', '$interval', '$localStorage','notificationApi', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
 
-	function loginCtrl($ionicPush, $q, $interval, $localStorage, $stateParams, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
+	function loginCtrl($ionicPush, $q, $interval, $localStorage, notificationApi, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
 		var vm = this;
 		$scope.data = {};
 		vm.showAlert = true;
@@ -46,6 +46,15 @@
             return $ionicPush.saveToken(t);
           }).then(function(t) {
             console.log('Token saved:', t.token);
+          });
+
+          notificationApi.getTotalNotifications(function (data) {
+            $rootScope.totalNotifications = 0;
+            if (data && data.total) {
+              $rootScope.totalNotifications = data.total;
+            } else {
+              console.warn(" No notification found: data = " + JSON.stringify(data));
+            }
           });
 				} else {
 					$rootScope.authenticated = false;

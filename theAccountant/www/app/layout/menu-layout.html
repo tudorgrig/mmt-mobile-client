@@ -32,15 +32,17 @@
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.counterparties" menu-close>
           <i class="ion-person-stalker"></i>
             Loans
+        <ion-badge id="loans-badge" class="ion-badge-success">new</ion-badge>
       </ion-item>
 
-    <ion-item class="item item-assertive item-icon-left"  ui-sref="app.notifications" menu-close>
+    <ion-item class="item item-dark item-icon-left"  ui-sref="app.notifications" menu-close>
       <i class="ion-android-notifications"></i>
       Notifications
+      <ion-badge ng-if="totalNotifications" id="notifications-badge" class="ion-badge-danger">{{totalNotifications}}</ion-badge>
     </ion-item>
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.statistics" menu-close>
           <i class="ion-ios-pie-outline"></i>
-            Statistics
+          Statistics
       </ion-item>
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.account" menu-close>
           <i class="ion-ios-body"></i>

@@ -20,7 +20,7 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
   });
 })
 
-.run(function($ionicPlatform, $interval, $window, $ionicPopup) {
+.run(function($ionicPlatform, $interval, $window, $ionicPopup, notificationApi, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -87,6 +87,14 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
       StatusBar.styleDefault();
     }
 
+    notificationApi.getTotalNotifications(function (data) {
+      $rootScope.totalNotifications = 0;
+      if (data && data.total) {
+        $rootScope.totalNotifications = data.total;
+      } else {
+        console.warn(" No notification found: data = " + JSON.stringify(data));
+      }
+    });
   });
 })
 
