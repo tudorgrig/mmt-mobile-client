@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('notificationCtrl', ['$stateParams', '$ionicPopup', '$http', '$state', '$window','notificationApi', '$rootScope', notificationCtrl]);
+	angular.module('theAccountant').controller('notificationCtrl', ['$state', '$ionicPopup', '$timeout', '$location', '$window','notificationApi', '$rootScope', notificationCtrl]);
 
-	function notificationCtrl($stateParams, $ionicPopup, $http, $state, $window, notificationApi, $rootScope) {
+	function notificationCtrl($state, $ionicPopup, $timeout, $location, $window, notificationApi, $rootScope) {
 		var vm = this;
     vm.defaultCurrency = $window.localStorage['defaultCurrency'];
 
@@ -23,7 +23,38 @@
       });
     };
 
-    getAllNotifications(vm.limit, vm.offset);
+    /**
+     * Initialize controller data
+     */
+    vm.initController = function() {
+      if ($rootScope.licencePaymentApproved == null) {
+        $timeout(vm.initController, 500);
+      } else if ($rootScope.licencePaymentApproved === false) {
+        var myPopup = $ionicPopup.show({
+          title : '<i class="ion-locked"></i> Locked',
+          subTitle : 'Loans, Notifications and Category limit are only available for contributors. In order to be able to use this functions you can ' +
+          'contribute to the application accessing PAYMENT page. Thank you!',
+          buttons : [
+            {
+              text : '<i class="ion-locked"></i> Unlock notifications',
+              type : 'button-small button-positive',
+              onTap : function (e) {
+                $state.go('app.payment');
+              }
+            },{
+              text : '<i class="ion-home"></i> Home page',
+              type : 'button-small button-positive',
+              onTap : function (e) {
+                $state.go('app.expenses');
+              }
+            }
+          ]
+        });
+      } else {
+        getAllNotifications(vm.limit, vm.offset);
+      }
+    };
+    vm.initController();
 
     vm.resolveNotificationColour = function(notification){
       if(notification.priority == "HIGH"){

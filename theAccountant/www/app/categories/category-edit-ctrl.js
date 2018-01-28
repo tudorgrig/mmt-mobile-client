@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('categoryEditCtrl', ['$stateParams', '$window', '$interval', 'categoryApi', categoryEditCtrl]);
+	angular.module('theAccountant').controller('categoryEditCtrl', ['$stateParams', '$window', '$interval', 'categoryApi', '$rootScope', categoryEditCtrl]);
 
-	function categoryEditCtrl($stateParams, $window, $interval, categoryApi) {
+	function categoryEditCtrl($stateParams, $window, $interval, categoryApi, $rootScope) {
 		var vm = this;
 
 		vm.disableNoInternet;

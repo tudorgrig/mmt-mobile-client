@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('counterpartiesCtrl', ['$filter','$stateParams', '$ionicPopup', '$http', '$state', '$window', 'counterpartiesApi', 'loanApi', counterpartiesCtrl]);
+	angular.module('theAccountant').controller('counterpartiesCtrl', ['$filter','$timeout', '$ionicPopup', '$rootScope', '$state', '$window', 'counterpartiesApi', 'loanApi', counterpartiesCtrl]);
 
-	function counterpartiesCtrl($filter, $stateParams, $ionicPopup, $http, $state, $window, counterpartiesApi, loanApi) {
+	function counterpartiesCtrl($filter, $timeout, $ionicPopup, $rootScope, $state, $window, counterpartiesApi, loanApi) {
 		var vm = this;
 
     vm.counterparties = [];
@@ -13,7 +13,7 @@
     	 counterpartiesApi.getAllCounterparties(function (data) {
     			vm.counterparties = data;
     	 })
-    }
+    };
 
     vm.resolveTotalValue = function(counterparty){
       if(counterparty.total > 0){
@@ -22,7 +22,7 @@
       else {
         return "You owe ";
       }
-    }
+    };
 
     vm.resolveTotalValueForEmail = function(counterparty){
           if(counterparty.total > 0){
@@ -31,21 +31,21 @@
           else {
             return "I owe you";
           }
-    }
+    };
 
     vm.resolveColour = function(counterparty){
       if(counterparty.total < 0){
         return "red";
       }
       return "green";
-    }
+    };
 
     vm.resolveIconColour = function(counterparty){
       if(counterparty.total < 0){
         return "assertive";
       }
       return "balanced";
-    }
+    };
 
     vm.showLoansPage = function(counterparty){
       $state.go('app.counterparty-loans', {
@@ -53,7 +53,7 @@
         name: counterparty.name,
         email: counterparty.email
       });
-    }
+    };
 
     vm.sendEmail = function(counterparty){
       loanApi.getLoansByCounterparty(counterparty.id, function (data) {
@@ -72,7 +72,7 @@
          $window.open(mail);
 
       })
-    }
+    };
 
     vm.resolveLoanReport = function(loan){
       var report = "Loan active = " + loan.active + ". %0A";
@@ -86,7 +86,7 @@
         $filter('date')(new Date(loan.untilDate),'dd-MM-yyyy') + "%0A";
       report = report + "Description = " + loan.description + "%0A";
       return report;
-    }
+    };
 
     vm.update = function (counterparty, index) {
     	$state.go('app.counterparty-edit', {
@@ -95,7 +95,7 @@
     		email : counterparty.email,
     		index : index
     	});
-    }
+    };
 
     vm.confirmDelete = function (counterparty, index) {
     			var myPopup = $ionicPopup.show({
@@ -115,8 +115,40 @@
     						}
     					]
     				});
-    }
+    };
 
-    vm.findAllCounterparties();
+    /**
+     * Initialize controller data
+     */
+    vm.initController = function() {
+      if ($rootScope.licencePaymentApproved == null) {
+        $timeout(vm.initController, 500);
+      } else if ($rootScope.licencePaymentApproved === false) {
+        var myPopup = $ionicPopup.show({
+          title : '<i class="ion-locked"></i> Locked',
+          subTitle : 'Loans, Notifications and Category limit are only available for contributors. In order to be able to use this functions you can ' +
+          'contribute to the application accessing PAYMENT page. Thank you!',
+          buttons : [
+            {
+              text : '<i class="ion-locked"></i> Unlock loans',
+              type : 'button-small button-positive',
+              onTap : function (e) {
+                $state.go('app.payment');
+              }
+            },{
+              text : '<i class="ion-home"></i> Home page',
+              type : 'button-small button-positive',
+              onTap : function (e) {
+                $state.go('app.expenses');
+              }
+            }
+          ]
+        });
+      } else {
+        vm.findAllCounterparties();
+      }
+    };
+    vm.initController();
+
 	};
 })();

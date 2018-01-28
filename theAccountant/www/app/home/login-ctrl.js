@@ -2,9 +2,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('loginCtrl', ['$ionicPush', '$q', '$interval', '$localStorage','notificationApi', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
+	angular.module('theAccountant').controller('loginCtrl', ['$ionicPush', '$q', '$interval', '$localStorage','InitService', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
 
-	function loginCtrl($ionicPush, $q, $interval, $localStorage, notificationApi, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
+	function loginCtrl($ionicPush, $q, $interval, $localStorage, InitService, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
 		var vm = this;
 		$scope.data = {};
 		vm.showAlert = true;
@@ -48,14 +48,7 @@
             console.log('Token saved:', t.token);
           });
 
-          notificationApi.getTotalNotifications(function (data) {
-            $rootScope.totalNotifications = 0;
-            if (data && data.total) {
-              $rootScope.totalNotifications = data.total;
-            } else {
-              console.warn(" No notification found: data = " + JSON.stringify(data));
-            }
-          });
+          InitService.init();
 				} else {
 					$rootScope.authenticated = false;
 					$window.localStorage.remove('mmtlt');
