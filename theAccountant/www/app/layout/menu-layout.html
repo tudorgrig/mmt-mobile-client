@@ -32,15 +32,19 @@
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.counterparties" menu-close>
           <i class="ion-person-stalker"></i>
             Loans
+        <i ng-if="licencePaymentApproved == false" class="ion-locked"></i>
+        <ion-badge id="loans-badge" class="ion-badge-success">new</ion-badge>
       </ion-item>
 
-    <ion-item class="item item-assertive item-icon-left"  ui-sref="app.notifications" menu-close>
+    <ion-item class="item item-dark item-icon-left"  ui-sref="app.notifications" menu-close>
       <i class="ion-android-notifications"></i>
       Notifications
+      <i ng-if="licencePaymentApproved == false" class="ion-locked"></i>
+      <ion-badge ng-if="totalNotifications" id="notifications-badge" class="ion-badge-danger">{{totalNotifications}}</ion-badge>
     </ion-item>
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.statistics" menu-close>
           <i class="ion-ios-pie-outline"></i>
-            Statistics
+          Statistics
       </ion-item>
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.account" menu-close>
           <i class="ion-ios-body"></i>
@@ -49,6 +53,16 @@
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.help" menu-close>
           <i class="ion-help-circled"></i>
             Help
+      </ion-item>
+      <ion-item class="item item-dark item-icon-left" ui-sref="app.payment" menu-close>
+        <i class="ion-card"></i>
+        Payment
+        <ion-badge ng-if="licencePaymentApproved == false" class="ion-badge-danger" style="padding: 1px 11px 1px 10px;">
+          <i class="ion-information"></i>
+        </ion-badge>
+        <ion-badge ng-if="licencePaymentApproved == true" class="ion-badge-success" style="padding: 2px 8px 1px 8px;">
+          <i class="ion-checkmark-round"></i>
+        </ion-badge>
       </ion-item>
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.contactus" menu-close>
           <i class="ion-android-contact"></i>

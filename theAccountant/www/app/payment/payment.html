@@ -1,0 +1,63 @@
+<ion-view ng-controller="paymentCtrl as vm">
+  <ion-nav-title>
+    <span class="stable"><i class="ion-card"></i>  Payment</span>
+  </ion-nav-title>
+
+  <ion-content>
+    <ion-item style="margin:15px;" class="item-text-wrap">
+      <div ng-if="licencePaymentApproved === false" class="">
+        <div class="">
+          <label>Hi {{vm.loggedUser}},</label>
+        </div>
+        <div class="">&nbsp;</div>
+        <div class="">
+          <label>
+            Our application is free, but in order to cover the costs of the application infrastructure, and for constant improvement of the application,
+            The Accountant needs your support.
+          </label>
+        </div>
+        <div class="">
+          <label>
+            You can contribute for application development by donating $ 4.99. For this donation you will unlock Loans, Notifications and Category limit. Thank you!
+          </label>
+        </div>
+        <div class="">&nbsp;</div>
+        <div class="">
+          <label>Kind regards,</label>
+        </div>
+        <div class="">
+          <label><img style="margin-bottom: -3px;" src="img/logo.svg" height="18" width="18"> The Accountant Team</label>
+        </div>
+
+        <button button class="button-small button button-dark" style="margin-top: 25px;" ng-click="vm.payment();">
+          <i class="ion-card"></i> Pay with card
+        </button>
+      </div>
+
+      <div ng-if="licencePaymentApproved === true">
+        <div class="">
+          <label>Hi {{vm.loggedUser}},</label>
+        </div>
+        <div class="">&nbsp;</div>
+        <div class="">
+          <label>
+            You've donated $ 4.99 to The Accountant. Thank you for supporting this application!
+          </label>
+        </div>
+        <div class="">
+          <label>
+            For any inconvenience you can contact us at <i><a href="mailto:feedback.theacctnt@gmail.com">help.theacctnt@gmail.com</a>.</i>
+          </label>
+        </div>
+        <div class="">&nbsp;</div>
+        <div class="">
+          <label>Kind regards,</label>
+        </div>
+        <div class="">
+          <label><img style="margin-bottom: -3px;" src="img/logo.svg" height="18" width="18"> The Accountant Team</label>
+        </div>
+      </div>
+    </ion-item>
+
+  </ion-content>
+</ion-view>

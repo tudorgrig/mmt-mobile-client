@@ -2,9 +2,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('loginCtrl', ['$ionicPush', '$q', '$interval', '$localStorage','$stateParams', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
+	angular.module('theAccountant').controller('loginCtrl', ['$ionicPush', '$q', '$interval', '$localStorage','InitService', '$ionicPopup', '$http', '$location', '$rootScope', '$window', '$scope', 'host_name', loginCtrl]);
 
-	function loginCtrl($ionicPush, $q, $interval, $localStorage, $stateParams, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
+	function loginCtrl($ionicPush, $q, $interval, $localStorage, InitService, $ionicPopup, $http, $location, $rootScope, $window, $scope, host_name) {
 		var vm = this;
 		$scope.data = {};
 		vm.showAlert = true;
@@ -47,6 +47,8 @@
           }).then(function(t) {
             console.log('Token saved:', t.token);
           });
+
+          InitService.init();
 				} else {
 					$rootScope.authenticated = false;
 					$window.localStorage.remove('mmtlt');

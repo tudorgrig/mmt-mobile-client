@@ -3,6 +3,31 @@
     <span class="stable"><i class="ion-android-notifications"></i>  Notifications</span>
   </ion-nav-title>
   <ion-content class="has-header dark">
+    <div class="row" style="line-height: normal;">
+      <div class="col col-33" style="text-align: center;">
+        <label class="toggle toggle-assertive">
+          <input type="checkbox" ng-model="vm.filter.priority.HIGH">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+      <div class="col col-33" style="text-align: center;">
+        <label class="toggle toggle-energized">
+          <input type="checkbox" ng-model="vm.filter.priority.MEDIUM">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+      <div class="col col-33" style="text-align: center;">
+        <label class="toggle toggle-stable">
+          <input type="checkbox" ng-model="vm.filter.priority.null">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
     <label ng-if="vm.notifications.length == 0">
       <div class="list card" id="login-card21" text-center>
         <div style="font-style: italic; text-align:  center; padding: 20px 0px;">
@@ -10,15 +35,30 @@
         </div>
       </div>
     </label>
+    </div>
     <ion-list>
-      <ion-item ng-click="toggleItem(notification)" style = "color: #F0FFF0;background-color: {{vm.resolveNotificationColour(notification)}}; margin:15px;" class="item-text-wrap" ng-repeat="notification in vm.notifications" >
-        {{notification.message}}
-      </ion-item>
-      <!--<ion-infinite-scroll distance="5"-->
-                           <!--on-infinite="vm.loadMoreData()"-->
-                           <!--ng-if="!vm.moredata"-->
-      <!--&gt;</ion-infinite-scroll>-->
+      <div class="button button-block button-{{vm.resolveNotificationColour(notification)}}" ng-click="vm.deleteNotification(notification, $index)"
+              ng-repeat="notification in vm.notifications" ng-if="vm.filter.priority[notification.priority]" >
+        <div class="row" style="line-height: normal;">
+          <div class="col col-67">
+            {{notification.message}}
+          </div>
+          <div class="col col-33" style="padding-right: 20px;">
+            {{ notification.creationDate | date:'mediumDate' }}
+          </div>
+        </div>
+        <i class="icon ion-close-circled" style="font-size: 10px; position: absolute;top: 3px; right: 8px; opacity: 0.7;"
+              ng-click="vm.deleteNotification(notification, $index)">
+        </i>
+      </div>
     </ion-list>
+    <div class="row">
+      <div class="col" style="text-align: center;">
+        <button class="button button-positive" ng-click="vm.showMoreNotifications()">
+          <i class="icon ion-eye"></i> SHOW MORE
+        </button>
+      </div>
+    </div>
     <div></div>
   </ion-content>
 

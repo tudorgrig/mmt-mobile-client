@@ -1,11 +1,12 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('addCategoryCtrl', ['$stateParams', '$interval', '$ionicPopup', '$http', '$location', '$window', 'categoryApi', addCategoryCtrl]);
+	angular.module('theAccountant').controller('addCategoryCtrl', ['$stateParams', '$interval', '$ionicPopup', '$rootScope', '$location', '$window', 'categoryApi', addCategoryCtrl]);
 
-	function addCategoryCtrl($stateParams, $interval, $ionicPopup, $http, $location, $window, categoryApi) {
+	function addCategoryCtrl($stateParams, $interval, $ionicPopup, $rootScope, $location, $window, categoryApi) {
 		var vm = this;
     vm.category = {};
+    vm.category.threshold = 0;
     vm.isAssertiveChecked = false;
     vm.isPositiveChecked = false;
     vm.isCalmChecked = false;

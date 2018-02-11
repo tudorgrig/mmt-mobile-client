@@ -20,7 +20,7 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
   });
 })
 
-.run(function($ionicPlatform, $interval, $window, $ionicPopup) {
+.run(function($ionicPlatform, $interval, $window, $ionicPopup, InitService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -86,6 +86,8 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    InitService.init();
 
   });
 })
@@ -257,6 +259,16 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
     					templateUrl : "app/help/help.html"
     				}
     			}
+    })
+
+    .state('app.payment', {
+      url:"/payment",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/payment/payment.html"
+        }
+      }
     })
 
     .state('app.help-create-expense', {
