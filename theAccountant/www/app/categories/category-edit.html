@@ -62,10 +62,18 @@
                   </table>
                 </label>
 
-                <label class="item item-input">
-                    <span class="input-label">Limit</span>
-                    <input type="number" ng-model="vm.category.threshold" min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" ng-disabled="licencePaymentApproved === false"/>
-                </label>
+              <label class="item item-input">
+                <span class="input-label">Limit</span>
+                <span>
+                    <input type="number" placeholder="Amount in default currency" ng-model="vm.category.threshold" style="width: 80%; display: inline;"
+                           min="0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" ng-disabled="licencePaymentApproved === false"/>
+                    <i ng-if="licencePaymentApproved == false" class="ion-locked" style="margin: 5px;" ng-init="vm.showLockedMessage = false;"
+                       ng-mouseup="vm.showLockedMessage = !vm.showLockedMessage;"></i>
+                  </span>
+              </label>
+              <label ng-if="vm.showLockedMessage" class="item item-input">
+                <p>Category limit is unlocked only for contributors</p>
+              </label>
 
             </div>
             <div class="padding">
