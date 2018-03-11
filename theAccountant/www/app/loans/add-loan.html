@@ -7,11 +7,12 @@
       <div class="list">
         <label class="item item-input" ng-show="vm.counterparties.length > 0">
           <span class="input-label">Person</span>
-          <select placeholder="Person" ng-model="vm.loan.counterpartySelect" ng-options="counterparty.name for counterparty in vm.counterparties track by counterparty.id">
+          <select placeholder="Person" ng-model="vm.loan.counterpartySelect" ng-disabled="vm.isLoanUpdate"
+                  ng-options="counterparty.name for counterparty in vm.counterparties track by counterparty.id">
           </select>
         </label>
 
-        <label class="item item-input">
+        <label ng-if="!vm.isLoanUpdate" class="item item-input">
           <span class="input-label">Add new person?</span>
           <ion-checkbox ng-model="vm.addNewPerson"></ion-checkbox>
         </label>
