@@ -34,7 +34,7 @@
         <h2>{{expense.name }} <i class="item-expand-footer" ng-class="isItemShown(expense) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> </h2>
         <span class="item-note">{{ expense.creationDate | date:'mediumDate' }}</span>
         <div ng-hide="!isItemShown(expense)">
-          <p>Amount: {{expense.amount}}   {{expense.currency}}</p>
+          <p>Amount: {{expense.amount | number:2}}   {{expense.currency}}</p>
           <p>Category: {{expense.category.name}}</p>
           <p ng-hide="expense.description == null || expense.description == ''">Description: {{expense.description}}</p>
           <p ng-hide="expense.defaultCurrencyAmount == null">Default currency amount: {{expense.defaultCurrencyAmount | number:2}} {{expense.defaultCurrency}}</p>
