@@ -40,7 +40,8 @@
       <i class="ion-android-notifications"></i>
       Notifications
       <i ng-if="licencePaymentApproved == false" class="ion-locked"></i>
-      <ion-badge ng-if="totalNotifications" id="notifications-badge" class="ion-badge-danger">{{totalNotifications}}</ion-badge>
+      <ion-badge id="notifications-new-badge" class="ion-badge-success">new</ion-badge>
+      <ion-badge ng-if="totalNotifications" id="notifications-badge" class="ion-badge-danger" style="margin-left: 40px;">{{totalNotifications}}</ion-badge>
     </ion-item>
       <ion-item class="item item-dark item-icon-left"  ui-sref="app.statistics" menu-close>
           <i class="ion-ios-pie-outline"></i>
