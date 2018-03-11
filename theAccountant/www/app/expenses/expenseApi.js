@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').factory('expenseApi', ['$http', '$window', '$q', '$ionicPopup', '$location', 'host_name', expenseApi]);
+	angular.module('theAccountant').factory('expenseApi', ['$http', '$window', '$q', '$ionicPopup', '$location', '$rootScope', 'host_name', expenseApi]);
 
-	function expenseApi($http, $window, $q, $ionicPopup, $location, host_name) {
+	function expenseApi($http, $window, $q, $ionicPopup, $location, $rootScope, host_name) {
 
 		var currentExpenseId;
 		var currentExpenses = [];
@@ -72,6 +72,9 @@
 						title : 'Success',
 						template : 'Expense created'
 					});
+				if (response.data.notification) {
+          $rootScope.totalNotifications++;
+        }
 				if (changePath == true) {
 					$location.path('/app/expenses');
 				} else {
@@ -115,6 +118,9 @@
 						title : 'Success',
 						template : 'Expense updated'
 					});
+          if (response.data.notification) {
+            $rootScope.totalNotifications++;
+          }
 				$location.path('/app/expenses');
 			},
 				function (response) {
