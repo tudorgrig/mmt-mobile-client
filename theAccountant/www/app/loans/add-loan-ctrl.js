@@ -15,7 +15,9 @@
     vm.counterpartyName = $stateParams['counterpartyName'];
     vm.loanId = $stateParams['id'];
 
-    vm.loan = {};
+    vm.loan = {
+      receiving: false
+    };
     vm.isLoanUpdate = false;
 
     if (vm.loanId) {

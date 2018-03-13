@@ -30,7 +30,7 @@
             <ion-item ng-click="toggleItem(income)" style="margin:15px;" class="item-text-wrap item-icon-right" ng-repeat="income in vm.incomes | orderBy:'creationDate'">
               <h2>{{income.name }} <i class="item-expand-footer" ng-class="isItemShown(income) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i></h2>
               <div ng-hide="!isItemShown(income)">
-                  <p>Amount: {{income.amount}}  {{income.currency}}</p>
+                  <p>Amount: {{income.amount | number:2}}  {{income.currency}}</p>
                   <p ng-hide="income.description == null || income.description == ''">Description: {{income.description}}</p>
                   <p ng-hide="income.defaultCurrencyAmount == null">Default currency amount: {{income.defaultCurrencyAmount | number:2}} {{income.defaultCurrency}}</p>
 

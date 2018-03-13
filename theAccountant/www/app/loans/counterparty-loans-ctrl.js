@@ -27,10 +27,11 @@
     }, 1000)
 
     vm.resolveDirectionOfLoan = function(loan){
-      if(loan.receiving == false){
+      if(loan.receiving == true){
         return "received";
+      } else {
+        return "gave";
       }
-      return "lent";
     };
     vm.resolveActiveStatus = function(loan) {
       if(loan.active == true){
@@ -98,9 +99,10 @@
     vm.resolveIconColour = function(loan){
       var loanAmount = (loan.receiving ? +1 : -1) * loan.amount;
       if(loanAmount < 0){
+        return "assertive";
+      } else {
         return "balanced";
       }
-      return "assertive";
     };
 
     vm.addLoan = function() {

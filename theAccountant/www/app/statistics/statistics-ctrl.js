@@ -182,20 +182,19 @@
                         } else{
                             vm.dataPie[categ_index] = expense.defaultCurrencyAmount + vm.dataPie[categ_index];
                         }
+                        vm.dataPie[categ_index] = Number(vm.dataPie[categ_index].toFixed(2));
                     } else {
                         if(expense.defaultCurrencyAmount == null){
                             vm.labelsPie.push(expense.name + " (" + expense.currency + ")");
-                            vm.dataPie.push(expense.amount);
+                            vm.dataPie.push(Number(expense.amount.toFixed(2)));
                         } else {
                             vm.labelsPie.push(expense.name + " (" + expense.defaultCurrency + ")");
-                            vm.dataPie.push(expense.defaultCurrencyAmount);
+                            vm.dataPie.push(Number(expense.defaultCurrencyAmount.toFixed(2)));
                         }
                     }
-
                 })
-
             })
-        }
+        };
 
 
         vm.updateIncomes = function (yearChanged) {
@@ -235,6 +234,7 @@
                             vm.dataLinear[0][categ_index] = income.defaultCurrencyAmount + vm.dataLinear[0][categ_index];
                             vm.seriesLinear.push(income.name);
                         }
+                        vm.dataLinear[0][categ_index] = Number(vm.dataLinear[0][categ_index].toFixed(2));
                     }
 
                 })
