@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('theAccountant').controller('statisticsCtrl', ['$stateParams', '$interval', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', 'incomeApi', 'categoryApi', statisticsCtrl]);
+    angular.module('theAccountant').controller('statisticsCtrl', ['$interval', '$ionicPopup', '$window', 'expenseApi', 'incomeApi', 'categoryApi', statisticsCtrl]);
 
-    function statisticsCtrl($stateParams, $interval, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, incomeApi, categoryApi) {
+    function statisticsCtrl( $interval, $ionicPopup, $window, expenseApi, incomeApi, categoryApi) {
         var vm = this;
 
         vm.defaultCurrency = $window.localStorage['defaultCurrency'];

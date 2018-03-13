@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').factory('notificationApi', ['$http', '$window', '$q', '$ionicPopup', '$location', 'host_name', notificationApi]);
+	angular.module('theAccountant').factory('notificationApi', ['$http', '$window', '$q', '$location', 'host_name', notificationApi]);
 
-	function notificationApi($http, $window, $q, $ionicPopup, $location, host_name) {
+	function notificationApi($http, $window, $q, $location, host_name) {
 
 		var currentNotifications = [];
 

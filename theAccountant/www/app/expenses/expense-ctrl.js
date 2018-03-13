@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('expenseCtrl', ['$ionicFilterBar', '$scope','$stateParams', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'expenseApi', 'categoryApi', expenseCtrl]);
+	angular.module('theAccountant').controller('expenseCtrl', ['$ionicFilterBar', '$scope', '$ionicPopup', '$state', 'expenseApi', 'categoryApi', expenseCtrl]);
 
-	function expenseCtrl($ionicFilterBar, $scope, $stateParams, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, expenseApi, categoryApi) {
+	function expenseCtrl($ionicFilterBar, $scope, $ionicPopup, $state, expenseApi, categoryApi) {
 		var vm = this,
 		         filterBarInstance;
 

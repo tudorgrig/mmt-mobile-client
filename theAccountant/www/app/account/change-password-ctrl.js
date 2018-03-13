@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('changePasswordCtrl', ['host_name', '$stateParams', '$interval', '$ionicPopup', '$http', '$location', '$window', '$scope', 'accountApi', '$q', changePasswordCtrl]);
+	angular.module('theAccountant').controller('changePasswordCtrl', ['host_name', '$ionicPopup', '$http', '$location', '$window', '$q', changePasswordCtrl]);
 
-	function changePasswordCtrl(host_name, $stateParams, $interval, $ionicPopup, $http, $location, $window, $scope, accountApi, $q) {
+	function changePasswordCtrl(host_name, $ionicPopup, $http, $location, $window, $q) {
      var vm = this;
 
      vm.changePassword = function(changePasswordObj){

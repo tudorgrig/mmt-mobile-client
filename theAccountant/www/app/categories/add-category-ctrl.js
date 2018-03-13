@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('addCategoryCtrl', ['$stateParams', '$interval', '$ionicPopup', '$rootScope', '$location', '$window', 'categoryApi', addCategoryCtrl]);
+	angular.module('theAccountant').controller('addCategoryCtrl', ['$interval', '$ionicPopup', '$rootScope', '$window', 'categoryApi', addCategoryCtrl]);
 
-	function addCategoryCtrl($stateParams, $interval, $ionicPopup, $rootScope, $location, $window, categoryApi) {
+	function addCategoryCtrl($interval, $ionicPopup, $rootScope, $window, categoryApi) {
 		var vm = this;
     vm.category = {};
     vm.category.threshold = 0;

@@ -1,9 +1,9 @@
 (function(){
 	'use strict';
 
-	angular.module('theAccountant').controller('menuLayout', ['$stateParams', '$ionicPopup', '$http', '$location', '$window', '$rootScope', 'host_name', menuLayout]);
+	angular.module('theAccountant').controller('menuLayout', ['$window', '$rootScope', menuLayout]);
 
-	function menuLayout($stateParams, $ionicPopup, $http, $location, $window, $rootScope, host_name){
+	function menuLayout($window, $rootScope){
 		var vm = this;
 		vm.loggedUser = $window.localStorage['username'];
 	};
