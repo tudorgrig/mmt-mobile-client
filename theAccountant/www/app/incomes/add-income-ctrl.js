@@ -1,9 +1,9 @@
 (function(){
 	'use strict';
 
-	angular.module('theAccountant').controller('addIncomeCtrl', ['$stateParams', '$interval','$ionicPopup', '$http', '$location', '$window', 'incomeApi', addIncomeCtrl]);
+	angular.module('theAccountant').controller('addIncomeCtrl', ['$interval', '$window', 'incomeApi', addIncomeCtrl]);
 
-	function addIncomeCtrl($stateParams, $interval, $ionicPopup, $http, $location, $window, incomeApi){
+	function addIncomeCtrl($interval, $window, incomeApi){
 		var vm = this;
 		vm.defaultCurrency = $window.localStorage['defaultCurrency'];
 

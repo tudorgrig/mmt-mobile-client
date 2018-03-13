@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('addExpenseCtrl', ['$stateParams', '$interval', '$ionicPopup', '$http', '$location', '$window', 'categoryApi', 'expenseApi', addExpenseCtrl]);
+	angular.module('theAccountant').controller('addExpenseCtrl', ['$interval', '$window', 'categoryApi', 'expenseApi', addExpenseCtrl]);
 
-	function addExpenseCtrl($stateParams, $interval, $ionicPopup, $http, $location, $window, categoryApi, expenseApi) {
+	function addExpenseCtrl($interval, $window, categoryApi, expenseApi) {
 		var vm = this;
 		vm.categories = [];
 		vm.defaultCurrency = $window.localStorage['defaultCurrency'];

@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('categoryCtrl', ['$stateParams', '$ionicPopup', '$http', '$state', '$window', 'categoryApi', categoryCtrl]);
+	angular.module('theAccountant').controller('categoryCtrl', ['$ionicPopup', '$state', '$window', 'categoryApi', categoryCtrl]);
 
-	function categoryCtrl($stateParams, $ionicPopup, $http, $state, $window, categoryApi) {
+	function categoryCtrl($ionicPopup, $state, $window, categoryApi) {
 		var vm = this;
 		vm.categories = [];
 		vm.defaultCurrency = $window.localStorage['defaultCurrency'];

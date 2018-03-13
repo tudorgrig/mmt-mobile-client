@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('accountCtrl', ['$stateParams', '$interval', '$ionicPopup', '$http', '$location', '$window', '$scope', 'accountApi', accountCtrl]);
+	angular.module('theAccountant').controller('accountCtrl', ['$interval', '$ionicPopup', '$window', '$scope', 'accountApi', accountCtrl]);
 
-	function accountCtrl($stateParams, $interval, $ionicPopup, $http, $location, $window, $scope, accountApi) {
+	function accountCtrl($interval, $ionicPopup, $window, $scope, accountApi) {
 		var vm = this;
     vm.loggedUsername = $window.localStorage['username'];
     vm.loggedDefaultCurrency = $window.localStorage['defaultCurrency'];
