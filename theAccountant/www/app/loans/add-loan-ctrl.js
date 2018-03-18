@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('addLoanCtrl', ['$stateParams', '$interval', '$ionicPopup', '$q', '$location', '$window', 'counterpartiesApi', 'loanApi', addLoanCtrl]);
+	angular.module('theAccountant').controller('addLoanCtrl', ['$stateParams', '$ionicPopup', '$window', 'counterpartiesApi', 'loanApi', addLoanCtrl]);
 
-	function addLoanCtrl($stateParams, $interval, $ionicPopup, $q, $location, $window, counterpartiesApi, loanApi) {
+	function addLoanCtrl($stateParams, $ionicPopup, $window, counterpartiesApi, loanApi) {
 		var vm = this;
 
 		vm.defaultCurrency = $window.localStorage['defaultCurrency'];

@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('registerCtrl', ['$stateParams', '$interval', '$window', '$ionicPopup', '$http', '$location', 'host_name', registerCtrl]);
+	angular.module('theAccountant').controller('registerCtrl', ['$interval', '$window', '$ionicPopup', '$http', '$location', 'host_name', registerCtrl]);
 
-	function registerCtrl($stateParams, $interval, $window, $ionicPopup, $http, $location, host_name) {
+	function registerCtrl($interval, $window, $ionicPopup, $http, $location, host_name) {
 		var vm = this;
 
 		vm.currencies = ["EUR", "USD", "GBP", "RON", "JPY", "BGN", "CZK", "DKK", "HUF", "PLN", "SEK", "CHF", "NOK",

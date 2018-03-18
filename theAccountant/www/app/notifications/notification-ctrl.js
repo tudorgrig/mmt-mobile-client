@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('notificationCtrl', ['$state', '$ionicPopup', '$timeout', '$location', '$window','notificationApi', '$rootScope', notificationCtrl]);
+	angular.module('theAccountant').controller('notificationCtrl', ['$state', '$ionicPopup', '$timeout', '$window','notificationApi', '$rootScope', notificationCtrl]);
 
-	function notificationCtrl($state, $ionicPopup, $timeout, $location, $window, notificationApi, $rootScope) {
+	function notificationCtrl($state, $ionicPopup, $timeout, $window, notificationApi, $rootScope) {
 		var vm = this;
     vm.defaultCurrency = $window.localStorage['defaultCurrency'];
 

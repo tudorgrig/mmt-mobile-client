@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('theAccountant').controller('incomeCtrl', ['$ionicFilterBar', '$scope', '$stateParams', '$location', '$ionicPopup', '$http', '$state', '$window', '$ionicActionSheet', '$ionicListDelegate', 'incomeApi', incomeCtrl]);
+	angular.module('theAccountant').controller('incomeCtrl', ['$ionicFilterBar', '$scope', '$ionicPopup', '$state', 'incomeApi', incomeCtrl]);
 
-	function incomeCtrl($ionicFilterBar, $scope, $stateParams, $location, $ionicPopup, $http, $state, $window, $ionicActionSheet, $ionicListDelegate, incomeApi) {
+	function incomeCtrl($ionicFilterBar, $scope, $ionicPopup, $state, incomeApi) {
 		var vm = this, filterBarInstance;
 		vm.incomes = [];
 		var date = new Date();
