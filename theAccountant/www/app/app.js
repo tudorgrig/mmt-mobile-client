@@ -331,6 +331,96 @@ angular.module('theAccountant', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage
                   }
     })
 
+    .state('app.help-use-categories', {
+      url:"/helpUseCategories",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/use-categories.html"
+        }
+      }
+    })
+
+    .state('app.help-create-category', {
+      url:"/helpCreateCategory",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/create-category.html"
+        }
+      }
+    })
+
+    .state('app.help-update-category', {
+      url:"/helpUpdateCategory",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/update-category.html"
+        }
+      }
+    })
+
+    .state('app.help-delete-category', {
+      url:"/helpDeleteCategory",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/delete-category.html"
+        }
+      }
+    })
+
+    .state('app.help-create-loan', {
+      url:"/helpCreateNewLoan",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/create-loan.html"
+        }
+      }
+    })
+
+    .state('app.help-update-loan', {
+      url:"/helpUpdateLoan",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/update-loan.html"
+        }
+      }
+    })
+
+    .state('app.help-delete-loan', {
+      url:"/helpDeleteLoan",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/delete-loan.html"
+        }
+      }
+    })
+
+    .state('app.help-create-notification', {
+      url:"/helpCreateNewNotification",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/create-notification.html"
+        }
+      }
+    })
+
+    .state('app.help-delete-notification', {
+      url:"/helpUpdateNotification",
+      cache: true,
+      views: {
+        "mainContent" : {
+          templateUrl : "app/help/delete-notification.html"
+        }
+      }
+    })
+
     .state('app.contactus', {
         			url:"/contactus",
         			cache: false,
